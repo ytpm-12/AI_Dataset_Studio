@@ -1,0 +1,1009 @@
+Transaction_ID,Product_Code,Category,Quantity,Unit_Price,Order_Date,Status,Discount (%),Notes
+1939, A-100 ,Automobile,1,420.27,14-10-2024,Annulé,0.03,Commande standard - lot 8
+1631,C-300,Sport,8,338.12,17-12-2023,Retourné,0.15,Commande standard - lot 17
+1683,F-600,Informatique,7,300.52,2023-07-13,Retourné,0.28,Commande standard - lot 7
+1515,F-600,Informatique,5,355.5,05/22/2024,Annulé,0.22,Commande standard - lot 4
+1366,B-200,Electroménager,5,476.19,2023-07-02,en attente,0.23,Commande standard - lot 4
+1656,A-100,Sport,3,167.1,2024-06-20,Retourné,0.18,Commande standard - lot 11
+1657,C-300,Electroménager,7,215.83,05/13/2024,En préparation,0.07,Commande standard - lot 16
+1530,F-600,Automobile,4,51.49,04/08/2024,Retourné,0.25,Commande standard - lot 11
+1322,B-200,Maison,1,311.22,2023-07-06,Retourné,0.09,Commande standard - lot 9
+1071,D-400,Maison,10,168.2,16-09-2023,Retourné,0.28,Commande standard - lot 13
+1793,B-200,Automobile,1,40.94,27-03-2024,En préparation,10%,
+1372, G-700 ,Jardin,3,396.06,2024-04-19,En attente,0.15,
+1842,D-400,Informatique,10,423.53,12-06-2024,En préparation,0.0,Commande standard - lot 8
+1457,E-500,Automobile,2,63.08,06-01-2023,En attente,0.17,Commande standard - lot 2
+1248,E-500,Automobile,10,271.78,24-05-2024,En préparation,0.02,Commande standard - lot 5
+1612,F-600,Electroménager,7,497.48,07-09-2023,Expédié,0.23,Commande standard - lot 2
+1706,D-400,Maison,3,307.76,16-12-2023,Livré,0.13,Commande standard - lot 7
+1983,D-400,Jouets,8,409.7,08/19/2024,Expédié,,Commande standard - lot 19
+1299,C-300,Jouets,999,344.32,2023-09-15,expédié,0.29,Commande standard - lot 4
+1102,C-300,Jouets,9,254.59,2023-12-05,Retourné,0.17,Commande standard - lot 6
+1964,A-100,Sport,5,385.77,04-10-2024,Expédié,,Commande standard - lot 13
+1606,G-700,Maison,1111,324.56,08/05/2023,en attente,0.2,Commande standard - lot 9
+1214,G-700,Jardin,3,484.03,2024-01-03,En préparation,0.16,Commande standard - lot 13
+1238,F-600,Maison,8,276.53,2024-07-06,Annulé,0.19,Commande standard - lot 12
+1594,E-500,Automobile,8,239.36,2023-04-17,livré,0.04,Commande standard - lot 4
+1282,E-500,Electroménager,4,471.92,2023-06-25,Livré,0.2,
+1378,C-300,Automobile,9,,2024-04-13,Expédié,0.15,Commande standard - lot 4
+1287,C-300,Electroménager,10,192.56,2023-04-03,En préparation,10%,Commande standard - lot 5
+1389,B-200,Jouets,-8,27.12,04/08/2024,En attente,0.14,Commande standard - lot 15
+1886,C-300,Electroménager,2,409.49,11/17/2024,Annulé,0.2,Commande standard - lot 2
+1719,E-500,Electroménager,1,465.43,2024-08-04,expédié,0.02,Commande standard - lot 1
+1836,D-400,Jardin,4,424.8,11/23/2023,Expédié,0.21,Commande standard - lot 14
+1097,F-600,Informatique,9,160.31,17-12-2023,Livré,0.15,Commande standard - lot 9
+1245,A-100,Informatique,1,345.76,2023-09-12,en attente,0.02,Commande standard - lot 18
+1737,G-700,Electroménager,7,100.34,05-04-2024,En préparation,0.19,Commande standard - lot 6
+1077,F-600,Automobile,999,,03-06-2023,Retourné,0.07,Commande standard - lot 20
+1900,F-600,Jardin,3,94.62,04-05-2024,Retourné,0.03,Commande standard - lot 4
+1210,D-400,Electroménager,5,292.39,18-11-2024,en préparation,0.18,Commande standard - lot 19
+1260,F-600,Electroménager,7,,2023-10-18,Retourné,10%,Commande standard - lot 9
+1159,D-400,Automobile,10,330.15,2023-02-27,Annulé,0.05,Commande standard - lot 12
+1496,G-700,Maison,3,51.18,28-11-2024,En préparation,0.2,Commande standard - lot 11
+1527,C-300,Jardin,9,479.69,date inconnue,Expédié,0.21,Commande standard - lot 13
+1332,D-400,Informatique,2,398.58,22-06-2024,Retourné,0.25,Commande standard - lot 16
+1955,F-600,Electroménager,6,190.06,23-04-2024,En attente,0.18,Commande standard - lot 9
+1315,A-100,Electroménager,1,215.72,2024-12-14,En attente,0.07,Commande standard - lot 8
+1295, E-500 ,Automobile,5,132.19,28-08-2024,En préparation,0.05,Commande standard - lot 2
+1382,C-300,Jouets,9,175.36,2024-09-17,Retourné,0.13,Commande standard - lot 13
+1923,F-600,Maison,1,456.64,26-09-2023,En attente,0.28,Commande standard - lot 12
+1982,E-500,Sport,4,291.27,10/04/2023,livré,0.07,Commande standard - lot 17
+1878,C-300,Jardin,2,378.77,date inconnue,Annulé,10%,Commande standard - lot 9
+1622,C-300,Automobile,1,326.57,05/30/2023,Annulé,0.27,Commande standard - lot 7
+1936,A-100,Electroménager,1,290.92,14-03-2024,expédié,0.27,Commande standard - lot 17
+1060,D-400,Maison,7,344.98,2023-03-29,en attente,0.17,Commande standard - lot 4
+1626,D-400,Jardin,1,107.18,03-05-2023,En préparation,0.25,Commande standard - lot 17
+1559,D-400,Informatique,3,140.82,10/30/2023,Annulé,0.24,Commande standard - lot 4
+1746, A-100 ,Automobile,7,90.9,02-09-2023,Livré,0.25,Commande standard - lot 15
+1381,D-400,Electroménager,9,491.06,date inconnue,Expédié,0.21,Commande standard - lot 17
+1055,A-100,Informatique,8,490.56,10/22/2024,Expédié,0.2,Commande standard - lot 20
+1024,G-700,Informatique,9,65.07,27-06-2024,Annulé,0.13,Commande standard - lot 15
+1031,G-700,Automobile,1,255.45,2024-05-16,En attente,0.22,Commande standard - lot 9
+1895,D-400,Sport,8,345.9,08/25/2024,Livré ,0.05,Commande standard - lot 16
+1430,F-600,Jouets,10,154.26,15-04-2023,Annulé,0.1,Commande standard - lot 13
+1011,A-100,Maison,2,213.83,03/19/2023,annulé,10%,
+1950,B-200,Electroménager,4,,date inconnue,En attente,0.14,Commande standard - lot 2
+1812,G-700,Electroménager,2,362.02,2024-09-13,En préparation,0.1,Commande standard - lot 14
+1483,B-200,Electroménager,5,,19-04-2023,Retourné,0.27,Commande standard - lot 10
+1446,F-600,Electroménager,7,262.43,2024-05-31,En préparation,0.14,Commande standard - lot 4
+1200,C-300,Informatique,5,393.26,01/03/2024,Expédié,0.12,Commande standard - lot 10
+1501,B-200,Jardin,7,498.24,2024-05-02,Livré,0.17,Commande standard - lot 13
+1775, A-100 ,Jouets,5,85.12,2024-01-06,Livré,0.26,Commande standard - lot 1
+1108,G-700,Jouets,7,458.97,08-11-2024,En préparation,0.22,Commande standard - lot 1
+1219,E-500,Informatique,7,430.5,03-06-2023,Expédié,0.23,
+1421,B-200,Jouets,9,90.05,2023-06-10,En préparation,,Commande standard - lot 7
+1175, F-600 ,Maison,8,295.51,22-09-2023,retourné ,,Commande standard - lot 7
+1722,G-700,Jouets,5,337.27,12/07/2024,Expédié ,0.21,Commande standard - lot 2
+1520,D-400,Automobile,7,17201.0,01-03-2024,Livré,0.18,Commande standard - lot 15
+1454,F-600,Electroménager,2,63.09,2024-03-20,Retourné,0.18,Commande standard - lot 13
+1932,B-200,Maison,2,335.1,08/02/2024,expédié,0.1,Commande standard - lot 6
+1040,E-500,Jardin,2,30383.999999999996,21-11-2024,Annulé,0.23,Commande standard - lot 15
+1552,G-700,Informatique,9,13.96,22-01-2024,En préparation,0.29,Commande standard - lot 7
+1917,F-600,Sport,7,266.34,16-06-2024,annulé,0.02,
+1352,D-400,Electroménager,3,432.14,2024-12-17,Livré,0.04,Commande standard - lot 12
+1067,G-700,Sport,2,178.79,2023-06-01,expédié,0.05,Commande standard - lot 16
+1278, E-500 ,Sport,6,484.96,date inconnue,En attente,0.26,Commande standard - lot 11
+1068,D-400,Automobile,10,319.47,10/04/2024,En préparation,0.11,
+1909,B-200,Electroménager,3,131.45,29-09-2024,Annulé,0.21,
+1735,B-200,Jardin,1,,30-09-2023,annulé,0.24,Commande standard - lot 16
+1843, C-300 ,Maison,1,198.13,12-04-2024,expédié,0.1,Commande standard - lot 9
+1297,D-400,Maison,8,193.0,29-05-2023,en attente,0.2,
+1619,A-100,Informatique,3,188.3,10/31/2024,Annulé,0.07,Commande standard - lot 7
+1599,D-400,Jouets,3,271.28,22-12-2023,Retourné,0.24,
+1818,G-700,Electroménager,4,183.85,01/28/2023,En préparation,0.23,Commande standard - lot 11
+1807,C-300,Electroménager,9,367.98,07/14/2024,En attente,0.19,Commande standard - lot 8
+1424,F-600,Jardin,1,315.9,15-12-2024,Retourné,0.11,Commande standard - lot 17
+1759,B-200,Informatique,2,2679.0,04-03-2024,En préparation,0.27,
+1313,D-400,Jardin,4,67.97,date inconnue,en préparation,0.09,Commande standard - lot 20
+1185,B-200,Sport,9,23.49,01-07-2024,Expédié ,0.03,Commande standard - lot 4
+1333,C-300,Maison,3,382.98,30-01-2023,Expédié,0.04,
+1089, A-100 ,Jouets,10,310.96,07/12/2024,Retourné,0.02,
+1064,E-500,Maison,4,145.21,11/14/2024,Expédié,,Commande standard - lot 7
+1833,G-700,Automobile,9,275.33,2023-07-14,en attente,0.29,Commande standard - lot 11
+1577,A-100,Maison,2,441.67,09/07/2024,Retourné,0.02,Commande standard - lot 9
+1216,E-500,Automobile,6,253.41,20-03-2023,Retourné,0.2,Commande standard - lot 11
+1605,G-700,Jardin,3,166.92,10-03-2024,En attente,.5,Commande standard - lot 6
+1549,D-400,Electroménager,3,427.33,13-02-2024,Expédié,0.2,
+1291,F-600,Automobile,8,313.51,04/05/2024,Livré,,Commande standard - lot 8
+1789,G-700,Electroménager,10,104.46,02/04/2024,En préparation,0.12,Commande standard - lot 18
+1890,E-500,Automobile,4,117.84,09/22/2023,En attente,0.01,Commande standard - lot 3
+1968,A-100,Electroménager,6,115.02,2024-10-09,retourné,0.21,Commande standard - lot 9
+1945,C-300,Jouets,2,24100.0,07-08-2023,Livré,0.05,Commande standard - lot 9
+1828,A-100,Sport,7,499.23,01-02-2024,en préparation,0.26,
+1808,B-200,Informatique,7,287.85,02/22/2024,en préparation,0.25,Commande standard - lot 4
+1695,E-500,Informatique,6,262.61,2023-06-20,Retourné,0.22,Commande standard - lot 15
+1994,G-700,Sport,8,240.76,09/24/2023,Expédié,0.12,Commande standard - lot 8
+1310,G-700,Maison,-7,267.45,06-07-2024,En préparation,0.04,Commande standard - lot 16
+1087, F-600 ,Jardin,9,321.7,19-03-2024,Expédié,0.07,Commande standard - lot 17
+1740,E-500,Jouets,2,148.03,2023-11-28,Annulé,0.08,Commande standard - lot 7
+1517,E-500,Jardin,5,267.6,11/27/2023,En préparation,0.04,Commande standard - lot 1
+1311,D-400,Jouets,1,129.43,2024-04-09,Expédié,0.03,Commande standard - lot 15
+1537, D-400 ,Sport,1,309.53,06/08/2024,En préparation,0.04,Commande standard - lot 15
+1137,G-700,Electroménager,10,165.21,01-10-2023,Retourné,0.08,Commande standard - lot 5
+1874,A-100,Automobile,9,369.66,04/05/2024,Livré,0.16,Commande standard - lot 12
+1466,F-600,Jouets,9,88.42,2023-08-19,Expédié,0.05,Commande standard - lot 11
+1903,C-300,Maison,10,233.3,06/22/2023,Livré,0.07,Commande standard - lot 9
+1262,C-300,Jardin,-3,154.65,2023-10-10,Retourné,0.28,Commande standard - lot 11
+1487,G-700,Maison,3,241.82,2023-10-13,Expédié,0.14,Commande standard - lot 20
+1169, E-500 ,Jardin,9,240.04,03/22/2023,retourné,0.04,Commande standard - lot 15
+1831, G-700 ,Automobile,8,461.93,2024-09-08,livré,0.06,Commande standard - lot 3
+1448,F-600,Electroménager,6,302.34,26-01-2024,Retourné,0.09,
+1140, A-100 ,Automobile,-8,230.98,2024-12-06,Retourné,0.02,Commande standard - lot 6
+1741,G-700,Automobile,3,344.56,07/29/2023,Annulé,0.18,Commande standard - lot 11
+1665,A-100,Informatique,8,49638.0,2024-12-12,En préparation,0.29,Commande standard - lot 16
+1856,B-200,Jardin,3,268.59,2024-12-24,Retourné,0.22,Commande standard - lot 9
+1441, A-100 ,Automobile,7,89.46,07/22/2023,En préparation,0.22,Commande standard - lot 7
+9003,G-700,Automobile,3,,2023-06-13,En attente,0.23,Commande standard - lot 5
+1532,D-400,Maison,9,265.82,12/06/2023,Annulé,0.1,Commande standard - lot 14
+1056, A-100 ,Maison,4,415.76,08/27/2023,En préparation,0.16,Commande standard - lot 4
+1121,F-600,Maison,7,363.46,2023-02-24,En attente,0.29,Commande standard - lot 9
+1529,B-200,Jardin,3,15.31,24-06-2023,Expédié,0.03,Commande standard - lot 19
+1026,F-600,Jardin,7,417.28,2024-12-13,Annulé ,0.29,Commande standard - lot 18
+1073,B-200,Informatique,3,386.58,08-02-2023,Livré,0.21,Commande standard - lot 6
+1045,C-300,Sport,7,350.26,2024-02-25,Livré,0.25,Commande standard - lot 16
+1250, G-700 ,Automobile,1,411.9,date inconnue,Annulé ,0.29,
+1395,G-700,Automobile,3,319.72,18-01-2024,En préparation,0.0,Commande standard - lot 20
+1915,F-600,Jardin,2,,11/15/2024,En attente,0.26,Commande standard - lot 8
+1901,A-100,Automobile,9,321.51,date inconnue,annulé,0.3,Commande standard - lot 3
+1747,D-400,Jardin,10,106.54,06/20/2024,livré,0.04,
+1199,C-300,Sport,10,447.46,2024-03-08,annulé,,
+1817,F-600,Maison,3,415.64,2023-12-12,En attente,0.03,Commande standard - lot 14
+1356,G-700,Electroménager,7,59.86,2024-10-26,Annulé,0.08,Commande standard - lot 11
+1324,C-300,Maison,8,497.06,03/28/2024,retourné,,Commande standard - lot 4
+1877,A-100,Jouets,4,469.68,02/08/2024,en préparation,0.14,
+1744, G-700 ,Electroménager,9,372.8,date inconnue,Retourné ,0.13,Commande standard - lot 20
+1236,F-600,Jouets,7,184.77,2024-02-28,En préparation,0.22,Commande standard - lot 13
+1579,E-500,Sport,-9,49.68,2024-07-20,retourné,0.12,Commande standard - lot 10
+1948,C-300,Electroménager,1,414.95,2024-08-21,Annulé,10%,Commande standard - lot 20
+1942,D-400,Automobile,6,8.03,2023-06-22,Retourné,0.24,Commande standard - lot 16
+1906,D-400,Electroménager,9,196.58,date inconnue,Livré,0.1,Commande standard - lot 5
+1300,A-100,Informatique,7,483.75,09/17/2023,En attente,0.21,Commande standard - lot 11
+1061,D-400,Jouets,7,302.2,2023-08-06,Retourné,0.08,Commande standard - lot 14
+1328,D-400,Jardin,10,193.98,date inconnue,Livré,.5,
+1528,A-100,Automobile,5,320.27,2023-01-04,En préparation,0.07,Commande standard - lot 3
+1600,G-700,Informatique,8,317.4,11/27/2023,Annulé,,Commande standard - lot 12
+1542,D-400,Jardin,1,330.31,2023-12-30,En attente,,Commande standard - lot 17
+1650,G-700,Informatique,1,85.13,05/10/2024,En préparation,0.19,Commande standard - lot 4
+1918,G-700,Informatique,6,191.64,2023-01-23,En préparation,0.16,Commande standard - lot 6
+1597,A-100,Sport,2,49.83,28-08-2024,Expédié,0.22,Commande standard - lot 7
+1543,G-700,Informatique,6,91.38,07/30/2024,En attente,0.12,Commande standard - lot 16
+1963,G-700,Jardin,9,326.29,date inconnue,Expédié,0.06,Commande standard - lot 7
+1306,B-200,Informatique,2,238.25,date inconnue,Retourné ,0.03,Commande standard - lot 19
+1319,E-500,Maison,1,265.71,25-11-2024,Livré,0.26,Commande standard - lot 15
+1482,G-700,Sport,4,455.02,2024-06-23,Retourné ,0.0,Commande standard - lot 2
+1494, A-100 ,Sport,1,321.0,06-08-2024,Expédié,,Commande standard - lot 10
+1266,D-400,Maison,3,100.66,01/16/2023,En attente,0.29,Commande standard - lot 20
+1111,C-300,Jouets,9,474.52,03-10-2024,En attente ,0.16,Commande standard - lot 14
+1469,B-200,Maison,2,74.24,date inconnue,Retourné,,Commande standard - lot 11
+1738,B-200,Maison,8,,date inconnue,Expédié,10%,Commande standard - lot 9
+1526,F-600,Maison,5,109.97,2023-12-08,En attente,0.09,Commande standard - lot 20
+1257,E-500,Electroménager,7,71.76,29-10-2024,En préparation,0.13,Commande standard - lot 19
+1261,F-600,Jouets,1111,193.45,11/20/2023,Annulé,0.01,Commande standard - lot 17
+1545, B-200 ,Electroménager,8,490.76,2023-08-31,En préparation,0.08,
+1406,D-400,Sport,999,421.19,06/05/2024,Livré,0.02,Commande standard - lot 14
+1429,F-600,Jardin,9,98.83,2024-03-14,En préparation,0.12,Commande standard - lot 3
+1629,G-700,Informatique,8,273.47,2024-08-05,Annulé,0.18,Commande standard - lot 15
+1502,A-100,Maison,7,16.36,16-09-2023,en préparation,0.26,Commande standard - lot 9
+1433,C-300,Automobile,1,14779.0,12/06/2023,En préparation,0.21,Commande standard - lot 13
+1733,D-400,Automobile,-7,319.24,10/13/2023,Annulé,0.14,Commande standard - lot 8
+1138,B-200,Maison,4,290.83,2024-04-07,Retourné,0.26,Commande standard - lot 16
+1358,A-100,Jardin,10,473.89,03/21/2024,Retourné,0.08,Commande standard - lot 13
+1931,A-100,Jardin,9,14.45,31-03-2024,en attente,10%,Commande standard - lot 12
+1222,D-400,Informatique,7,214.66,11/27/2024,En préparation,0.08,Commande standard - lot 12
+1755,D-400,Electroménager,6,388.66,27-08-2024,En préparation,10%,Commande standard - lot 15
+1595,A-100,Jouets,1,427.03,07-12-2023,Livré,0.0,Commande standard - lot 14
+1558, G-700 ,Jouets,10,369.03,02-02-2024,Retourné,0.23,Commande standard - lot 13
+1364,B-200,Informatique,3,333.25,05-01-2023,Annulé,0.1,Commande standard - lot 4
+1524,A-100,Electroménager,-4,98.02,27-08-2024,Annulé,0.15,Commande standard - lot 8
+1209,E-500,Maison,4,209.26,2023-06-14,En préparation,0.02,Commande standard - lot 18
+1858, B-200 ,Jouets,4,463.27,01/30/2023,En préparation,0.26,Commande standard - lot 14
+1335,G-700,Sport,4,19.48,12-10-2023,Livré,0.02,Commande standard - lot 1
+1211,B-200,Maison,6,393.9,10/11/2023,En préparation,0.15,
+1351,D-400,Jouets,3,64.72,06/21/2024,En attente,0.18,Commande standard - lot 8
+1079,A-100,Jardin,1,13.04,03-11-2024,Expédié,0.24,Commande standard - lot 15
+1030,E-500,Jouets,2,291.45,01/20/2024,Retourné,0.09,Commande standard - lot 4
+1281,C-300,Electroménager,2,290.89,2023-11-25,En préparation,0.05,
+1508,B-200,Electroménager,6,411.11,01/08/2023,En préparation,0.27,Commande standard - lot 1
+1653,F-600,Sport,10,28.26,11-12-2024,En préparation,0.25,Commande standard - lot 5
+1949,A-100,Automobile,2,431.0,2024-06-27,Expédié ,0.08,Commande standard - lot 13
+1290,B-200,Jardin,3,420.78,2024-11-17,en préparation,0.29,Commande standard - lot 5
+1166, F-600 ,Jouets,3,,07/14/2023,Retourné,0.03,Commande standard - lot 18
+1763, F-600 ,Maison,1,239.22,05/02/2023,En préparation,0.13,Commande standard - lot 8
+1498,G-700,Automobile,2,151.33,2023-12-28,Expédié,0.26,Commande standard - lot 5
+1463,G-700,Sport,3,330.49,2023-10-01,Retourné,0.14,Commande standard - lot 12
+1066,F-600,Maison,2,474.07,2024-01-06,En attente,0.09,Commande standard - lot 11
+1142, D-400 ,Automobile,2,194.45,18-10-2024,en préparation,0.06,Commande standard - lot 14
+1276,G-700,Jardin,7,110.11,2023-09-18,Livré,0.12,Commande standard - lot 1
+1834,A-100,Jardin,5,141.32,29-07-2023,Livré,0.22,Commande standard - lot 17
+1583,E-500,Maison,9,365.14,04/21/2023,En préparation ,0.03,Commande standard - lot 5
+1465,F-600,Jardin,1,366.74,24-11-2024,retourné ,.5,Commande standard - lot 18
+1669,F-600,Maison,1,471.66,04/07/2024,Annulé,0.12,Commande standard - lot 19
+1320, A-100 ,Informatique,5,60.45,29-07-2023,retourné,0.13,Commande standard - lot 1
+1717,G-700,Informatique,2,437.75,02-11-2023,Retourné,0.07,Commande standard - lot 9
+1307,A-100,Electroménager,2,403.2,11/25/2024,livré,0.06,
+1308,B-200,Electroménager,5,278.94,2023-02-11,Expédié,0.02,
+1827,G-700,Sport,6,100.06,04-09-2023,Livré,0.05,Commande standard - lot 1
+1334,F-600,Electroménager,-2,102.19,2024-08-30,en attente,,Commande standard - lot 4
+1050,A-100,Jouets,7,373.61,05/23/2024,En préparation,0.22,Commande standard - lot 5
+1732,D-400,Automobile,3,173.33,23-08-2023,En attente,0.29,Commande standard - lot 1
+1003,A-100,Automobile,10,39.43,2023-03-23,Expédié,0.2,Commande standard - lot 3
+1787,F-600,Jouets,1,77.76,01/13/2024,En attente,0.04,Commande standard - lot 7
+1353,G-700,Jouets,10,32.06,17-09-2023,En attente,0.26,Commande standard - lot 13
+1911,E-500,Sport,4,60.8,01/31/2023,En préparation,0.01,Commande standard - lot 7
+1539,B-200,Jardin,3,153.94,01/07/2023,Annulé,,Commande standard - lot 4
+1347,C-300,Sport,9,327.51,19-03-2024,Annulé,0.16,Commande standard - lot 17
+9002,E-500,Maison,9,309.07,05/24/2024,En préparation,0.14,Commande standard - lot 7
+1484,C-300,Informatique,1,15.5,16-04-2023,en attente,,Commande standard - lot 5
+1661,F-600,Electroménager,5,425.47,12/19/2023,En préparation,0.23,Commande standard - lot 18
+1034,C-300,Jouets,4,267.81,12/05/2023,Retourné,0.22,Commande standard - lot 6
+1032,E-500,Sport,8,164.54,10/13/2023,En préparation,0.1,Commande standard - lot 12
+1232,B-200,Sport,6,351.85,10/14/2023,En préparation,0.24,Commande standard - lot 13
+1753,G-700,Automobile,5,358.15,2023-02-13,en attente,0.17,Commande standard - lot 17
+1193,D-400,Electroménager,8,251.74,2024-10-31,Expédié ,0.29,Commande standard - lot 17
+1514,D-400,Sport,-9,65.19,14-06-2024,En préparation,10%,Commande standard - lot 3
+1004,E-500,Sport,4,321.8,2023-02-27,Expédié,,Commande standard - lot 19
+1205,E-500,Jardin,8,259.38,04-07-2024,Expédié,0.25,Commande standard - lot 14
+1434,E-500,Jardin,1,30.79,2023-05-09,En préparation,0.22,Commande standard - lot 7
+1809,C-300,Maison,2,473.0,01/18/2024,Expédié,0.06,Commande standard - lot 1
+1987,C-300,Jardin,7,277.61,2023-07-07,En attente,0.14,Commande standard - lot 14
+1110,A-100,Jardin,10,26.9,2023-02-27,Annulé,0.23,Commande standard - lot 8
+1943, F-600 ,Maison,10,221.08,2024-07-17,Retourné,0.21,
+1078, D-400 ,Automobile,999,14918.0,08/07/2024,En préparation,0.15,Commande standard - lot 18
+1085, G-700 ,Informatique,8,493.35,17-07-2024,Livré,0.24,Commande standard - lot 4
+1589,C-300,Informatique,5,366.01,18-09-2023,Annulé,0.05,Commande standard - lot 5
+1083,F-600,Sport,3,391.75,date inconnue,Retourné,0.28,Commande standard - lot 3
+1255,E-500,Electroménager,10,170.52,2023-05-04,Retourné,,Commande standard - lot 13
+1925,A-100,Informatique,8,21.25,18-11-2023,expédié,0.26,Commande standard - lot 10
+1409,G-700,Jardin,4,235.94,06-12-2023,En attente,0.01,
+1654,E-500,Sport,7,474.71,03/07/2024,En attente,0.2,Commande standard - lot 20
+1522,F-600,Maison,1,168.02,04-10-2023,En préparation,0.18,Commande standard - lot 14
+1921,F-600,Maison,3,189.56,date inconnue,En attente,0.11,Commande standard - lot 19
+1437,A-100,Jouets,6,485.39,18-10-2024,Expédié ,0.06,Commande standard - lot 9
+1006,B-200,Automobile,7,236.68,12-01-2023,retourné,0.09,Commande standard - lot 1
+1405,E-500,Electroménager,2,193.82,27-08-2023,Retourné,0.03,Commande standard - lot 1
+1468,C-300,Electroménager,6,55.16,2024-06-10,en attente,0.12,Commande standard - lot 14
+1098,E-500,Maison,5,242.5,10/08/2023,Expédié,0.23,Commande standard - lot 2
+1560,C-300,Maison,5,,date inconnue,Expédié,0.28,Commande standard - lot 20
+1360,F-600,Informatique,7,52.16,08/29/2023,Livré,0.01,Commande standard - lot 20
+1875,D-400,Sport,1,35.1,02/23/2024,Expédié,0.26,Commande standard - lot 17
+1267,D-400,Automobile,8,305.93,08-02-2024,Retourné,0.03,Commande standard - lot 2
+1678, E-500 ,Maison,7,,20-03-2024,Annulé,0.03,Commande standard - lot 8
+1383,G-700,Maison,2,371.33,2023-10-18,Expédié,.5,Commande standard - lot 18
+1694,A-100,Electroménager,3,79.0,2024-11-15,Retourné,0.24,
+1412,G-700,Sport,7,319.89,2024-08-24,Annulé,0.04,Commande standard - lot 19
+1888,C-300,Jardin,10,202.09,date inconnue,Annulé,0.07,Commande standard - lot 20
+1119,F-600,Jouets,1,3278.0,05/26/2024,Retourné,0.01,Commande standard - lot 19
+1431,F-600,Automobile,3,162.39,2023-12-10,Annulé,0.21,
+1251,F-600,Jardin,4,474.01,19-04-2023,Annulé,0.05,Commande standard - lot 11
+1343,E-500,Sport,3,485.58,10/19/2023,expédié ,0.01,Commande standard - lot 11
+1010,A-100,Electroménager,9,70.49,2024-04-29,En attente,0.14,Commande standard - lot 4
+1197,B-200,Informatique,2,254.53,2024-12-10,Livré,0.18,Commande standard - lot 17
+1986,G-700,Jouets,10,340.38,date inconnue,En attente,0.21,Commande standard - lot 7
+1082,E-500,Electroménager,2,360.24,2024-04-02,Retourné,0.28,
+1914,F-600,Maison,5,339.76,date inconnue,Retourné ,0.11,Commande standard - lot 11
+1479,B-200,Automobile,1,26962.0,09/11/2024,livré,0.18,Commande standard - lot 2
+1697,F-600,Maison,5,457.11,11/13/2024,Annulé ,0.05,
+1240,E-500,Electroménager,9,200.4,02/04/2024,En préparation,0.24,Commande standard - lot 10
+1293, E-500 ,Sport,2,336.01,08/16/2024,annulé,0.14,Commande standard - lot 14
+1212,F-600,Automobile,5,135.3,date inconnue,Expédié,0.23,Commande standard - lot 2
+1723,C-300,Sport,6,331.01,05/30/2023,Retourné,0.23,Commande standard - lot 16
+1362,A-100,Jardin,5,439.08,28-09-2023,Livré,0.17,Commande standard - lot 15
+1452,F-600,Automobile,3,340.56,2024-02-05,Annulé,0.03,Commande standard - lot 19
+1228, G-700 ,Electroménager,5,340.07,28-12-2023,annulé,0.25,
+1908,D-400,Informatique,5,134.52,04-08-2023,Livré,0.03,Commande standard - lot 11
+1363,A-100,Electroménager,4,236.23,2024-05-21,En attente,0.26,Commande standard - lot 3
+1803,A-100,Maison,6,324.58,29-03-2023,En préparation,0.02,Commande standard - lot 10
+1658,G-700,Jardin,7,421.95,17-10-2024,Livré,0.24,Commande standard - lot 16
+1708,D-400,Electroménager,6,313.69,09-09-2024,livré,0.11,Commande standard - lot 16
+1645,F-600,Maison,1,68.33,2023-02-09,Annulé,0.05,Commande standard - lot 17
+1582,E-500,Electroménager,10,159.53,01/24/2023,Livré,0.13,Commande standard - lot 14
+1778,E-500,Automobile,10,117.24,21-05-2024,En attente,0.0,Commande standard - lot 12
+1371,B-200,Jardin,7,245.93,05-01-2024,Retourné,0.06,Commande standard - lot 7
+1008,A-100,Automobile,5,43.98,2024-06-29,En préparation,0.29,Commande standard - lot 7
+1156,E-500,Automobile,-2,224.5,2023-12-06,Expédié,0.15,Commande standard - lot 14
+1544,D-400,Sport,3,265.09,08/17/2024,Annulé,,Commande standard - lot 6
+1443,F-600,Electroménager,2,262.44,05/12/2024,Livré,0.07,Commande standard - lot 13
+1823,A-100,Maison,10,91.69,08/17/2023,En préparation,0.19,
+1399,C-300,Automobile,1,9.63,27-11-2024,Livré,0.29,Commande standard - lot 2
+1784,F-600,Jouets,1,370.24,09/02/2023,Expédié,0.15,Commande standard - lot 14
+1569,E-500,Jouets,1,455.78,03/22/2024,En attente,0.15,Commande standard - lot 1
+1592,B-200,Automobile,5,247.6,07/25/2024,Retourné ,0.22,Commande standard - lot 18
+1581,F-600,Automobile,7,138.65,date inconnue,Retourné,,Commande standard - lot 18
+1941, D-400 ,Automobile,4,9.19,29-12-2023,en préparation,10%,Commande standard - lot 1
+1696, F-600 ,Sport,1,36865.0,04/26/2024,en attente,0.26,Commande standard - lot 14
+1869,F-600,Maison,7,329.3,13-11-2024,Annulé,0.07,Commande standard - lot 5
+1533,G-700,Automobile,6,344.34,24-10-2023,Annulé,.5,
+1586,A-100,Electroménager,999,221.61,date inconnue,En attente,0.13,
+1713,A-100,Maison,6,203.28,10-02-2024,En préparation,0.26,Commande standard - lot 2
+1451,C-300,Jouets,10,353.55,2023-12-08,Retourné,0.26,Commande standard - lot 16
+1781,C-300,Jardin,-1,51.07,2024-09-05,livré,0.17,Commande standard - lot 3
+1229,B-200,Maison,4,343.14,2023-07-24,Retourné,0.11,Commande standard - lot 4
+1591, C-300 ,Electroménager,3,166.91,07/27/2024,En attente,0.02,Commande standard - lot 7
+1824,E-500,Jardin,2,322.76,29-07-2024,En préparation,0.07,Commande standard - lot 5
+1213,E-500,Sport,8,446.26,05/18/2023,Annulé,0.24,Commande standard - lot 6
+1080,F-600,Informatique,3,150.25,02/12/2023,Livré,0.06,Commande standard - lot 2
+1149,B-200,Electroménager,999,194.57,06-02-2023,Retourné,0.08,
+1303,F-600,Jardin,8,393.76,date inconnue,Retourné,0.2,Commande standard - lot 3
+1866,B-200,Jouets,8,62.01,2023-04-29,En attente,0.13,Commande standard - lot 17
+1329,C-300,Jouets,8,93.79,2023-01-30,Livré,0.13,Commande standard - lot 16
+1930, C-300 ,Jardin,3,299.06,2023-11-29,Expédié,0.27,
+1345,E-500,Jardin,-5,,08/07/2024,Livré,0.15,Commande standard - lot 11
+1546, F-600 ,Automobile,6,163.97,14-10-2024,Annulé,0.05,Commande standard - lot 7
+1507,A-100,Electroménager,2,250.72,13-04-2023,En attente,0.23,Commande standard - lot 4
+1134, E-500 ,Maison,1,282.98,05/18/2024,Retourné,10%,Commande standard - lot 10
+1553,C-300,Electroménager,4,375.0,2024-08-04,Expédié,,
+1312,E-500,Jardin,4,59.52,2024-02-27,En attente,0.06,Commande standard - lot 6
+9001,D-400,Automobile,2,15527.000000000002,05/20/2023,Livré ,0.0,Commande standard - lot 10
+1568,F-600,Jouets,2,346.57,06/26/2024,En attente,0.27,Commande standard - lot 19
+1001,F-600,Jouets,5,371.63,2023-02-02,Expédié,,Commande standard - lot 18
+1317,F-600,Electroménager,5,273.51,24-03-2023,Livré,0.03,Commande standard - lot 20
+1712,F-600,Informatique,6,165.39,date inconnue,annulé,0.05,Commande standard - lot 8
+1550,D-400,Maison,1,462.47,08/30/2023,Expédié,0.1,
+1618,G-700,Maison,1,90.27,10/30/2024,En attente,0.3,Commande standard - lot 14
+1535,C-300,Jardin,6,202.56,06-11-2023,Livré,0.23,Commande standard - lot 14
+1480,F-600,Automobile,6,485.94,2024-08-20,Retourné,0.17,Commande standard - lot 8
+1779,F-600,Jouets,1,422.3,30-04-2023,En préparation,0.24,Commande standard - lot 11
+1173,C-300,Automobile,2,373.14,02-03-2024,retourné,0.15,Commande standard - lot 2
+1126,E-500,Maison,7,466.37,04-07-2023,annulé,0.25,
+1425,G-700,Jardin,8,,date inconnue,Retourné,0.12,
+1423,D-400,Sport,1,230.87,11/01/2023,Annulé,0.13,Commande standard - lot 6
+1555,F-600,Maison,9,137.43,02/25/2023,En attente,0.29,Commande standard - lot 18
+1910,C-300,Jouets,3,342.11,02-04-2023,Annulé,0.06,Commande standard - lot 8
+1091,D-400,Jardin,4,467.21,06/13/2023,Annulé,0.14,Commande standard - lot 19
+1946,C-300,Maison,4,375.15,04-01-2024,Annulé,0.04,Commande standard - lot 2
+1182,B-200,Jouets,3,92.53,date inconnue,Livré,0.23,Commande standard - lot 14
+1275,E-500,Maison,9,309.07,05/24/2024,En préparation,0.14,Commande standard - lot 7
+1902,B-200,Maison,8,140.23,2023-09-27,Retourné,0.16,Commande standard - lot 16
+1070,F-600,Sport,8,406.43,28-03-2023,Retourné,0.05,Commande standard - lot 10
+1292,F-600,Jardin,9,,2024-01-13,Annulé,0.3,Commande standard - lot 15
+1132,C-300,Jardin,2,321.36,2024-08-24,Livré,0.28,Commande standard - lot 5
+1301,C-300,Electroménager,5,34.73,2024-03-27,En attente,0.16,Commande standard - lot 20
+1584,G-700,Electroménager,2,298.74,29-04-2024,Retourné,,Commande standard - lot 14
+1327,G-700,Informatique,7,300.98,06/21/2024,Expédié,10%,Commande standard - lot 9
+1145,D-400,Sport,7,477.45,date inconnue,expédié,0.09,Commande standard - lot 14
+1426,A-100,Informatique,6,45.86,2024-03-24,En attente,10%,
+1585,C-300,Automobile,3,436.36,07/29/2024,Annulé,0.17,Commande standard - lot 3
+1136,F-600,Automobile,4,177.55,2023-05-01,En préparation,0.05,Commande standard - lot 7
+1667,E-500,Jouets,3,398.8,03-06-2024,En attente,0.21,Commande standard - lot 8
+1165,G-700,Jouets,4,150.98,03/17/2023,En préparation,0.1,Commande standard - lot 16
+1029,A-100,Maison,4,378.35,21-01-2023,En préparation,0.08,Commande standard - lot 20
+1937,C-300,Informatique,4,292.62,2023-08-19,Expédié,0.0,Commande standard - lot 12
+1194,E-500,Jouets,8,,04/10/2024,Annulé,0.03,Commande standard - lot 1
+1998,D-400,Informatique,3,128.64,01/22/2023,livré,0.08,Commande standard - lot 13
+1751, G-700 ,Electroménager,10,471.05,2024-03-09,en préparation,0.08,Commande standard - lot 18
+1170,B-200,Informatique,4,494.2,2024-10-04,Annulé,0.12,Commande standard - lot 9
+1491,G-700,Jouets,3,208.7,2024-12-12,livré,0.05,Commande standard - lot 14
+1141,A-100,Maison,4,110.64,15-06-2024,en attente,0.04,
+1174,E-500,Electroménager,5,264.52,2023-07-25,en préparation,0.14,Commande standard - lot 4
+1007,F-600,Maison,9,314.52,2023-07-23,Livré,.5,Commande standard - lot 1
+1851,E-500,Automobile,8,73.42,11/16/2024,Annulé,0.24,Commande standard - lot 10
+1636,G-700,Automobile,3,283.11,13-07-2024,Livré,0.26,Commande standard - lot 11
+1074,F-600,Jardin,6,146.04,2024-06-30,Livré,0.17,Commande standard - lot 10
+1688,D-400,Jardin,8,166.38,2023-07-30,En préparation,0.11,Commande standard - lot 14
+1984,D-400,Jouets,3,,06/15/2024,En préparation,0.04,Commande standard - lot 2
+1239,D-400,Automobile,2,15527.000000000002,05/20/2023,Livré ,0.0,Commande standard - lot 10
+1146,D-400,Electroménager,9,44.12,09-06-2023,Livré,0.21,Commande standard - lot 8
+1799,B-200,Automobile,1,235.11,2024-12-12,Expédié,0.27,Commande standard - lot 5
+1235,C-300,Sport,8,308.76,21-06-2023,Livré,0.1,Commande standard - lot 10
+1221,A-100,Maison,8,301.15,06-01-2023,Retourné,10%,Commande standard - lot 11
+1478,A-100,Informatique,10,230.44,2023-11-07,Livré,0.01,Commande standard - lot 9
+1881,D-400,Informatique,4,287.65,11/27/2023,En préparation,0.17,
+1133,C-300,Maison,2,212.03,07/10/2023,Retourné,0.09,Commande standard - lot 15
+1999,G-700,Informatique,1,148.5,01/19/2023,Annulé,.5,Commande standard - lot 6
+1844,B-200,Jardin,8,408.54,2024-10-11,Retourné,0.26,Commande standard - lot 19
+1186,E-500,Jouets,3,,14-04-2023,Annulé,0.22,
+1042,A-100,Jardin,1111,97.85,10/02/2024,Expédié,0.04,Commande standard - lot 20
+2000,A-100,Sport,7,384.21,04/03/2024,Livré,0.28,Commande standard - lot 11
+1109, G-700 ,Maison,8,412.56,2023-10-10,Retourné ,0.27,Commande standard - lot 3
+1924,A-100,Electroménager,6,34.21,02-01-2023,En préparation,0.06,
+1057,F-600,Informatique,1,12.81,07-03-2024,Expédié,0.15,Commande standard - lot 2
+1531,E-500,Automobile,10,321.7,14-08-2023,En préparation ,0.06,
+1873,G-700,Electroménager,6,189.13,09/10/2023,En attente,.5,
+1604,C-300,Informatique,4,81.3,01/06/2023,En préparation,0.2,Commande standard - lot 8
+1867,G-700,Informatique,4,150.34,02-08-2023,Expédié,0.03,Commande standard - lot 10
+1025,B-200,Jardin,8,384.08,10/09/2023,Expédié,0.05,Commande standard - lot 5
+1651,F-600,Automobile,9,131.37,07/16/2024,retourné,0.13,
+1449,C-300,Informatique,2,193.2,27-08-2024,En préparation,0.24,Commande standard - lot 20
+1534,C-300,Electroménager,1111,5.32,18-10-2023,Retourné,0.22,Commande standard - lot 3
+1623, C-300 ,Jouets,2,379.71,12/05/2023,Retourné,,Commande standard - lot 17
+1754,D-400,Sport,6,205.57,20-06-2023,en attente ,0.03,Commande standard - lot 13
+1933,C-300,Jouets,10,20.84,2024-05-19,En attente,0.21,Commande standard - lot 12
+1339,F-600,Informatique,2,422.79,10-03-2024,En attente,0.19,Commande standard - lot 16
+1052,G-700,Automobile,6,378.3,11/21/2024,Annulé,,Commande standard - lot 15
+1668,D-400,Automobile,1,37.01,date inconnue,En attente,0.2,
+1519,C-300,Informatique,4,,2023-05-03,En attente,0.19,Commande standard - lot 1
+1927,B-200,Informatique,5,364.05,2023-02-16,Livré,0.27,Commande standard - lot 12
+1637,G-700,Automobile,8,117.7,12/21/2024,Livré,0.24,Commande standard - lot 17
+1265,D-400,Jouets,5,17.97,12-09-2024,Annulé,0.14,Commande standard - lot 20
+1540, E-500 ,Informatique,2,32.55,2023-07-08,Annulé,0.04,
+1716,F-600,Maison,5,104.79,12/01/2023,en attente,,Commande standard - lot 17
+1960,E-500,Jouets,2,87.67,date inconnue,Retourné,0.11,Commande standard - lot 9
+1953,F-600,Jouets,3,443.71,31-08-2024,annulé,0.27,Commande standard - lot 20
+1880,E-500,Automobile,10,305.02,2024-10-25,En préparation,0.22,
+1450,E-500,Jardin,1,471.73,2024-04-11,Annulé,0.1,Commande standard - lot 4
+1019,C-300,Jouets,2,103.79,2023-08-22,Expédié,0.11,Commande standard - lot 18
+1721,F-600,Maison,1,80.88,2023-01-31,En attente,10%,Commande standard - lot 3
+1486,C-300,Jouets,7,409.69,26-05-2024,Livré,.5,Commande standard - lot 5
+1571, B-200 ,Jouets,4,160.61,10/22/2023,En attente,0.23,Commande standard - lot 9
+9006,F-600,Maison,9,67.53,06-02-2024,Livré,.5,
+1368,A-100,Jardin,4,266.0,04/24/2024,Expédié,0.25,Commande standard - lot 10
+1084,E-500,Maison,7,17.83,2024-07-29,Livré,0.3,Commande standard - lot 5
+1062,G-700,Automobile,10,,12/11/2024,Expédié,.5,Commande standard - lot 19
+1440,E-500,Jouets,7,462.54,08/09/2024,En préparation,.5,Commande standard - lot 16
+1273, A-100 ,Jardin,3,351.42,11-04-2024,Annulé ,0.25,Commande standard - lot 18
+1286, D-400 ,Informatique,10,174.39,2024-11-16,Retourné,0.17,Commande standard - lot 6
+1361,D-400,Jardin,6,,23-06-2023,En attente,0.04,
+1355,D-400,Automobile,6,413.08,12/27/2023,Annulé,0.19,Commande standard - lot 15
+1995,E-500,Jardin,3,255.37,21-11-2023,Expédié,0.08,Commande standard - lot 17
+1279, F-600 ,Jardin,2,475.61,04/25/2023,Expédié,10%,Commande standard - lot 17
+1013,E-500,Electroménager,6,427.1,2023-03-24,Expédié,0.07,Commande standard - lot 20
+1183,F-600,Jardin,8,18969.0,2024-06-27,Expédié,0.04,Commande standard - lot 19
+1369, E-500 ,Electroménager,1,235.0,12/30/2023,annulé,0.05,Commande standard - lot 3
+1495,A-100,Automobile,5,198.37,2024-11-21,Livré,0.18,Commande standard - lot 19
+1802, G-700 ,Electroménager,1,86.64,2023-03-25,Retourné,0.11,Commande standard - lot 20
+1224,G-700,Sport,7,306.47,15-02-2024,Retourné,0.19,Commande standard - lot 7
+1576,D-400,Informatique,5,247.66,07/10/2024,livré,0.29,Commande standard - lot 14
+1704,B-200,Jardin,999,473.29,date inconnue,en attente,,Commande standard - lot 10
+1588,B-200,Automobile,-8,38.19,2023-07-12,retourné,0.02,Commande standard - lot 8
+1548,C-300,Sport,3,437.62,06/13/2024,expédié,0.28,Commande standard - lot 9
+1676, E-500 ,Jouets,6,263.23,10/17/2023,En préparation,0.02,
+1757,E-500,Automobile,8,25583.0,29-12-2024,livré,0.1,Commande standard - lot 12
+1177,F-600,Jouets,5,129.74,09/30/2024,annulé,0.19,Commande standard - lot 10
+1670,C-300,Sport,1,488.79,15-06-2023,En préparation,0.19,Commande standard - lot 4
+1632,D-400,Maison,10,99.99,11-06-2023,Retourné,0.23,Commande standard - lot 9
+1590,G-700,Jouets,7,142.23,11/15/2024,En préparation,0.04,Commande standard - lot 1
+1523,F-600,Electroménager,9,488.29,2023-08-20,Livré,0.19,Commande standard - lot 3
+1394,B-200,Sport,10,474.93,07/20/2024,Expédié,0.29,Commande standard - lot 8
+1164,G-700,Jouets,6,38.56,2023-01-02,En attente,0.11,Commande standard - lot 16
+1249,B-200,Informatique,2,418.97,19-12-2024,livré,10%,Commande standard - lot 16
+1639,A-100,Automobile,2,48.43,2023-07-15,Retourné,0.2,
+1892,A-100,Maison,9,351.66,10/13/2023,en attente,0.06,Commande standard - lot 1
+1674, E-500 ,Sport,2,177.78,04/13/2023,En préparation,0.16,Commande standard - lot 15
+1376,D-400,Jouets,6,312.81,11/14/2024,En préparation,0.15,Commande standard - lot 18
+1413,D-400,Electroménager,8,197.12,01/19/2024,Annulé,0.15,Commande standard - lot 13
+1075,G-700,Sport,7,73.51,16-01-2024,Expédié,0.13,Commande standard - lot 14
+1114,F-600,Jardin,4,123.47,22-04-2024,Retourné,0.29,Commande standard - lot 11
+1573,F-600,Automobile,2,432.93,04/30/2023,Expédié,0.14,Commande standard - lot 3
+1644,E-500,Jardin,-1,429.46,03/08/2023,Retourné,0.14,Commande standard - lot 9
+1391,E-500,Jouets,9,380.02,02-05-2024,expédié,10%,Commande standard - lot 8
+1105,C-300,Sport,8,382.12,25-03-2023,En attente,0.27,Commande standard - lot 18
+1115,B-200,Jardin,1,134.08,03/03/2024,En préparation,0.28,Commande standard - lot 16
+1418,C-300,Maison,4,222.15,date inconnue,En préparation,10%,Commande standard - lot 12
+1714,F-600,Electroménager,1,25.88,21-05-2023,Livré,10%,Commande standard - lot 16
+1458,A-100,Sport,5,47289.0,06/15/2024,Retourné,0.3,Commande standard - lot 17
+1410,C-300,Jouets,10,103.57,26-09-2023,En préparation,10%,Commande standard - lot 4
+1093,E-500,Sport,5,143.46,2023-05-02,Expédié,0.06,Commande standard - lot 17
+1979,F-600,Maison,6,351.02,date inconnue,Retourné,0.02,Commande standard - lot 19
+1090,D-400,Jardin,4,163.06,2024-02-13,Livré,0.04,
+1337,B-200,Jardin,2,262.27,23-10-2023,retourné,0.09,Commande standard - lot 15
+1997,A-100,Electroménager,8,348.33,2024-09-04,livré,0.1,Commande standard - lot 4
+1928,D-400,Automobile,4,34.94,2024-03-21,Retourné,0.27,Commande standard - lot 17
+1940,G-700,Electroménager,5,456.49,30-07-2024,Annulé,0.18,Commande standard - lot 6
+1852,B-200,Maison,10,216.91,2023-01-07,Expédié,0.02,Commande standard - lot 4
+1598,F-600,Informatique,5,74.51,07/12/2023,En préparation,0.17,Commande standard - lot 17
+1616, G-700 ,Maison,9,271.11,2023-05-07,En attente,0.23,Commande standard - lot 13
+1095,D-400,Maison,6,399.39,28-01-2023,En attente,0.02,Commande standard - lot 17
+1012,G-700,Informatique,7,34.02,09/29/2023,Livré,0.05,Commande standard - lot 2
+1397,F-600,Maison,7,442.55,12/25/2024,Livré,0.0,Commande standard - lot 1
+1536,E-500,Maison,2,95.77,2023-04-09,Annulé,0.13,Commande standard - lot 14
+1044,B-200,Sport,9,387.47,06/03/2024,Expédié,0.04,Commande standard - lot 12
+1043,G-700,Informatique,5,496.17,01-05-2023,En préparation,0.29,Commande standard - lot 18
+1330,F-600,Maison,1111,33.96,05/19/2023,en préparation,0.09,Commande standard - lot 3
+1168,F-600,Informatique,6,135.33,03-10-2023,Expédié,0.12,Commande standard - lot 8
+1500,F-600,Jouets,-9,83.31,date inconnue,En attente,0.25,
+1883,F-600,Jouets,5,472.14,01-12-2024,Annulé,0.04,
+1602,E-500,Jouets,7,382.77,03/07/2024,Livré,,Commande standard - lot 10
+1762,A-100,Maison,5,392.82,2023-06-06,Retourné,0.02,Commande standard - lot 16
+1101,F-600,Sport,1,92.02,02/11/2024,En préparation,.5,Commande standard - lot 4
+1427,C-300,Jouets,7,,03/27/2024,En préparation ,0.25,Commande standard - lot 4
+1179,D-400,Jouets,3,133.42,06-02-2023,Retourné,0.19,Commande standard - lot 12
+1445,F-600,Automobile,-6,,30-11-2023,En attente,0.28,Commande standard - lot 16
+1417,C-300,Maison,7,10.89,06/02/2023,En préparation,0.23,Commande standard - lot 15
+1838,A-100,Jouets,-6,468.84,03-06-2023,Expédié,0.17,Commande standard - lot 20
+1889, D-400 ,Jardin,9,,04/15/2023,En préparation,0.08,Commande standard - lot 1
+1663,E-500,Informatique,7,171.82,2023-06-13,livré,0.09,Commande standard - lot 6
+1178,F-600,Electroménager,6,134.27,2023-11-02,En préparation,,Commande standard - lot 20
+1396,C-300,Informatique,1,129.19,2024-10-09,Annulé,0.03,Commande standard - lot 5
+1681,C-300,Jouets,7,346.3,06/12/2023,Expédié,0.28,Commande standard - lot 18
+1800,A-100,Sport,4,,2024-07-10,En préparation,0.16,Commande standard - lot 2
+1969,G-700,Informatique,6,489.94,2023-06-06,En préparation,0.3,Commande standard - lot 19
+1689,C-300,Informatique,7,153.66,09/30/2024,Expédié,0.13,Commande standard - lot 1
+1384,E-500,Automobile,5,34.67,2023-12-29,Expédié,.5,Commande standard - lot 8
+1965,E-500,Jouets,3,18.26,10/08/2024,En préparation,0.2,Commande standard - lot 8
+1617,E-500,Automobile,4,184.77,10-10-2024,Livré,0.09,Commande standard - lot 6
+1258,A-100,Jardin,7,329.43,25-12-2023,En attente,0.05,Commande standard - lot 3
+1336,E-500,Informatique,5,,08-08-2023,Retourné,0.25,Commande standard - lot 14
+1016,F-600,Informatique,5,139.81,28-07-2023,Retourné,0.19,Commande standard - lot 2
+1634,D-400,Electroménager,4,189.87,30-11-2023,Annulé,0.02,Commande standard - lot 16
+1325, C-300 ,Sport,4,,20-08-2024,En préparation,0.2,Commande standard - lot 17
+1891, C-300 ,Automobile,2,182.08,2023-06-17,Retourné,.5,Commande standard - lot 8
+1223,G-700,Jouets,3,226.06,08-08-2023,En attente,0.12,Commande standard - lot 3
+1180,E-500,Informatique,9,133.03,07-07-2023,Livré,0.27,Commande standard - lot 19
+1992,B-200,Electroménager,3,,2023-06-27,Retourné,.5,Commande standard - lot 5
+1023, C-300 ,Automobile,4,17.09,03/16/2023,En attente,0.04,Commande standard - lot 4
+1357,G-700,Electroménager,7,418.17,date inconnue,Expédié,0.06,Commande standard - lot 6
+1671, C-300 ,Jardin,10,193.74,2023-07-07,Livré,0.12,Commande standard - lot 3
+1868,B-200,Maison,1,74.6,date inconnue,Retourné,.5,Commande standard - lot 7
+1341,F-600,Maison,10,262.37,28-10-2023,En attente,0.29,
+1432,A-100,Electroménager,5,44.3,2023-07-26,En attente ,0.22,Commande standard - lot 9
+1954,E-500,Maison,4,71.32,2024-04-16,Livré,0.28,
+1859,G-700,Automobile,10,76.22,08-01-2024,En préparation,0.08,Commande standard - lot 15
+1204,E-500,Sport,1,322.92,10-02-2023,Livré,0.01,Commande standard - lot 12
+1635,F-600,Electroménager,7,143.67,2023-04-14,Retourné,0.26,
+1094, A-100 ,Informatique,6,447.1,2023-11-23,En attente,0.16,Commande standard - lot 10
+1970,B-200,Jouets,3,191.63,2023-12-12,Livré,0.14,Commande standard - lot 3
+1069,D-400,Electroménager,6,428.37,18-04-2024,Annulé,,Commande standard - lot 19
+1627,B-200,Maison,1,38.26,2024-07-04,Expédié,0.28,Commande standard - lot 8
+1285,D-400,Jardin,8,289.47,04/20/2023,Annulé,0.19,Commande standard - lot 16
+1811,D-400,Jouets,1,321.35,2023-07-29,En préparation,0.27,Commande standard - lot 8
+1435,B-200,Sport,4,104.69,01/04/2024,En attente,0.25,Commande standard - lot 1
+1154,D-400,Maison,4,49.76,22-12-2024,annulé,0.11,Commande standard - lot 10
+1076,A-100,Informatique,8,201.24,03/25/2023,en préparation,0.04,Commande standard - lot 16
+1972,G-700,Jardin,1,287.6,2024-01-31,Livré,,Commande standard - lot 19
+1447,D-400,Informatique,4,49.27,06/14/2023,En attente,0.04,Commande standard - lot 18
+1189,D-400,Electroménager,-1,167.69,02-10-2023,Expédié,0.25,Commande standard - lot 16
+1272,B-200,Jardin,8,126.13,2024-07-24,Expédié,0.17,Commande standard - lot 11
+1237, A-100 ,Jardin,9,498.03,28-03-2023,En attente,0.25,
+1488,G-700,Informatique,4,248.84,27-03-2023,Retourné,0.07,
+1118, C-300 ,Automobile,7,52.68,06/23/2024,Livré,0.3,Commande standard - lot 3
+1825,F-600,Automobile,1,449.14,2023-05-01,Retourné,,Commande standard - lot 5
+1513,D-400,Automobile,1,109.1,10/10/2024,En préparation ,0.01,Commande standard - lot 12
+1801,D-400,Automobile,4,49.24,08-03-2024,Retourné,0.25,
+1596,G-700,Electroménager,2,136.98,date inconnue,Annulé,0.0,Commande standard - lot 12
+1127,G-700,Jardin,8,81.3,04-04-2024,En attente,0.01,Commande standard - lot 18
+1117,A-100,Electroménager,4,335.04,2024-05-14,Expédié,,Commande standard - lot 18
+1474, A-100 ,Jouets,6,54.88,01/08/2024,livré,0.11,Commande standard - lot 19
+1698,E-500,Automobile,999,173.86,date inconnue,Annulé,0.03,Commande standard - lot 5
+1058,F-600,Automobile,9,,02/16/2024,retourné,0.04,Commande standard - lot 20
+1679,F-600,Jouets,4,27.39,04/30/2023,Expédié,0.12,Commande standard - lot 13
+1919, D-400 ,Electroménager,9,287.96,04/17/2024,Livré,0.03,Commande standard - lot 16
+1370,D-400,Maison,6,313.79,2023-07-11,en préparation,0.01,Commande standard - lot 1
+1269,F-600,Informatique,10,209.71,27-08-2024,En préparation,0.05,Commande standard - lot 3
+1047,D-400,Jouets,8,317.42,04/03/2023,Expédié,0.01,Commande standard - lot 2
+1350,B-200,Informatique,1,92.11,2024-05-12,Expédié,0.12,Commande standard - lot 3
+1196,G-700,Jouets,10,296.71,05-01-2023,retourné,0.28,Commande standard - lot 19
+9007,C-300,Jouets,7,409.69,26-05-2024,Livré,.5,Commande standard - lot 5
+1947,C-300,Jouets,3,251.52,2023-04-16,Livré ,0.1,
+1742,B-200,Automobile,8,466.58,18-09-2023,Expédié,.5,Commande standard - lot 9
+1264,F-600,Sport,3,329.83,11-03-2023,Annulé,0.23,Commande standard - lot 14
+1444,D-400,Maison,1111,444.55,06/27/2024,Retourné,0.15,Commande standard - lot 1
+1680,A-100,Sport,4,341.8,2023-11-14,Retourné,0.08,Commande standard - lot 16
+1305,A-100,Jouets,10,323.49,2024-04-05,Expédié,0.2,Commande standard - lot 18
+1342,D-400,Electroménager,7,22.81,07-11-2023,En préparation,0.2,Commande standard - lot 18
+1603,E-500,Sport,4,333.39,date inconnue,Expédié,0.0,Commande standard - lot 6
+1975,B-200,Jardin,10,205.96,2023-08-09,En préparation,0.06,Commande standard - lot 13
+1150,C-300,Jouets,1,477.27,10/17/2023,livré,0.22,Commande standard - lot 12
+1125,D-400,Maison,1,403.02,28-10-2024,En préparation,0.12,Commande standard - lot 16
+1893,G-700,Jardin,2,466.02,12/17/2024,Annulé,0.22,Commande standard - lot 15
+1829,A-100,Electroménager,10,41.22,date inconnue,En attente,0.19,Commande standard - lot 2
+1051, F-600 ,Jouets,1,367.52,2024-03-01,en préparation,0.25,Commande standard - lot 16
+1354,A-100,Jardin,5,152.22,25-03-2024,Livré,10%,Commande standard - lot 16
+1934, F-600 ,Informatique,2,340.38,2023-01-13,Retourné,0.06,
+1143,E-500,Automobile,4,296.84,2023-11-19,En préparation,0.23,Commande standard - lot 10
+1471,B-200,Electroménager,4,30056.0,10/16/2023,Expédié,0.23,Commande standard - lot 8
+1400,C-300,Jouets,10,201.06,2024-05-20,Annulé,0.18,Commande standard - lot 5
+1630,A-100,Jardin,10,244.22,28-09-2023,En préparation,0.23,Commande standard - lot 1
+1321,C-300,Electroménager,4,291.46,12-05-2024,Retourné,0.24,Commande standard - lot 9
+1020,C-300,Electroménager,5,58.66,11/18/2023,Annulé,0.13,Commande standard - lot 18
+1907,C-300,Informatique,6,,17-12-2024,retourné,0.15,
+1804,E-500,Electroménager,6,17.99,date inconnue,Livré,0.08,Commande standard - lot 13
+1815,F-600,Electroménager,10,176.17,date inconnue,annulé,0.16,Commande standard - lot 13
+1408, G-700 ,Maison,4,38.86,12/09/2024,Annulé,0.1,
+1538,G-700,Sport,8,493.16,25-10-2023,En attente,0.22,Commande standard - lot 17
+1870,C-300,Maison,9,462.39,date inconnue,Expédié,,Commande standard - lot 2
+1039,F-600,Informatique,7,136.49,date inconnue,Livré,0.09,Commande standard - lot 9
+1176,G-700,Informatique,4,,2024-11-29,En attente,10%,Commande standard - lot 10
+1246,G-700,Jardin,4,176.92,22-01-2023,En attente,0.09,Commande standard - lot 7
+1835,B-200,Electroménager,1,447.66,15-04-2023,En préparation,0.25,Commande standard - lot 20
+1846,G-700,Electroménager,4,356.75,date inconnue,Retourné,0.18,Commande standard - lot 10
+1760,A-100,Electroménager,5,457.99,2023-04-27,Retourné,0.29,Commande standard - lot 18
+1865,C-300,Jouets,9,7.43,04-08-2023,Annulé,0.22,
+1155,C-300,Informatique,1,277.31,2023-05-24,expédié,0.21,Commande standard - lot 3
+1288,D-400,Jardin,10,161.72,11/08/2023,Retourné,10%,Commande standard - lot 13
+1614,C-300,Sport,8,197.57,date inconnue,Livré,0.16,Commande standard - lot 13
+1570,E-500,Jouets,8,296.1,11/01/2023,livré,0.09,Commande standard - lot 6
+1820,G-700,Jardin,4,456.8,2024-02-22,En préparation,0.14,Commande standard - lot 20
+1018,C-300,Informatique,2,487.05,2023-08-31,En préparation ,0.24,Commande standard - lot 8
+1128,E-500,Electroménager,2,325.26,24-11-2024,En attente,0.07,Commande standard - lot 18
+1323,C-300,Sport,1,226.97,2023-05-05,En attente,0.29,Commande standard - lot 17
+1256,A-100,Electroménager,6,114.29,02/07/2024,Annulé,0.1,Commande standard - lot 2
+1988,B-200,Electroménager,5,254.7,10-02-2024,expédié,0.27,Commande standard - lot 9
+1973,A-100,Jouets,2,40.65,12/17/2023,En attente,0.3,Commande standard - lot 15
+1191,D-400,Electroménager,7,11.12,13-08-2024,Annulé,0.19,Commande standard - lot 8
+1116,F-600,Jardin,8,361.56,09-07-2024,Expédié,0.0,Commande standard - lot 8
+1621, F-600 ,Jouets,7,39.83,2024-07-04,Retourné,10%,Commande standard - lot 2
+1607,D-400,Jardin,9,344.6,2023-01-13,livré,10%,Commande standard - lot 13
+1181,C-300,Electroménager,8,312.22,03-05-2023,En attente,0.1,Commande standard - lot 15
+1302,F-600,Jardin,5,129.05,02-06-2023,retourné ,0.12,
+1765, B-200 ,Maison,6,334.7,11/14/2023,expédié,0.06,Commande standard - lot 13
+1718,B-200,Maison,1,252.3,04/13/2024,Annulé,0.2,Commande standard - lot 3
+1729, G-700 ,Jouets,10,24770.0,date inconnue,En attente,0.25,Commande standard - lot 4
+1690,F-600,Sport,3,82.15,2023-07-22,En attente,0.18,Commande standard - lot 17
+1666,G-700,Sport,9,261.69,01-02-2024,Livré,0.27,Commande standard - lot 11
+1518,F-600,Jardin,10,195.87,16-04-2023,Livré,0.19,Commande standard - lot 14
+1993,A-100,Maison,8,371.99,04/04/2023,Retourné,0.02,Commande standard - lot 14
+1046,A-100,Sport,6,265.35,24-02-2024,en préparation,0.02,Commande standard - lot 18
+1916, C-300 ,Jardin,9,458.57,12-02-2023,annulé,0.09,Commande standard - lot 18
+1158,B-200,Automobile,9,182.76,02-08-2024,Livré,0.23,
+1750, C-300 ,Informatique,2,278.65,09/19/2023,En préparation,0.09,Commande standard - lot 8
+1172,F-600,Sport,8,306.28,date inconnue,Livré ,0.1,Commande standard - lot 10
+1017,A-100,Informatique,5,282.65,2024-12-08,annulé,0.11,Commande standard - lot 2
+1512,G-700,Electroménager,5,,2023-04-16,En attente,0.02,Commande standard - lot 7
+1049,G-700,Maison,9,295.85,09/14/2023,Livré,0.17,Commande standard - lot 10
+1980,F-600,Sport,7,298.81,2023-12-25,En préparation,0.02,Commande standard - lot 10
+1847,G-700,Electroménager,4,447.46,date inconnue,Expédié,0.1,Commande standard - lot 2
+1516,E-500,Sport,5,219.57,10/06/2023,annulé,0.25,Commande standard - lot 2
+1830,F-600,Jouets,5,301.42,date inconnue,En attente,0.04,
+1481,C-300,Sport,7,187.48,07/05/2023,En préparation,0.08,Commande standard - lot 6
+1284,G-700,Jardin,2,235.37,09/23/2024,Livré,0.14,
+1724,F-600,Maison,7,462.74,06-07-2024,En préparation,0.1,Commande standard - lot 6
+1685,A-100,Sport,1,188.33,2023-08-28,en attente,0.23,
+1226, E-500 ,Jouets,2,281.76,2023-10-11,Annulé,10%,Commande standard - lot 17
+1027,G-700,Informatique,8,,11/26/2024,Retourné,.5,Commande standard - lot 19
+1788,G-700,Jouets,4,129.8,03-03-2023,En attente,0.05,Commande standard - lot 16
+1438,G-700,Jouets,6,349.75,2023-09-10,en attente,0.19,Commande standard - lot 15
+1959,F-600,Informatique,4,62.59,07-08-2023,Expédié,0.27,Commande standard - lot 1
+1365,D-400,Electroménager,6,331.47,31-08-2024,Expédié ,0.3,Commande standard - lot 19
+1230,A-100,Jouets,8,25.92,19-05-2024,Livré,0.17,
+1038,C-300,Informatique,4,,08/31/2024,livré,0.07,Commande standard - lot 19
+1974,E-500,Automobile,3,13.99,2024-11-13,Expédié,0.09,Commande standard - lot 19
+1375,D-400,Sport,6,364.47,2024-06-03,Annulé,0.04,Commande standard - lot 13
+1470,A-100,Informatique,8,247.09,05/11/2023,En attente,0.03,
+1976,F-600,Jardin,6,240.2,2024-10-14,Retourné,0.03,Commande standard - lot 11
+1882,E-500,Electroménager,2,218.24,2023-01-27,en attente,0.12,Commande standard - lot 1
+1709,B-200,Electroménager,6,392.92,18-11-2023,Annulé,0.09,
+1731,C-300,Jardin,9,350.62,2023-10-28,Expédié,0.06,Commande standard - lot 1
+1195,C-300,Jouets,5,448.95,2024-02-24,Livré,0.23,Commande standard - lot 4
+9005,E-500,Jouets,1,241.98,2023-08-10,Annulé,0.05,Commande standard - lot 11
+1871,D-400,Sport,3,87.34,03/29/2023,En attente ,0.2,Commande standard - lot 11
+1504,E-500,Jouets,-6,252.23,11/21/2024,Livré ,0.13,Commande standard - lot 4
+1978,A-100,Electroménager,3,158.05,02/15/2024,Annulé,0.06,Commande standard - lot 14
+1837,D-400,Electroménager,8,250.75,2023-05-31,Livré,0.07,Commande standard - lot 6
+1580,G-700,Maison,6,11.75,2024-06-23,Annulé,0.23,Commande standard - lot 9
+1977,C-300,Sport,10,27.61,date inconnue,Expédié,0.14,Commande standard - lot 16
+1163,B-200,Electroménager,10,21.03,2024-09-18,Retourné,0.29,Commande standard - lot 3
+1707,C-300,Automobile,6,143.86,2024-12-16,En préparation,0.18,Commande standard - lot 8
+1153, E-500 ,Jouets,3,401.4,11/22/2023,Livré,0.03,Commande standard - lot 11
+1686, E-500 ,Jouets,8,309.94,11/30/2024,Annulé,0.14,Commande standard - lot 8
+1705,G-700,Sport,5,219.26,2024-11-12,Livré,0.07,Commande standard - lot 7
+1761,E-500,Automobile,6,342.57,13-10-2023,En préparation ,0.15,Commande standard - lot 13
+1112,B-200,Informatique,9,355.25,07/29/2024,En attente,0.28,Commande standard - lot 3
+1227,A-100,Sport,5,132.56,14-09-2023,En attente,0.14,Commande standard - lot 19
+1693,A-100,Informatique,8,239.04,23-08-2024,Livré,0.28,Commande standard - lot 11
+1104,F-600,Jouets,2,461.94,2024-12-07,Retourné,0.05,Commande standard - lot 20
+1422,B-200,Maison,7,289.67,12/02/2024,Livré,0.07,Commande standard - lot 19
+1420,B-200,Electroménager,9,481.16,2023-06-25,Retourné ,0.02,Commande standard - lot 10
+1756,C-300,Jardin,8,480.01,2024-10-17,Livré,0.02,Commande standard - lot 17
+1587,A-100,Maison,5,326.86,29-07-2023,Retourné,0.22,Commande standard - lot 5
+1786,F-600,Informatique,10,337.16,date inconnue,En préparation,0.29,Commande standard - lot 7
+1673,C-300,Informatique,4,488.01,08-06-2023,Livré,0.04,Commande standard - lot 1
+1120,D-400,Electroménager,5,,2023-11-19,En préparation,0.05,Commande standard - lot 13
+1054, B-200 ,Electroménager,5,271.09,14-12-2024,En attente,0.18,Commande standard - lot 9
+1152,A-100,Informatique,7,357.27,06/16/2024,Retourné,0.19,Commande standard - lot 19
+1404,G-700,Electroménager,10,291.57,date inconnue,Expédié,0.24,
+1952,D-400,Maison,10,88.63,2023-05-01,Livré,0.22,Commande standard - lot 18
+1208,D-400,Informatique,3,151.01,10/25/2024,Expédié,10%,Commande standard - lot 18
+1659,B-200,Jouets,5,282.53,15-06-2024,en attente,0.03,Commande standard - lot 8
+1850,F-600,Automobile,-8,259.56,2024-02-16,En préparation,0.29,Commande standard - lot 19
+1768,A-100,Informatique,3,163.38,2024-02-24,Retourné,0.27,Commande standard - lot 12
+1009,F-600,Jouets,6,116.23,24-08-2023,en préparation,,
+1814, G-700 ,Automobile,1,277.12,2023-01-14,Retourné,0.29,
+1037, C-300 ,Informatique,2,311.12,03/29/2024,Annulé,0.28,Commande standard - lot 7
+1453,G-700,Automobile,5,349.5,12-08-2023,En préparation ,0.3,Commande standard - lot 14
+1652,E-500,Informatique,8,67.52,2024-07-20,Annulé,0.2,Commande standard - lot 7
+1254, A-100 ,Maison,3,120.33,14-02-2024,En préparation,0.21,Commande standard - lot 4
+1304,C-300,Maison,2,105.54,2024-11-07,Livré,0.19,Commande standard - lot 5
+1752,A-100,Sport,6,12660.0,06-10-2023,Expédié,0.25,Commande standard - lot 20
+1572, B-200 ,Sport,9,480.13,01/07/2023,Expédié,0.04,Commande standard - lot 4
+1624, C-300 ,Maison,10,83.36,26-03-2024,Livré,0.08,Commande standard - lot 7
+1715,A-100,Jouets,7,108.37,date inconnue,retourné,0.05,
+1899,G-700,Jardin,3,205.2,2024-10-10,En attente,0.1,Commande standard - lot 1
+1263,D-400,Electroménager,7,344.83,03/12/2024,Annulé,0.24,Commande standard - lot 10
+1611,F-600,Automobile,9,23.95,04/14/2023,Annulé,0.01,Commande standard - lot 9
+1298,E-500,Automobile,7,138.81,08/21/2024,En attente,0.1,Commande standard - lot 6
+1415,A-100,Sport,6,403.23,07/03/2023,En préparation,0.16,
+1151,E-500,Automobile,4,79.53,date inconnue,Annulé,.5,Commande standard - lot 10
+1794,E-500,Maison,10,462.17,14-09-2023,Annulé,0.05,Commande standard - lot 1
+1641,G-700,Maison,10,9489.0,2023-02-10,Annulé,0.06,Commande standard - lot 9
+1896,C-300,Jardin,1,342.97,04-07-2024,En attente,0.15,Commande standard - lot 12
+1551,D-400,Sport,2,363.05,19-08-2023,Livré,.5,
+1797,G-700,Informatique,2,89.83,2024-03-06,Expédié,0.24,Commande standard - lot 17
+1489, G-700 ,Sport,8,,05/23/2023,en attente,0.25,
+1711,B-200,Automobile,6,354.62,05/12/2023,expédié,0.22,Commande standard - lot 14
+1148,F-600,Automobile,1,135.16,05/23/2024,Annulé,0.03,Commande standard - lot 4
+1147,A-100,Jardin,2,372.14,2024-12-25,retourné,0.08,Commande standard - lot 9
+1848,A-100,Informatique,7,166.75,06/27/2023,Annulé,0.07,Commande standard - lot 11
+1938, G-700 ,Jardin,4,198.63,2023-09-18,annulé,0.24,Commande standard - lot 4
+1785,B-200,Jardin,4,486.99,2023-10-03,Annulé,0.29,Commande standard - lot 7
+1660,C-300,Jouets,10,176.92,10-08-2024,Expédié,0.01,Commande standard - lot 1
+1349,D-400,Automobile,2,147.09,08/30/2023,en préparation,0.17,Commande standard - lot 2
+1464,G-700,Maison,5,462.29,03/31/2023,En attente,0.03,Commande standard - lot 3
+1326,D-400,Maison,10,183.73,01/14/2024,livré,0.06,Commande standard - lot 14
+1187,A-100,Jardin,4,486.69,2023-06-14,Annulé,.5,Commande standard - lot 4
+1124,F-600,Informatique,10,138.11,06/21/2023,Livré,0.19,Commande standard - lot 7
+1860,F-600,Jardin,4,14.68,08/14/2024,Annulé,0.17,
+1609, B-200 ,Jouets,10,436.74,2023-02-10,En attente,0.2,Commande standard - lot 1
+1144,B-200,Sport,4,,09/03/2023,en attente,0.3,Commande standard - lot 5
+1967,C-300,Jardin,7,27.55,04-05-2023,En préparation,,
+1198,C-300,Sport,6,104.44,20-12-2023,En préparation,0.1,
+1610,E-500,Maison,6,22.63,28-06-2024,En attente,0.13,Commande standard - lot 15
+1280,B-200,Jardin,9,53.63,2023-05-16,retourné,0.01,Commande standard - lot 3
+1294,C-300,Automobile,5,375.97,04-03-2023,En attente,0.01,Commande standard - lot 5
+1401,C-300,Automobile,4,42460.0,25-11-2024,Annulé,0.28,
+1123, A-100 ,Maison,8,97.76,2024-02-22,expédié,0.0,Commande standard - lot 3
+1184,C-300,Automobile,1,300.2,05/18/2023,En attente,0.07,Commande standard - lot 5
+1203,G-700,Jardin,10,265.07,2024-06-01,En attente,0.1,Commande standard - lot 20
+1439,F-600,Informatique,10,62.78,01/29/2024,Retourné,0.25,Commande standard - lot 10
+1247,E-500,Maison,6,457.66,date inconnue,En préparation,0.15,Commande standard - lot 1
+1416,C-300,Electroménager,2,102.34,11/30/2024,En préparation,0.27,
+1782, B-200 ,Maison,9,357.84,07/13/2024,Annulé,0.26,
+1771, C-300 ,Jardin,9,429.6,05-02-2024,Annulé,0.14,Commande standard - lot 18
+1913, A-100 ,Electroménager,5,35.55,10/24/2023,Retourné,0.08,Commande standard - lot 18
+1774,E-500,Jouets,5,292.19,2023-04-29,En attente,0.02,Commande standard - lot 16
+1894,G-700,Electroménager,5,497.66,2024-09-29,En attente,0.24,Commande standard - lot 19
+1130,E-500,Jardin,2,153.63,18-12-2023,Expédié,0.05,Commande standard - lot 15
+1638,A-100,Sport,-6,,01-12-2023,En attente,,
+1403,F-600,Electroménager,4,31452.0,25-01-2023,Retourné,0.25,Commande standard - lot 17
+1790,E-500,Informatique,2,53.92,14-11-2023,en attente,0.24,Commande standard - lot 18
+1929,B-200,Informatique,6,454.34,22-05-2023,Expédié,0.12,Commande standard - lot 11
+1736,D-400,Electroménager,3,402.92,2024-06-06,Expédié,0.12,Commande standard - lot 8
+1920,C-300,Informatique,2,277.96,08/29/2024,En préparation,0.18,Commande standard - lot 9
+1220,F-600,Sport,9,326.37,14-02-2023,Annulé,0.24,Commande standard - lot 19
+1642,B-200,Informatique,-6,65.94,date inconnue,Retourné,,Commande standard - lot 7
+1922,A-100,Electroménager,2,174.37,date inconnue,En préparation,0.05,Commande standard - lot 11
+1758,E-500,Maison,1,380.45,13-11-2024,Retourné,0.1,Commande standard - lot 9
+1884,D-400,Jouets,9,332.44,14-03-2023,En attente,0.26,Commande standard - lot 17
+1926,E-500,Jouets,5,263.34,08/07/2023,livré,0.22,Commande standard - lot 17
+1625,E-500,Sport,1,498.08,06/24/2023,Retourné,0.15,Commande standard - lot 17
+1845,A-100,Informatique,5,268.85,2024-05-09,Livré,0.21,Commande standard - lot 20
+1766,G-700,Electroménager,5,416.74,date inconnue,Annulé,0.07,Commande standard - lot 13
+1387,F-600,Automobile,3,69.05,01-05-2023,En préparation ,0.04,Commande standard - lot 4
+1981,E-500,Sport,10,144.44,12/05/2023,Livré,0.18,Commande standard - lot 20
+1510,F-600,Maison,9,67.53,06-02-2024,Livré,.5,
+1268,B-200,Jardin,1,29.4,11/08/2023,En attente,0.14,Commande standard - lot 3
+1826,D-400,Maison,9,392.88,21-02-2024,Expédié,0.25,Commande standard - lot 7
+1442,C-300,Automobile,7,320.03,05/08/2023,Expédié,0.02,Commande standard - lot 1
+1497,D-400,Maison,5,445.89,02-08-2023,annulé,0.04,Commande standard - lot 18
+1113,E-500,Informatique,1,437.44,18-11-2024,En préparation,.5,Commande standard - lot 4
+1692,E-500,Jardin,8,402.16,06/17/2023,Expédié,0.29,Commande standard - lot 8
+1233,B-200,Jouets,1111,497.8,11/20/2023,Livré,,
+1957,C-300,Electroménager,1111,468.74,03/31/2023,En préparation,0.12,Commande standard - lot 6
+1608,D-400,Maison,7,402.2,29-04-2024,Livré,0.23,Commande standard - lot 3
+1672,C-300,Electroménager,9,280.78,02-01-2023,expédié,,Commande standard - lot 19
+1374,D-400,Sport,10,434.48,date inconnue,Expédié,,Commande standard - lot 14
+1990,B-200,Sport,10,226.99,2023-06-13,en préparation,0.04,Commande standard - lot 4
+1849, A-100 ,Sport,5,402.18,2023-03-31,Livré,0.16,Commande standard - lot 20
+1234, B-200 ,Automobile,5,170.65,09/21/2023,Expédié,0.19,Commande standard - lot 10
+1791,G-700,Automobile,9,6.67,07-12-2024,En attente ,0.23,Commande standard - lot 9
+1677,A-100,Jardin,10,147.16,date inconnue,Expédié,0.05,Commande standard - lot 2
+1318,A-100,Informatique,9,73.51,10/26/2024,Retourné,0.07,Commande standard - lot 9
+1649,A-100,Maison,3,233.76,2023-10-01,Livré,0.27,Commande standard - lot 2
+1411,A-100,Informatique,7,109.07,17-01-2024,En préparation,0.02,Commande standard - lot 5
+1905,F-600,Jouets,2,107.11,25-11-2024,En préparation ,0.05,
+1710,B-200,Sport,5,427.09,2023-10-31,Expédié,0.04,Commande standard - lot 18
+1359,B-200,Informatique,10,98.73,01/30/2023,Livré,0.03,Commande standard - lot 11
+1259,A-100,Informatique,10,11.8,04/05/2024,Expédié,0.16,Commande standard - lot 5
+1745,E-500,Maison,9,,2023-08-14,En attente,0.29,Commande standard - lot 16
+1628,F-600,Informatique,1,372.84,16-05-2023,livré,0.16,Commande standard - lot 11
+1633,D-400,Automobile,5,415.47,07/30/2024,en attente,,Commande standard - lot 5
+1283, A-100 ,Jardin,3,346.61,2023-12-07,Retourné,0.17,
+1377,A-100,Maison,5,447.76,date inconnue,en attente,0.24,Commande standard - lot 18
+1385,G-700,Sport,10,423.03,13-11-2024,Annulé,0.17,Commande standard - lot 12
+1225,G-700,Automobile,9,260.33,02/06/2023,En préparation,0.2,Commande standard - lot 7
+1962,F-600,Informatique,8,342.57,2023-01-04,Livré,,Commande standard - lot 12
+1821, G-700 ,Maison,10,289.17,04/08/2024,Annulé,0.13,Commande standard - lot 13
+1473, B-200 ,Electroménager,7,119.56,06/06/2024,retourné,0.07,Commande standard - lot 6
+1348,G-700,Jardin,4,137.63,20-03-2024,Retourné,0.21,Commande standard - lot 14
+1506,D-400,Maison,9,463.54,20-07-2024,En préparation,0.08,Commande standard - lot 4
+1640,F-600,Jardin,9,445.25,09/30/2024,expédié,0.23,Commande standard - lot 7
+1996,F-600,Informatique,8,470.54,2023-03-28,expédié,0.21,Commande standard - lot 20
+1798,F-600,Jouets,9,458.98,11-06-2023,Annulé,0.13,Commande standard - lot 20
+1935,E-500,Automobile,5,455.38,11-12-2023,Annulé,0.11,Commande standard - lot 5
+1912,B-200,Electroménager,-2,13.06,03/20/2024,expédié ,0.28,Commande standard - lot 13
+1620,C-300,Electroménager,1,303.61,17-04-2024,retourné,0.14,Commande standard - lot 1
+1862,G-700,Electroménager,3,432.17,02/15/2023,Annulé,0.26,Commande standard - lot 7
+1810, F-600 ,Jardin,5,289.98,2023-01-24,retourné,0.08,Commande standard - lot 5
+1646,B-200,Automobile,3,19.84,01/18/2024,Annulé,0.26,Commande standard - lot 2
+1853,G-700,Maison,2,263.28,06-07-2023,Expédié,0.19,Commande standard - lot 5
+1557,G-700,Jardin,1,268.58,date inconnue,Livré,0.08,Commande standard - lot 7
+1966,B-200,Jouets,8,303.68,30-04-2024,Retourné,0.13,
+1578,F-600,Jardin,8,,08/13/2023,Retourné,0.06,Commande standard - lot 20
+1796,F-600,Jouets,5,27.38,2023-07-22,Livré,0.27,Commande standard - lot 10
+1086,B-200,Informatique,-8,402.81,2023-03-30,Livré,0.17,Commande standard - lot 11
+1243,D-400,Automobile,5,385.23,2024-03-29,Retourné,0.06,Commande standard - lot 10
+1699,B-200,Electroménager,3,,2023-08-27,Expédié,0.21,Commande standard - lot 6
+1160, E-500 ,Jouets,6,98.18,19-05-2024,Livré ,,Commande standard - lot 1
+1525,C-300,Jardin,10,142.53,14-08-2024,expédié,0.06,
+1036,A-100,Sport,5,30.43,03/08/2023,en attente,,Commande standard - lot 19
+1541,B-200,Jouets,4,240.7,08/25/2024,Livré,0.13,
+1171,E-500,Automobile,1,212.7,25-08-2024,Expédié,0.1,Commande standard - lot 13
+1655,E-500,Electroménager,7,486.19,2024-02-05,Retourné,0.28,Commande standard - lot 13
+1897, E-500 ,Jardin,1,154.06,08/17/2024,en préparation,0.27,Commande standard - lot 20
+1864, D-400 ,Automobile,3,464.63,20-10-2024,En préparation,.5,Commande standard - lot 16
+1854,D-400,Jouets,4,361.08,2023-01-07,Livré,0.28,
+1951,D-400,Jardin,3,184.03,09/18/2023,retourné,0.23,Commande standard - lot 19
+1734,B-200,Informatique,2,498.28,10-03-2023,En préparation,,Commande standard - lot 10
+1096,F-600,Automobile,7,,2023-04-23,Expédié,0.18,Commande standard - lot 2
+1564,A-100,Automobile,6,292.84,2024-08-19,Retourné,0.28,Commande standard - lot 17
+1241,F-600,Automobile,5,148.35,06-10-2023,Annulé,.5,Commande standard - lot 10
+1743,D-400,Sport,10,136.52,16-05-2024,Expédié,0.24,
+1575,G-700,Jardin,5,260.57,2024-03-20,En attente,0.11,Commande standard - lot 12
+1691,F-600,Electroménager,2,,02/24/2023,Expédié,0.25,Commande standard - lot 11
+1461, D-400 ,Sport,4,276.44,01/07/2024,livré,0.07,Commande standard - lot 4
+1554,D-400,Electroménager,6,149.74,06-05-2023,expédié,0.27,Commande standard - lot 15
+1885,F-600,Sport,8,271.85,date inconnue,annulé,0.25,Commande standard - lot 3
+1207, C-300 ,Jouets,2,379.2,03/16/2023,annulé,0.13,Commande standard - lot 1
+1393,B-200,Electroménager,3,309.17,date inconnue,Expédié,0.28,Commande standard - lot 2
+1795,G-700,Informatique,7,118.52,date inconnue,Retourné,.5,
+1398,E-500,Electroménager,3,382.42,26-10-2024,Expédié,0.29,Commande standard - lot 20
+1767,G-700,Informatique,8,150.36,08/29/2023,Retourné,0.18,
+1855,B-200,Informatique,9,418.99,2024-10-22,Retourné,10%,
+1218,E-500,Jouets,5,238.35,25-02-2024,En préparation,0.22,Commande standard - lot 15
+1005,F-600,Jouets,8,136.12,27-09-2023,Annulé,0.15,Commande standard - lot 4
+1769,B-200,Maison,2,197.83,12-02-2024,Livré,0.29,Commande standard - lot 6
+1643,B-200,Sport,2,363.64,05/04/2023,Retourné,0.24,Commande standard - lot 9
+1904,C-300,Maison,1,328.15,2023-05-30,expédié,0.23,Commande standard - lot 16
+1613,E-500,Informatique,5,,05/13/2023,Livré,0.21,Commande standard - lot 20
+1739,D-400,Maison,5,428.41,05-12-2024,Retourné,0.1,Commande standard - lot 11
+1547,A-100,Jouets,2,182.98,03/15/2023,En préparation,0.06,Commande standard - lot 17
+1726,C-300,Automobile,6,199.44,2024-12-05,En préparation,0.0,Commande standard - lot 17
+1684, F-600 ,Jardin,3,315.47,01/26/2023,Expédié,0.1,
+1099,C-300,Electroménager,6,110.92,29-07-2024,livré,0.16,Commande standard - lot 2
+1805,E-500,Jardin,3,187.94,24-06-2023,En attente,,Commande standard - lot 14
+1728,C-300,Electroménager,10,217.12,21-09-2024,Expédié,0.14,Commande standard - lot 18
+1574,F-600,Electroménager,7,99.25,2024-10-03,Retourné,0.06,Commande standard - lot 16
+1407,E-500,Automobile,6,77.97,2024-01-13,Annulé,,Commande standard - lot 18
+1503,B-200,Electroménager,7,177.89,2024-12-06,Retourné,0.27,Commande standard - lot 19
+1048,C-300,Jardin,3,94.13,27-01-2024,Retourné,0.08,
+1033,G-700,Maison,10,,2023-03-29,Retourné,0.13,
+1780,B-200,Automobile,7,,21-05-2023,Livré,0.29,Commande standard - lot 16
+1840,E-500,Jouets,3,306.82,date inconnue,Expédié,0.27,Commande standard - lot 15
+1201,F-600,Jardin,7,483.09,27-07-2023,En attente,0.16,Commande standard - lot 7
+1135,A-100,Sport,5,384.13,04/27/2023,Annulé,0.16,Commande standard - lot 4
+1028, F-600 ,Jouets,7,,08/05/2023,Livré,0.25,Commande standard - lot 18
+1887, C-300 ,Maison,4,396.11,02/15/2023,Annulé,0.17,Commande standard - lot 13
+1231,G-700,Sport,1,91.53,04/16/2024,retourné,0.26,Commande standard - lot 9
+1490,B-200,Jouets,3,188.98,03/17/2023,Annulé ,0.17,Commande standard - lot 5
+1773,F-600,Maison,7,,2024-04-05,en attente ,0.27,Commande standard - lot 1
+1379,G-700,Maison,3,251.7,01/08/2024,en préparation,.5,Commande standard - lot 16
+1289,G-700,Maison,1,,2024-01-03,Livré,0.11,Commande standard - lot 18
+1419,C-300,Jardin,7,295.54,date inconnue,En préparation,0.18,Commande standard - lot 13
+1675,A-100,Electroménager,6,247.93,date inconnue,Expédié,0.25,
+1392,G-700,Sport,8,296.5,12/15/2023,En préparation,0.03,Commande standard - lot 5
+1593,B-200,Informatique,1,295.16,17-09-2023,Expédié ,0.21,Commande standard - lot 2
+1499,A-100,Jardin,1,311.74,08-06-2024,Livré,0.2,Commande standard - lot 2
+1139,C-300,Automobile,2,182.32,08/12/2023,En préparation,0.26,Commande standard - lot 2
+1063,F-600,Informatique,1,229.55,29-11-2023,annulé,0.08,Commande standard - lot 16
+1472,F-600,Informatique,8,253.66,28-08-2024,retourné,0.04,
+1648,D-400,Maison,3,335.87,2024-08-07,En préparation,0.03,Commande standard - lot 20
+1129,E-500,Informatique,8,346.77,2024-05-09,Livré,0.09,Commande standard - lot 7
+1985, B-200 ,Maison,5,36.72,2023-02-25,En préparation,0.26,Commande standard - lot 13
+1521,D-400,Electroménager,6,413.6,05-12-2024,En attente,0.16,
+1839,A-100,Sport,5,392.76,2023-05-10,Livré,0.13,Commande standard - lot 9
+1971,G-700,Sport,1,56.75,2023-11-19,Annulé,.5,Commande standard - lot 8
+1065,G-700,Maison,1111,193.2,11/15/2024,Expédié,0.09,Commande standard - lot 13
+1813, G-700 ,Electroménager,2,380.41,17-04-2024,En attente,10%,Commande standard - lot 7
+1015, A-100 ,Informatique,9,440.24,10-07-2024,Livré,10%,Commande standard - lot 10
+1157,B-200,Informatique,5,,09-09-2023,Livré,0.13,Commande standard - lot 17
+1041,C-300,Sport,7,177.24,06/14/2023,En attente,0.14,Commande standard - lot 11
+1493,E-500,Automobile,8,193.33,2024-03-10,livré,.5,Commande standard - lot 18
+1380,C-300,Informatique,2,316.57,06/26/2024,en préparation,0.15,Commande standard - lot 1
+1188,G-700,Jardin,3,363.17,04/12/2024,Livré,10%,Commande standard - lot 11
+1764,E-500,Maison,3,54.83,03-06-2023,En attente,0.3,
+1217,F-600,Jouets,8,208.4,2024-08-29,En préparation ,0.05,Commande standard - lot 20
+1792,E-500,Jardin,10,314.19,12/11/2023,En attente,0.21,
+1053,C-300,Jouets,5,58.63,date inconnue,Annulé,0.21,Commande standard - lot 4
+1879,E-500,Automobile,9,429.67,01/04/2023,En préparation,0.18,
+1338,B-200,Maison,7,240.46,11/21/2024,retourné,0.12,Commande standard - lot 4
+1749,D-400,Maison,-7,214.95,10/03/2023,Livré,0.24,Commande standard - lot 13
+1720,C-300,Electroménager,5,491.73,13-10-2024,Retourné,0.22,Commande standard - lot 19
+1725,G-700,Informatique,4,440.96,2024-06-16,annulé,0.21,Commande standard - lot 4
+1296,C-300,Informatique,10,496.82,26-03-2024,Retourné,0.25,
+1702,E-500,Jardin,2,488.7,06-01-2024,Retourné,0.11,Commande standard - lot 12
+1252,F-600,Sport,8,498.44,10/10/2024,Retourné,0.22,Commande standard - lot 15
+1727,G-700,Informatique,2,154.91,2023-07-15,expédié,0.08,Commande standard - lot 14
+1462,B-200,Maison,10,351.73,2024-09-14,Expédié,0.29,Commande standard - lot 20
+1456,G-700,Jardin,8,66.99,2024-07-04,En attente ,0.15,Commande standard - lot 19
+9004,G-700,Maison,5,462.29,03/31/2023,En attente,0.03,Commande standard - lot 3
+1816,E-500,Automobile,1,89.45,13-09-2024,annulé,0.08,
+1863,F-600,Jouets,6,269.82,2023-02-11,Expédié,0.26,Commande standard - lot 4
+1270,A-100,Jouets,6,487.72,07/17/2024,Expédié,0.26,Commande standard - lot 2
+1202,C-300,Jouets,2,191.71,2023-05-14,Annulé ,0.28,Commande standard - lot 20
+1162,E-500,Maison,6,396.96,28-06-2023,Annulé,0.05,Commande standard - lot 10
+1556,B-200,Jouets,3,383.28,date inconnue,Expédié,0.26,Commande standard - lot 1
+1730,D-400,Maison,4,278.55,09/20/2024,expédié,0.13,Commande standard - lot 15
+1402,C-300,Jardin,5,261.04,02/18/2023,En attente,0.24,Commande standard - lot 8
+1703,D-400,Jardin,6,89.42,04/17/2024,En attente,0.13,
+1477,E-500,Informatique,5,348.43,02-12-2024,Annulé,0.12,Commande standard - lot 6
+1822,G-700,Maison,9,339.57,02-04-2023,livré,0.04,Commande standard - lot 10
+1772,C-300,Automobile,8,315.39,03/03/2024,Annulé,0.27,Commande standard - lot 8
+1106,B-200,Automobile,9,246.97,02/26/2023,En préparation,,Commande standard - lot 10
+1566,C-300,Electroménager,4,44.45,date inconnue,Livré,0.25,Commande standard - lot 18
+1390,B-200,Maison,2,120.25,11/17/2024,Retourné,10%,Commande standard - lot 10
+1002,D-400,Sport,999,173.42,2023-12-11,Expédié,0.14,Commande standard - lot 13
+1944,E-500,Jouets,1,241.98,2023-08-10,Annulé,0.05,Commande standard - lot 11
+1991,B-200,Electroménager,-4,223.28,03/14/2024,Livré ,0.18,Commande standard - lot 11
+1562,E-500,Sport,4,132.44,28-12-2023,retourné,0.02,Commande standard - lot 19
+1081,G-700,Maison,2,222.67,07/11/2023,Retourné,0.02,Commande standard - lot 6
+1206,F-600,Electroménager,-3,,date inconnue,En préparation,0.12,Commande standard - lot 14
+1035,B-200,Jardin,5,145.08,08/21/2023,En préparation,0.09,Commande standard - lot 16
+1776, B-200 ,Automobile,5,65.11,21-04-2024,Expédié,0.05,Commande standard - lot 18
+1509, D-400 ,Electroménager,3,371.92,08/08/2024,En préparation,0.28,Commande standard - lot 13
+1428,D-400,Jardin,1,104.86,2023-07-24,Expédié,0.07,Commande standard - lot 6
+1455,G-700,Automobile,2,141.23,2023-05-03,expédié,0.3,Commande standard - lot 4
+1367,C-300,Jardin,5,52.58,04/01/2024,En attente,0.06,Commande standard - lot 3
+1092, C-300 ,Maison,8,14644.999999999998,05/18/2023,Retourné,,
+1340,F-600,Jardin,8,65.48,2023-05-18,Expédié,10%,Commande standard - lot 20
+1898,D-400,Jardin,1,410.99,01/08/2024,En attente,0.1,Commande standard - lot 17
+1565,E-500,Jouets,7,400.11,06/16/2024,Livré,0.23,Commande standard - lot 15
+1346,B-200,Maison,7,42.28,2023-09-29,Livré,0.25,
+1777,C-300,Sport,2,263.43,10/08/2024,Expédié,0.24,Commande standard - lot 7
+1242,C-300,Jardin,1,174.25,01/16/2024,Retourné,0.23,
+1014,A-100,Sport,10,359.51,18-11-2024,Livré,10%,Commande standard - lot 19
+1316,F-600,Electroménager,8,287.34,2024-04-19,Retourné,0.26,
+1601,G-700,Informatique,7,97.62,2024-07-13,Expédié,0.14,Commande standard - lot 12
+1388,A-100,Maison,1,190.36,date inconnue,en préparation,,Commande standard - lot 10
+1274,A-100,Informatique,2,264.7,22-04-2023,Retourné,0.24,Commande standard - lot 14
+1167,G-700,Electroménager,-6,314.42,2023-07-31,Retourné,0.15,Commande standard - lot 3
+1841,A-100,Informatique,4,102.01,27-01-2023,En attente,0.29,Commande standard - lot 18
+9000,G-700,Jardin,8,,date inconnue,Retourné,0.12,
+1647,E-500,Sport,9,115.24,date inconnue,En attente,0.24,
+1819, C-300 ,Jardin,9,315.06,2024-10-21,Annulé,0.07,Commande standard - lot 1
+1485,C-300,Informatique,7,248.45,10/16/2023,Expédié,0.18,Commande standard - lot 17
+1989,D-400,Electroménager,3,486.28,04/21/2024,En préparation,0.24,Commande standard - lot 2
+1505,A-100,Informatique,7,111.99,26-11-2024,Expédié,0.04,Commande standard - lot 15
+1832,B-200,Maison,6,480.7,03/23/2023,Expédié,0.05,Commande standard - lot 8
+1244,C-300,Jouets,1,243.21,23-02-2023,En préparation,10%,Commande standard - lot 19
+1567,B-200,Jardin,10,174.08,2024-06-01,Annulé,0.05,Commande standard - lot 18
+1876,C-300,Informatique,7,,07/06/2023,Annulé,0.15,Commande standard - lot 18
+1563,C-300,Jouets,7,17.22,22-02-2024,Livré,0.28,Commande standard - lot 1
+1961,F-600,Jardin,9,326.99,date inconnue,En attente,0.21,Commande standard - lot 11
+1687,B-200,Jouets,3,84.36,2023-11-04,Expédié,0.25,Commande standard - lot 13
+1958,A-100,Informatique,1,187.13,2023-09-30,en attente,,Commande standard - lot 9
+1190,G-700,Automobile,3,,2023-06-13,En attente,0.23,Commande standard - lot 5
+1783,C-300,Electroménager,3,57.88,01/05/2024,annulé,0.1,Commande standard - lot 19
+1700,D-400,Jouets,10,8.13,28-05-2023,Annulé,0.1,Commande standard - lot 6
+1476,E-500,Electroménager,3,439.15,12/22/2023,En attente,0.29,Commande standard - lot 6
+1682,C-300,Sport,5,442.59,2024-05-24,En préparation ,0.12,
+1511,G-700,Electroménager,10,194.29,09-04-2024,Retourné,0.25,Commande standard - lot 13
+1059,F-600,Jouets,6,255.25,28-04-2023,Retourné,0.12,Commande standard - lot 13
+1475,E-500,Informatique,5,69.59,23-08-2024,En préparation,0.09,Commande standard - lot 7
+1561,E-500,Electroménager,8,435.18,31-05-2023,retourné,,Commande standard - lot 15
+1857,D-400,Informatique,10,257.91,04/09/2024,Retourné,0.13,Commande standard - lot 16
+1748,G-700,Jardin,3,205.53,08/25/2023,Annulé,0.02,Commande standard - lot 1
+1253,D-400,Electroménager,1,496.74,2023-08-16,livré,0.17,Commande standard - lot 5
+1022,E-500,Jardin,9,393.95,03/28/2024,Retourné,0.03,Commande standard - lot 20
+1314,B-200,Sport,4,497.85,2023-10-13,Retourné,0.28,Commande standard - lot 19
+1460,A-100,Jouets,7,316.64,2024-10-23,Retourné,0.05,Commande standard - lot 14
+1161,E-500,Maison,10,459.8,2023-01-23,Annulé,0.02,Commande standard - lot 13
+1277,G-700,Maison,6,22.6,16-04-2024,Livré,0.17,Commande standard - lot 18
+1956,F-600,Jouets,6,188.51,02/07/2024,Retourné,0.08,
+1192,D-400,Jouets,7,30839.0,06/01/2024,En attente,0.02,Commande standard - lot 13
+1386, D-400 ,Jouets,7,444.81,14-01-2024,Annulé,0.19,Commande standard - lot 16
+1806,B-200,Sport,10,13.41,2024-06-22,en préparation,,Commande standard - lot 13
+1414,F-600,Sport,1,121.02,22-01-2024,En préparation,0.13,Commande standard - lot 19
+1492,F-600,Jardin,9,156.49,2023-10-06,Annulé,0.12,Commande standard - lot 18
+1344, D-400 ,Maison,6,121.14,2024-12-05,livré,10%,Commande standard - lot 14
+1770,A-100,Informatique,5,78.34,09/10/2024,Livré,0.21,Commande standard - lot 12
+1309,A-100,Sport,5,347.72,06/19/2024,En attente,0.18,
+1662,G-700,Jouets,6,90.17,27-12-2023,Annulé,0.22,Commande standard - lot 11
+1131,B-200,Jouets,3,370.01,03/15/2024,Expédié,0.03,Commande standard - lot 6
+1664,D-400,Electroménager,4,333.28,15-12-2023,Livré,0.27,Commande standard - lot 19
+1872,C-300,Automobile,3,114.81,2023-09-13,expédié,0.23,Commande standard - lot 14
+1100,A-100,Jouets,8,,06/11/2023,Retourné,0.1,Commande standard - lot 3
+1373,D-400,Informatique,5,,date inconnue,Retourné,0.22,Commande standard - lot 2
+1088,C-300,Maison,4,154.9,22-06-2023,Annulé,0.17,Commande standard - lot 1
+1459,B-200,Jouets,1,417.15,10-08-2023,Livré,0.19,Commande standard - lot 15
+1331,E-500,Jouets,3,164.69,11/05/2023,Retourné,0.04,Commande standard - lot 16
+1215,D-400,Electroménager,1,263.08,27-09-2023,Annulé,0.02,Commande standard - lot 8
+1467,F-600,Sport,2,6.11,09-11-2023,Annulé ,0.11,Commande standard - lot 11
+1122,G-700,Jardin,4,341.45,09/25/2024,En préparation,0.22,Commande standard - lot 4
+1615,C-300,Jouets,10,175.92,01/14/2024,Livré,0.19,Commande standard - lot 14
+1021,F-600,Jouets,4,168.45,04-11-2023,Livré,0.2,Commande standard - lot 6
+1701,D-400,Sport,5,216.13,2024-06-27,Retourné,0.15,Commande standard - lot 2
+1072,B-200,Electroménager,5,68.26,02-12-2024,Expédié,0.06,Commande standard - lot 16
+1107, F-600 ,Maison,1,,07-03-2023,Expédié,10%,Commande standard - lot 5
+1271,D-400,Jouets,8,48041.0,01/13/2023,En attente,,Commande standard - lot 8
+1861,E-500,Electroménager,3,236.91,2023-04-26,En attente,0.16,Commande standard - lot 1
+1436,G-700,Automobile,2,80.64,04/19/2024,En attente,0.06,Commande standard - lot 1
+1103,E-500,Jardin,7,96.47,2023-09-12,Livré,0.17,Commande standard - lot 12

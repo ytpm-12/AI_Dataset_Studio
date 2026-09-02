@@ -1,0 +1,262 @@
+\documentclass[10pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[french]{babel}
+\usepackage{graphicx}
+\usepackage{array}
+
+\setlength{\oddsidemargin}{-0.45in}
+\setlength{\evensidemargin}{-0.45in}
+\setlength{\textwidth}{7.2in}
+\setlength{\topmargin}{-0.75in}
+\setlength{\textheight}{10.1in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.12}
+\renewcommand{\contentsname}{Table des mati\`eres}
+\setcounter{tocdepth}{2}
+\sloppy
+
+\newcommand{\shot}[2]{%
+  \begin{center}
+    \includegraphics[width=0.95\textwidth,height=0.32\textheight,keepaspectratio]{#1}\\[-2pt]
+    {\small\textbf{#2}}
+  \end{center}
+}
+
+\newcommand{\smallshot}[2]{%
+  \begin{center}
+    \includegraphics[width=0.92\textwidth,height=0.26\textheight,keepaspectratio]{#1}\\[-2pt]
+    {\small\textbf{#2}}
+  \end{center}
+}
+
+\begin{document}
+
+{\LARGE\bfseries AI Dataset Studio - Rapport court de la maquette UI/UX}
+
+{\large Pr\'esentation synth\'etique de l'interface, des composants et du parcours utilisateur}
+
+\smallskip
+
+Ce rapport pr\'esente la maquette UI/UX de AI Dataset Studio. Il sert \`a comprendre rapidement l'organisation de la plateforme, le r\^ole des \'ecrans, les composants principaux et la logique du parcours utilisateur.
+
+\shot{../ui-mockup/screenshots/01-dashboard.png}{Vue g\'en\'erale du tableau de bord}
+
+\vspace{-4pt}
+\tableofcontents
+\vspace{4pt}
+
+\section{Id\'ee principale}
+
+AI Dataset Studio est pens\'e comme un studio de pr\'eparation de datasets pour l'IA. Nous partons d'un fichier ou d'un corpus, puis nous passons par un pipeline: import, analyse, nettoyage, annotation, recommandations IA, \'equilibrage, rapport et export.
+
+Les principes visibles dans l'interface sont les suivants:
+\begin{itemize}
+  \item l'utilisateur doit toujours savoir o\`u il est dans le pipeline;
+  \item aucune transformation importante ne doit \^etre cach\'ee;
+  \item l'IA propose, mais l'humain garde la validation;
+  \item les traitements longs sont suivis comme des jobs;
+  \item chaque version du dataset doit rester tra\c{c}able.
+\end{itemize}
+
+\section{Style UI choisi}
+
+Le style est volontairement sobre. Le rail gauche sombre donne une impression d'application de travail. Le fond clair facilite la lecture. Le vert sert aux \'etats corrects et aux actions principales. L'ambre attire l'attention sur les avertissements. Le rouge est gard\'e pour les erreurs. Le violet signale les recommandations IA.
+
+Ce choix aide l'utilisateur \`a comprendre vite la gravit\'e d'une information sans lire toute la page.
+
+\section{Composants principaux}
+
+\begin{tabular}{|p{0.22\textwidth}|p{0.34\textwidth}|p{0.34\textwidth}|}
+\hline
+\textbf{Composant} & \textbf{R\^ole} & \textbf{Pourquoi c'est utile} \\
+\hline
+Rail lat\'eral & Navigation entre workspace, pipeline et r\'esultats. & On garde toujours le parcours sous les yeux. \\
+\hline
+Topbar & Recherche, fil d'Ariane, notifications et param\`etres. & L'utilisateur sait o\`u il est et peut retrouver vite une info. \\
+\hline
+Cartes m\'etriques & Score, anomalies, valeurs manquantes, annotations. & Les chiffres importants sont visibles imm\'ediatement. \\
+\hline
+Chips de statut & OK, warning, running, failed, IA. & On distingue rapidement les \'etats. \\
+\hline
+Thread de version & Historique vertical des versions. & Il montre que les changements sont suivis. \\
+\hline
+Preview avant/apr\`es & Comparaison lors du nettoyage. & On voit l'effet d'une action avant de l'appliquer. \\
+\hline
+Panel IA & Proposition, confiance, explication, d\'ecision. & L'IA reste compr\'ehensible et contr\^olable. \\
+\hline
+Jobs & Suivi des traitements longs. & L'interface ne bloque pas pendant les calculs. \\
+\hline
+\end{tabular}
+
+\section{Lecture rapide des \'ecrans}
+
+\subsection{1. Tableau de bord}
+
+Le tableau de bord sert \`a comprendre l'\'etat du projet actif. Il montre le score qualit\'e, les valeurs manquantes, les anomalies, les annotations et les jobs en cours. Le thread de version rappelle que les transformations sont historis\'ees.
+
+\smallshot{../ui-mockup/screenshots/01-dashboard.png}{Tableau de bord}
+
+\subsection{2. Projets}
+
+Cette page liste les projets dataset. On voit le type de donn\'ees, le volume, la version active, le score qualit\'e et l'\'etat. Elle sert \`a choisir le bon espace de travail avant de commencer.
+
+\smallshot{../ui-mockup/screenshots/02-projects.png}{Liste des projets}
+
+\subsection{3. Version active}
+
+Cette page explique le projet courant. Elle montre les \'etapes du pipeline, le mode de contr\^ole et les objets techniques importants comme Dataset, VersionDataset, ProcessingJob et Recommendation. C'est la page qui relie l'UX au mod\`ele technique.
+
+\smallshot{../ui-mockup/screenshots/03-project.png}{Version active du projet}
+
+\subsection{4. Import}
+
+L'import n'est pas juste un bouton pour envoyer un fichier. Nous validons le format, la structure et l'encodage. L'aper\c{c}u de sch\'ema aide \`a rep\'erer les colonnes \`a confirmer avant d'aller plus loin.
+
+\smallshot{../ui-mockup/screenshots/04-import.png}{Import et validation}
+
+\subsection{5. Analyse et profilage}
+
+Cette page sert \`a comprendre le dataset avant de le modifier. Elle affiche les colonnes, les doublons, les outliers, la compl\'etude, les distributions et les valeurs manquantes. L'id\'ee est simple: on analyse avant de nettoyer.
+
+\smallshot{../ui-mockup/screenshots/05-profiling.png}{Analyse du dataset}
+
+\subsection{6. Nettoyage}
+
+Le nettoyage pr\'esente des r\`egles ordonn\'ees. L'utilisateur peut voir l'impact estim\'e et comparer avant/apr\`es. Cette page est importante, car elle \'evite les transformations invisibles.
+
+\smallshot{../ui-mockup/screenshots/06-cleaning.png}{Nettoyage et transformation}
+
+\subsection{7. Documents PDF}
+
+Cette fen\^etre montre comment la plateforme pourrait traiter des PDF: OCR, extraction de texte, tableaux et erreurs documentaires. Elle indique aussi un niveau de confiance, ce qui est utile parce que l'extraction PDF n'est jamais parfaite.
+
+\smallshot{../ui-mockup/screenshots/07-documents.png}{Analyse de documents PDF}
+
+\subsection{8. Images}
+
+La page Images permet de v\'erifier un corpus visuel. On peut rep\'erer les images floues, les doublons visuels, les probl\`emes de r\'esolution et les labels incoh\'erents.
+
+\smallshot{../ui-mockup/screenshots/08-images.png}{Contr\^ole des images}
+
+\subsection{9. Annotation}
+
+L'annotation place l'humain au centre. La file de gauche donne les \'el\'ements \`a traiter, le centre affiche la donn\'ee, et la droite montre une suggestion IA. L'utilisateur peut accepter ou corriger.
+
+\smallshot{../ui-mockup/screenshots/09-annotation.png}{Annotation assist\'ee}
+
+\subsection{10. Recommandations IA}
+
+Cette page centralise les propositions de l'IA. Chaque recommandation a un type, une cible, une action propos\'ee, un score de confiance et un statut. Nous pouvons accepter ou rejeter. L'IA n'agit donc pas seule.
+
+\smallshot{../ui-mockup/screenshots/10-ai.png}{Recommandations IA}
+
+\subsection{11. \'Equilibrage}
+
+L'\'equilibrage compare la distribution actuelle et la distribution cible. L'utilisateur choisit une strat\'egie et voit l'impact estim\'e. Cet \'ecran aide \`a \'eviter un dataset trop domin\'e par une classe.
+
+\smallshot{../ui-mockup/screenshots/11-balancing.png}{\'Equilibrage des classes}
+
+\subsection{12. Rapport qualit\'e}
+
+Le rapport qualit\'e sert \`a d\'ecider si une version peut \^etre export\'ee. Il affiche un score, les sections OK ou WARN et un petit journal des op\'erations. C'est l'\'ecran de validation finale.
+
+\smallshot{../ui-mockup/screenshots/12-report.png}{Rapport qualit\'e}
+
+\subsection{13. Export}
+
+L'export montre les formats disponibles: CSV, JSON, COCO, YOLO et Hugging Face. Le paquet export\'e ne contient pas seulement les donn\'ees, mais aussi les annotations, le pipeline et le rapport.
+
+\smallshot{../ui-mockup/screenshots/13-export.png}{Export du dataset}
+
+\subsection{14. Traitements}
+
+Cette fen\^etre suit les jobs longs. Les \'etats visibles sont QUEUED, RUNNING, SUCCEEDED, SUCCEEDED\_WITH\_WARNINGS et FAILED. C'est important pour ne pas laisser l'utilisateur attendre sans information.
+
+\smallshot{../ui-mockup/screenshots/14-jobs.png}{Suivi des traitements}
+
+\section{Qui fait quoi?}
+
+\begin{tabular}{|p{0.23\textwidth}|p{0.67\textwidth}|}
+\hline
+\textbf{Acteur} & \textbf{R\^ole dans l'interface} \\
+\hline
+Utilisateur & Cr\'ee un projet, importe, valide, nettoie, annote, accepte ou rejette les recommandations et exporte. \\
+\hline
+Moteur data & Lit les fichiers, calcule les statistiques, d\'etecte les probl\`emes et applique les transformations valid\'ees. \\
+\hline
+Moteur IA & Propose des actions, explique ses choix et attend une d\'ecision humaine. \\
+\hline
+Workers & Ex\'ecutent les traitements longs en arri\`ere-plan et donnent un statut visible. \\
+\hline
+Syst\`eme de versions & Garde l'historique des transformations pour pouvoir expliquer chaque \'etat du dataset. \\
+\hline
+\end{tabular}
+
+\section{Fonctionnalit\'es pr\'evues par la maquette}
+
+\begin{itemize}
+  \item cr\'eation et suivi de projets dataset;
+  \item import CSV, JSON, XML, PDF et images;
+  \item profilage qualit\'e et d\'etection des anomalies;
+  \item nettoyage avec pr\'evisualisation;
+  \item traitement PDF et contr\^ole image;
+  \item annotation manuelle et pr\'e-annotation IA;
+  \item recommandations IA explicables;
+  \item \'equilibrage des classes;
+  \item rapport qualit\'e;
+  \item export multi-format;
+  \item suivi des jobs.
+\end{itemize}
+
+\section{Limites actuelles}
+
+Cette version reste une maquette front. Elle ne lit pas encore de vrais fichiers, ne lance pas de vrais jobs, ne connecte pas encore Django et n'appelle pas encore un service IA. Elle sert \`a valider l'organisation des \'ecrans avant le d\'eveloppement.
+
+\section{Plan court de pr\'esentation}
+
+\begin{tabular}{|p{0.14\textwidth}|p{0.25\textwidth}|p{0.51\textwidth}|}
+\hline
+\textbf{Temps} & \textbf{Partie} & \textbf{Message} \\
+\hline
+2 min & Introduction & Nous pr\'esentons un studio de pr\'eparation de datasets IA. \\
+\hline
+3 min & Dashboard & Montrer score, jobs, anomalies et version active. \\
+\hline
+3 min & Projet & Expliquer pipeline, modes et versionnement. \\
+\hline
+4 min & Import + analyse & Montrer validation de source et diagnostic qualit\'e. \\
+\hline
+4 min & Nettoyage + IA & Expliquer les r\`egles, le preview et la validation humaine. \\
+\hline
+3 min & PDF + images & Montrer que la plateforme ne se limite pas au tabulaire. \\
+\hline
+3 min & Annotation & Montrer comment l'humain valide les labels. \\
+\hline
+3 min & Rapport + export & Montrer la validation finale et les formats de sortie. \\
+\hline
+2 min & Jobs & Montrer les traitements longs et leurs statuts. \\
+\hline
+\end{tabular}
+
+\section{Questions \`a poser \`a l'\'equipe}
+
+\begin{itemize}
+  \item Les noms des pages sont-ils clairs pour un nouvel utilisateur?
+  \item Le pipeline est-il complet pour le MVP?
+  \item Les avertissements sont-ils assez visibles?
+  \item L'IA semble-t-elle suffisamment contr\^ol\'ee?
+  \item Quels \'ecrans doit-on connecter en premier au backend?
+\end{itemize}
+
+\section{Ressources utiles}
+
+\begin{itemize}
+  \item Maquette HTML: \texttt{docs/04\_Design/ui-mockup/index.html}
+  \item Captures: \texttt{docs/04\_Design/ui-mockup/screenshots}
+  \item Source LaTeX: \texttt{docs/04\_Design/latex\_rapport\_maquette/Rapport\_Maquette\_AI\_Dataset\_Studio.tex}
+\end{itemize}
+
+\end{document}
