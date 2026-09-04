@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Upload dataset - AI Dataset Studio</title>
+    <style>
+        :root {
+            color-scheme: light;
+            font-family: Arial, sans-serif;
+            --ink: #17211f;
+            --muted: #65736f;
+            --line: #d9e2de;
+            --pine: #146b5c;
+            --surface: #ffffff;
+            --surface-soft: #f5f8f7;
+            --amber: #9a6700;
+        }
+
+        body {
+            margin: 0;
+            background: var(--surface-soft);
+            color: var(--ink);
+        }
+
+        main {
+            width: min(1080px, calc(100% - 32px));
+            margin: 40px auto;
+        }
+
+        header {
+            display: flex;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 24px;
+            margin-bottom: 24px;
+        }
+
+        h1 {
+            margin: 0 0 8px;
+            font-size: 32px;
+        }
+
+        p {
+            color: var(--muted);
+            line-height: 1.5;
+        }
+
+        .panel {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 8px;
+            padding: 24px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            gap: 24px;
+        }
+
+        .dropzone {
+            border: 2px dashed #8db8ae;
+            border-radius: 8px;
+            background: #f8fbfa;
+            padding: 28px;
+        }
+
+        label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        input {
+            box-sizing: border-box;
+            width: 100%;
+            border: 1px solid var(--line);
+            border-radius: 6px;
+            padding: 12px;
+            margin-bottom: 16px;
+        }
+
+        button,
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 40px;
+            border: 1px solid var(--pine);
+            border-radius: 6px;
+            padding: 0 16px;
+            background: var(--pine);
+            color: white;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--pine);
+        }
+
+        .messages,
+        .errors {
+            padding-left: 18px;
+        }
+
+        .messages li {
+            color: var(--pine);
+            margin-bottom: 8px;
+        }
+
+        .errors li,
+        .errorlist li {
+            color: #9f2d20;
+            margin-bottom: 8px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th,
+        td {
+            border-bottom: 1px solid var(--line);
+            padding: 12px 8px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        th {
+            color: var(--muted);
+            font-size: 12px;
+            text-transform: uppercase;
+        }
+
+        .chip {
+            display: inline-block;
+            border: 1px solid var(--line);
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 12px;
+            color: var(--muted);
+        }
+
+        .checksum {
+            max-width: 220px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            font-family: Consolas, monospace;
+        }
+
+        @media (max-width: 800px) {
+            header,
+            .grid {
+                grid-template-columns: 1fr;
+                display: grid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <main>
+        <header>
+            <div>
+                <p>Pipeline 01</p>
+                <h1>Import et validation</h1>
+                <p>Charge un fichier source. Pour cette première version, le backend enregistre le fichier et ses métadonnées avant le profilage.</p>
+            </div>
+            <a class="btn btn-secondary" href="{% url 'accounts:home' %}">Accueil</a>
+        </header>
+
+        {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        <section class="grid">
+            <form class="panel dropzone" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                {{ form.non_field_errors }}
+
+                <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
+                {{ form.name }}
+                {{ form.name.errors }}
+
+                <label for="{{ form.file.id_for_label }}">{{ form.file.label }}</label>
+                {{ form.file }}
+                {{ form.file.errors }}
+
+                <p>Formats acceptés pour le MVP: CSV, JSON, XML. Taille maximale: {{ max_upload_size_mb }} Mo.</p>
+                <button type="submit">Importer</button>
+            </form>
+
+            <aside class="panel">
+                <h2>Validation import</h2>
+                <p>Cette étape conserve la source et prépare la validation de structure.</p>
+                <p><span class="chip">CSV</span> <span class="chip">JSON</span> <span class="chip">XML</span></p>
+                <p><span class="chip">Source immuable</span></p>
+                <p><span class="chip">Hash SHA-256</span></p>
+                <p><span class="chip">Métadonnées PostgreSQL</span></p>
+            </aside>
+        </section>
+
+        <section class="panel" style="margin-top: 24px;">
+            <h2>Derniers imports</h2>
+
+            {% if uploads %}
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Nom</th>
+                            <th>Type</th>
+                            <th>Taille</th>
+                            <th>Statut</th>
+                            <th>Hash</th>
+                            <th>Date</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for upload in uploads %}
+                            <tr>
+                                <td>
+                                    <strong>{{ upload.name }}</strong><br>
+                                    <small>{{ upload.original_name }}</small>
+                                </td>
+                                <td>{{ upload.get_file_type_display }}</td>
+                                <td>{{ upload.size }} octets</td>
+                                <td>{{ upload.get_status_display }}</td>
+                                <td class="checksum" title="{{ upload.checksum_sha256 }}">{{ upload.checksum_sha256 }}</td>
+                                <td>{{ upload.created_at|date:"d/m/Y H:i" }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            {% else %}
+                <p>Aucun fichier importé pour le moment.</p>
+            {% endif %}
+        </section>
+    </main>
+</body>
+</html>

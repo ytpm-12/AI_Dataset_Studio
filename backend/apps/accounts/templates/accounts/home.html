@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Accueil - AI Dataset Studio</title>
+</head>
+<body>
+    <main>
+        <h1>AI Dataset Studio</h1>
+        <p>Bienvenue, {{ request.user.username }}.</p>
+
+        <p>
+            <a href="{% url 'datasets:upload' %}">Importer un dataset</a>
+        </p>
+
+        <form method="post" action="{% url 'accounts:logout' %}">
+            {% csrf_token %}
+            <button type="submit">Se déconnecter</button>
+        </form>
+    </main>
+</body>
+</html>
