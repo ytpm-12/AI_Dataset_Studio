@@ -43,6 +43,8 @@ class UploadedFile(models.Model):
     content_type = models.CharField(max_length=120, blank=True)
     size = models.PositiveBigIntegerField()
     checksum_sha256 = models.CharField(max_length=64, blank=True)
+    validation_errors = models.JSONField(default=list, blank=True)
+    profile = models.JSONField(default=dict, blank=True)
     status = models.CharField(
         max_length=32,
         choices=Status.choices,
@@ -50,6 +52,7 @@ class UploadedFile(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+    validated_at = models.DateTimeField(null=True, blank=True)
 
     class Meta:
         ordering = ['-created_at']

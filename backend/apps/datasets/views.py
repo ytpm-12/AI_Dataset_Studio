@@ -5,6 +5,7 @@ from django.shortcuts import redirect, render
 
 from .forms import UploadedFileForm
 from .models import UploadedFile
+from .profiling import validate_and_profile
 from .services import compute_sha256, detect_file_type
 
 
@@ -23,7 +24,13 @@ def upload(request):
             instance.checksum_sha256 = compute_sha256(uploaded_file)
             instance.status = UploadedFile.Status.UPLOADED
             instance.save()
-            messages.success(request, 'Fichier importé. La validation de structure pourra démarrer.')
+            validate_and_profile(instance)
+            if instance.status == UploadedFile.Status.VALIDATED:
+                messages.success(request, 'Fichier importé et validé avec succès.')
+            elif instance.status == UploadedFile.Status.INVALID:
+                messages.error(request, 'Fichier importé, mais sa structure est invalide.')
+            else:
+                messages.info(request, 'Fichier importé. Son analyse sera traitée en arrière-plan.')
             return redirect('datasets:upload')
     else:
         form = UploadedFileForm(user=request.user)

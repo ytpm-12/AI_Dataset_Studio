@@ -166,6 +166,9 @@ STATIC_URL = 'static/'
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 MAX_UPLOAD_SIZE_MB = int(os.getenv('MAX_UPLOAD_SIZE_MB', '50'))
+SYNC_PROFILE_MAX_MB = int(os.getenv('SYNC_PROFILE_MAX_MB', '10'))
+PROFILE_MAX_ROWS = int(os.getenv('PROFILE_MAX_ROWS', '10000'))
+PROFILE_SAMPLE_VALUES = int(os.getenv('PROFILE_SAMPLE_VALUES', '5'))
 
 LOGIN_URL = 'accounts:login'
 LOGIN_REDIRECT_URL = 'accounts:home'

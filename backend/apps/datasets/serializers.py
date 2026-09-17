@@ -6,6 +6,7 @@ from rest_framework import serializers
 from apps.projects.models import Project
 
 from .models import UploadedFile
+from .profiling import validate_and_profile
 from .services import FILE_TYPE_BY_EXTENSION, compute_sha256, detect_file_type
 
 
@@ -24,9 +25,12 @@ class UploadedFileSerializer(serializers.ModelSerializer):
             'content_type',
             'size',
             'checksum_sha256',
+            'validation_errors',
+            'profile',
             'status',
             'created_at',
             'updated_at',
+            'validated_at',
         )
         read_only_fields = (
             'id',
@@ -35,9 +39,12 @@ class UploadedFileSerializer(serializers.ModelSerializer):
             'content_type',
             'size',
             'checksum_sha256',
+            'validation_errors',
+            'profile',
             'status',
             'created_at',
             'updated_at',
+            'validated_at',
         )
 
     def __init__(self, *args, **kwargs):
@@ -66,7 +73,7 @@ class UploadedFileSerializer(serializers.ModelSerializer):
         request = self.context['request']
         name = validated_data.pop('name', '').strip()
 
-        return UploadedFile.objects.create(
+        instance = UploadedFile.objects.create(
             **validated_data,
             owner=request.user,
             name=name or Path(uploaded_file.name).stem[:180],
@@ -77,3 +84,4 @@ class UploadedFileSerializer(serializers.ModelSerializer):
             checksum_sha256=compute_sha256(uploaded_file),
             status=UploadedFile.Status.UPLOADED,
         )
+        return validate_and_profile(instance)

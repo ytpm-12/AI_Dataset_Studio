@@ -20,6 +20,9 @@ class UploadedFileAdmin(admin.ModelAdmin):
         'content_type',
         'size',
         'checksum_sha256',
+        'validation_errors',
+        'profile',
         'created_at',
         'updated_at',
+        'validated_at',
     )
