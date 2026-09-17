@@ -29,6 +29,13 @@ class UploadedFile(models.Model):
         on_delete=models.CASCADE,
         related_name='uploaded_files',
     )
+    project = models.ForeignKey(
+        'projects.Project',
+        on_delete=models.CASCADE,
+        related_name='uploaded_files',
+        null=True,
+        blank=True,
+    )
     name = models.CharField(max_length=180)
     file = models.FileField(upload_to=dataset_upload_path)
     original_name = models.CharField(max_length=255)
@@ -48,6 +55,7 @@ class UploadedFile(models.Model):
         ordering = ['-created_at']
         indexes = [
             models.Index(fields=['owner', '-created_at']),
+            models.Index(fields=['project', '-created_at']),
             models.Index(fields=['status']),
             models.Index(fields=['file_type']),
         ]

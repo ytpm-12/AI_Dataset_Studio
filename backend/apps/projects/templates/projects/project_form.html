@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Nouveau projet - AI Dataset Studio</title>
+</head>
+<body>
+    <main>
+        <h1>Créer un projet</h1>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Créer le projet</button>
+        </form>
+        <p><a href="{% url 'projects:list' %}">Retour aux projets</a></p>
+    </main>
+</body>
+</html>

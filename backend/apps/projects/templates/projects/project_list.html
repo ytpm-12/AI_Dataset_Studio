@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <title>Mes projets - AI Dataset Studio</title>
+</head>
+<body>
+    <main>
+        <header>
+            <h1>Mes projets</h1>
+            <p>
+                <a href="{% url 'accounts:home' %}">Accueil</a>
+                <a href="{% url 'projects:create' %}">Nouveau projet</a>
+            </p>
+        </header>
+
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+
+        {% if projects %}
+            <ul>
+                {% for project in projects %}
+                    <li>
+                        <strong>{{ project.name }}</strong>
+                        <p>{{ project.description|default:'Aucune description.' }}</p>
+                        <small>{{ project.uploaded_files.count }} fichier(s)</small>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>Tu n'as encore aucun projet.</p>
+            <p><a href="{% url 'projects:create' %}">Créer mon premier projet</a></p>
+        {% endif %}
+    </main>
+</body>
+</html>

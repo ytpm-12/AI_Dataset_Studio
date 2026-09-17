@@ -3,14 +3,15 @@ from django.contrib.auth.decorators import login_required
 from django.conf import settings
 from django.shortcuts import redirect, render
 
-from .forms import UploadedFileForm, compute_sha256, detect_file_type
+from .forms import UploadedFileForm
 from .models import UploadedFile
+from .services import compute_sha256, detect_file_type
 
 
 @login_required
 def upload(request):
     if request.method == 'POST':
-        form = UploadedFileForm(request.POST, request.FILES)
+        form = UploadedFileForm(request.POST, request.FILES, user=request.user)
         if form.is_valid():
             uploaded_file = form.cleaned_data['file']
             instance = form.save(commit=False)
@@ -25,14 +26,15 @@ def upload(request):
             messages.success(request, 'Fichier importé. La validation de structure pourra démarrer.')
             return redirect('datasets:upload')
     else:
-        form = UploadedFileForm()
+        form = UploadedFileForm(user=request.user)
 
-    uploads = UploadedFile.objects.filter(owner=request.user)[:10]
+    uploads = UploadedFile.objects.filter(owner=request.user).select_related('project')[:10]
     return render(
         request,
         'datasets/upload.html',
         {
             'form': form,
+            'has_projects': request.user.projects.exists(),
             'uploads': uploads,
             'max_upload_size_mb': settings.MAX_UPLOAD_SIZE_MB,
         },

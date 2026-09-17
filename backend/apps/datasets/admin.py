@@ -5,9 +5,15 @@ from .models import UploadedFile
 
 @admin.register(UploadedFile)
 class UploadedFileAdmin(admin.ModelAdmin):
-    list_display = ('name', 'owner', 'file_type', 'status', 'size', 'created_at')
+    list_display = ('name', 'project', 'owner', 'file_type', 'status', 'size', 'created_at')
     list_filter = ('file_type', 'status', 'created_at')
-    search_fields = ('name', 'original_name', 'checksum_sha256', 'owner__username')
+    search_fields = (
+        'name',
+        'original_name',
+        'checksum_sha256',
+        'project__name',
+        'owner__username',
+    )
     readonly_fields = (
         'original_name',
         'file_type',

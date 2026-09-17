@@ -71,7 +71,8 @@
             margin-bottom: 8px;
         }
 
-        input {
+        input,
+        select {
             box-sizing: border-box;
             width: 100%;
             border: 1px solid var(--line);
@@ -187,6 +188,14 @@
                 {% csrf_token %}
                 {{ form.non_field_errors }}
 
+                <label for="{{ form.project.id_for_label }}">{{ form.project.label }}</label>
+                {{ form.project }}
+                {{ form.project.errors }}
+                {% if not has_projects %}
+                    <p>Crée d'abord un projet avant d'importer un fichier.</p>
+                    <p><a class="btn btn-secondary" href="{% url 'projects:create' %}">Créer un projet</a></p>
+                {% endif %}
+
                 <label for="{{ form.name.id_for_label }}">{{ form.name.label }}</label>
                 {{ form.name }}
                 {{ form.name.errors }}
@@ -217,6 +226,7 @@
                     <thead>
                         <tr>
                             <th>Nom</th>
+                            <th>Projet</th>
                             <th>Type</th>
                             <th>Taille</th>
                             <th>Statut</th>
@@ -231,6 +241,7 @@
                                     <strong>{{ upload.name }}</strong><br>
                                     <small>{{ upload.original_name }}</small>
                                 </td>
+                                <td>{{ upload.project|default:'Non attribué' }}</td>
                                 <td>{{ upload.get_file_type_display }}</td>
                                 <td>{{ upload.size }} octets</td>
                                 <td>{{ upload.get_status_display }}</td>

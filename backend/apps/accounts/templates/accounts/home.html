@@ -10,6 +10,10 @@
         <p>Bienvenue, {{ request.user.username }}.</p>
 
         <p>
+            <a href="{% url 'projects:list' %}">Mes projets</a>
+        </p>
+
+        <p>
             <a href="{% url 'datasets:upload' %}">Importer un dataset</a>
         </p>
 
