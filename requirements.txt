@@ -1,4 +1,5 @@
 asgiref==3.12.1
+celery==5.6.3
 Django==5.2.17
 djangorestframework==3.18.1
 defusedxml==0.7.1
@@ -7,6 +8,7 @@ pandas==3.0.5
 psycopg==3.3.5
 python-dateutil==2.9.0.post0
 python-dotenv==1.2.3
+redis==6.4.0
 six==1.17.0
 sqlparse==0.6.0
 typing_extensions==4.16.0

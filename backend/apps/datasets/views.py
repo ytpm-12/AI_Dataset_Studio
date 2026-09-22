@@ -5,8 +5,8 @@ from django.shortcuts import redirect, render
 
 from .forms import UploadedFileForm
 from .models import UploadedFile
-from .profiling import validate_and_profile
 from .services import compute_sha256, detect_file_type
+from .tasks import process_or_enqueue
 
 
 @login_required
@@ -24,7 +24,7 @@ def upload(request):
             instance.checksum_sha256 = compute_sha256(uploaded_file)
             instance.status = UploadedFile.Status.UPLOADED
             instance.save()
-            validate_and_profile(instance)
+            process_or_enqueue(instance)
             if instance.status == UploadedFile.Status.VALIDATED:
                 messages.success(request, 'Fichier importé et validé avec succès.')
             elif instance.status == UploadedFile.Status.INVALID:

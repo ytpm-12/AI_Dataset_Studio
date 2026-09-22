@@ -21,8 +21,10 @@ class UploadedFile(models.Model):
     class Status(models.TextChoices):
         UPLOADED = 'uploaded', 'Uploaded'
         VALIDATION_PENDING = 'validation_pending', 'Validation pending'
+        PROCESSING = 'processing', 'Processing'
         VALIDATED = 'validated', 'Validated'
         INVALID = 'invalid', 'Invalid'
+        FAILED = 'failed', 'Failed'
 
     owner = models.ForeignKey(
         settings.AUTH_USER_MODEL,

@@ -6,8 +6,8 @@ from rest_framework import serializers
 from apps.projects.models import Project
 
 from .models import UploadedFile
-from .profiling import validate_and_profile
 from .services import FILE_TYPE_BY_EXTENSION, compute_sha256, detect_file_type
+from .tasks import process_or_enqueue
 
 
 class UploadedFileSerializer(serializers.ModelSerializer):
@@ -84,4 +84,4 @@ class UploadedFileSerializer(serializers.ModelSerializer):
             checksum_sha256=compute_sha256(uploaded_file),
             status=UploadedFile.Status.UPLOADED,
         )
-        return validate_and_profile(instance)
+        return process_or_enqueue(instance)

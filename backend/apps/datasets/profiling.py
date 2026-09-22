@@ -116,9 +116,9 @@ PROFILERS = {
 }
 
 
-def validate_and_profile(uploaded_file):
+def validate_and_profile(uploaded_file, defer_large_files=True):
     synchronous_limit = settings.SYNC_PROFILE_MAX_MB * 1024 * 1024
-    if uploaded_file.size > synchronous_limit:
+    if defer_large_files and uploaded_file.size > synchronous_limit:
         uploaded_file.status = UploadedFile.Status.VALIDATION_PENDING
         uploaded_file.profile = {
             'deferred': True,

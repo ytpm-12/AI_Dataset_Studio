@@ -1,5 +1,9 @@
+from io import StringIO
+from unittest.mock import patch
+
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
+from django.core.management import call_command
 from django.test import TestCase, override_settings
 from rest_framework import status
 from rest_framework.test import APIClient
@@ -8,6 +12,7 @@ from apps.projects.models import Project
 
 from .models import UploadedFile
 from .profiling import validate_and_profile
+from .tasks import process_or_enqueue, profile_uploaded_file
 
 
 class UploadedFileModelTests(TestCase):
@@ -88,7 +93,7 @@ class UploadedFileApiTests(TestCase):
         self.assertFalse(UploadedFile.objects.filter(owner=self.user).exists())
 
 
-class DatasetProfilingTests(TestCase):
+class DatasetUploadTestMixin:
     def setUp(self):
         self.user = get_user_model().objects.create_user(
             username='profiling-owner',
@@ -110,6 +115,9 @@ class DatasetProfilingTests(TestCase):
         )
         self.addCleanup(uploaded_file.file.delete, save=False)
         return uploaded_file
+
+
+class DatasetProfilingTests(DatasetUploadTestMixin, TestCase):
 
     def test_csv_profile_contains_column_statistics(self):
         uploaded_file = self.create_upload(
@@ -194,3 +202,83 @@ class DatasetProfilingTests(TestCase):
         )
         self.assertTrue(uploaded_file.profile['deferred'])
         self.assertIsNone(uploaded_file.validated_at)
+
+
+class DatasetWorkerTests(DatasetUploadTestMixin, TestCase):
+    @override_settings(SYNC_PROFILE_MAX_MB=0)
+    def test_worker_processes_a_deferred_upload(self):
+        uploaded_file = self.create_upload(
+            'worker.csv',
+            b'name,value\nA,1\n',
+            UploadedFile.FileType.CSV,
+            'text/csv',
+        )
+        validate_and_profile(uploaded_file)
+        self.assertEqual(
+            uploaded_file.status,
+            UploadedFile.Status.VALIDATION_PENDING,
+        )
+
+        result = profile_uploaded_file.apply(args=[uploaded_file.pk]).get()
+        uploaded_file.refresh_from_db()
+
+        self.assertEqual(result['status'], UploadedFile.Status.VALIDATED)
+        self.assertEqual(uploaded_file.status, UploadedFile.Status.VALIDATED)
+        self.assertEqual(uploaded_file.profile['rows_profiled'], 1)
+
+    def test_completed_upload_is_not_processed_twice(self):
+        uploaded_file = self.create_upload(
+            'complete.csv',
+            b'name,value\nA,1\n',
+            UploadedFile.FileType.CSV,
+            'text/csv',
+        )
+        uploaded_file.status = UploadedFile.Status.VALIDATED
+        uploaded_file.save(update_fields=('status', 'updated_at'))
+
+        with patch('apps.datasets.tasks.validate_and_profile') as profiler:
+            result = profile_uploaded_file.apply(args=[uploaded_file.pk]).get()
+
+        profiler.assert_not_called()
+        self.assertEqual(result['status'], UploadedFile.Status.VALIDATED)
+
+    @override_settings(SYNC_PROFILE_MAX_MB=0)
+    def test_broker_failure_keeps_upload_pending(self):
+        uploaded_file = self.create_upload(
+            'pending.csv',
+            b'name,value\nA,1\n',
+            UploadedFile.FileType.CSV,
+            'text/csv',
+        )
+
+        with patch.object(
+            profile_uploaded_file,
+            'delay',
+            side_effect=ConnectionError('Redis unavailable'),
+        ):
+            with self.assertLogs('apps.datasets.tasks', level='ERROR'):
+                with self.captureOnCommitCallbacks(execute=True):
+                    process_or_enqueue(uploaded_file)
+
+        uploaded_file.refresh_from_db()
+        self.assertEqual(
+            uploaded_file.status,
+            UploadedFile.Status.VALIDATION_PENDING,
+        )
+
+    def test_recovery_command_enqueues_pending_uploads(self):
+        uploaded_file = self.create_upload(
+            'recovery.csv',
+            b'name,value\nA,1\n',
+            UploadedFile.FileType.CSV,
+            'text/csv',
+        )
+        uploaded_file.status = UploadedFile.Status.VALIDATION_PENDING
+        uploaded_file.save(update_fields=('status', 'updated_at'))
+        output = StringIO()
+
+        with patch.object(profile_uploaded_file, 'delay') as delay:
+            call_command('enqueue_pending_uploads', stdout=output)
+
+        delay.assert_called_once_with(uploaded_file.pk)
+        self.assertIn('1 tâche(s)', output.getvalue())
