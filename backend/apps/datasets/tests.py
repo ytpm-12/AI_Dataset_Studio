@@ -9,6 +9,7 @@ from rest_framework import status
 from rest_framework.test import APIClient
 
 from apps.projects.models import Project
+from apps.processing.models import ProcessingJob
 
 from .models import UploadedFile
 from .profiling import validate_and_profile
@@ -77,6 +78,10 @@ class UploadedFileApiTests(TestCase):
         self.assertEqual(uploaded_file.project, self.project)
         self.assertEqual(uploaded_file.status, UploadedFile.Status.VALIDATED)
         self.assertEqual(uploaded_file.profile['column_count'], 2)
+        job = uploaded_file.processing_jobs.get(kind=ProcessingJob.Kind.PROFILE)
+        self.assertEqual(job.status, ProcessingJob.Status.COMPLETED)
+        self.assertEqual(job.progress, 100)
+        self.assertEqual(job.attempts, 1)
         uploaded_file.file.delete(save=False)
 
     def test_user_cannot_upload_to_another_users_project(self):
@@ -225,6 +230,10 @@ class DatasetWorkerTests(DatasetUploadTestMixin, TestCase):
         self.assertEqual(result['status'], UploadedFile.Status.VALIDATED)
         self.assertEqual(uploaded_file.status, UploadedFile.Status.VALIDATED)
         self.assertEqual(uploaded_file.profile['rows_profiled'], 1)
+        job = uploaded_file.processing_jobs.get(kind=ProcessingJob.Kind.PROFILE)
+        self.assertEqual(job.status, ProcessingJob.Status.COMPLETED)
+        self.assertEqual(job.progress, 100)
+        self.assertEqual(job.attempts, 1)
 
     def test_completed_upload_is_not_processed_twice(self):
         uploaded_file = self.create_upload(
@@ -265,6 +274,9 @@ class DatasetWorkerTests(DatasetUploadTestMixin, TestCase):
             uploaded_file.status,
             UploadedFile.Status.VALIDATION_PENDING,
         )
+        job = uploaded_file.processing_jobs.get(kind=ProcessingJob.Kind.PROFILE)
+        self.assertEqual(job.status, ProcessingJob.Status.PENDING)
+        self.assertIn('Redis est indisponible', job.error_message)
 
     def test_recovery_command_enqueues_pending_uploads(self):
         uploaded_file = self.create_upload(
@@ -278,7 +290,11 @@ class DatasetWorkerTests(DatasetUploadTestMixin, TestCase):
         output = StringIO()
 
         with patch.object(profile_uploaded_file, 'delay') as delay:
+            delay.return_value.id = 'recovery-task-id'
             call_command('enqueue_pending_uploads', stdout=output)
 
-        delay.assert_called_once_with(uploaded_file.pk)
+        job = uploaded_file.processing_jobs.get()
+        delay.assert_called_once_with(uploaded_file.pk, job.pk)
+        job.refresh_from_db()
+        self.assertEqual(job.celery_task_id, 'recovery-task-id')
         self.assertIn('1 tâche(s)', output.getvalue())
