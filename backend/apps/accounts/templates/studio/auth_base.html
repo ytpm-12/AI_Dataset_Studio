@@ -1,0 +1,26 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Authentification{% endblock %} - AI Dataset Studio</title>
+    <link rel="stylesheet" href="{% static 'studio/studio.css' %}">
+</head>
+<body>
+    <main class="auth-shell">
+        <div class="auth-wrap">
+            <a class="auth-brand" href="{% url 'accounts:login' %}">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span>
+                    <strong>AI Dataset Studio</strong>
+                    <span>Préparation de datasets IA</span>
+                </span>
+            </a>
+            <section class="auth-panel">
+                {% block content %}{% endblock %}
+            </section>
+        </div>
+    </main>
+</body>
+</html>

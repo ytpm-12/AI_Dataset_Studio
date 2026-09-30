@@ -16,6 +16,9 @@ python manage.py runserver
 
 Le backend est disponible sur `http://127.0.0.1:8000/`.
 
+Le contrat des routes testables avec Postman se trouve dans
+[`docs/05_API/API_CONTRACT.md`](docs/05_API/API_CONTRACT.md).
+
 ## Worker Celery et Redis
 
 Redis transporte les tâches entre Django et le worker Celery. Docker Desktop doit

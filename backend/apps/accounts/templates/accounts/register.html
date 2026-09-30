@@ -1,23 +1,25 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Inscription - AI Dataset Studio</title>
-</head>
-<body>
-    <main>
-        <h1>Créer un compte</h1>
+{% extends 'studio/auth_base.html' %}
 
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Créer le compte</button>
-        </form>
+{% block title %}Inscription{% endblock %}
 
-        <p>
-            Déjà inscrit ?
-            <a href="{% url 'accounts:login' %}">Se connecter</a>
-        </p>
-    </main>
-</body>
-</html>
+{% block content %}
+    <div class="eyebrow">Nouveau workspace</div>
+    <h1>Créer un compte</h1>
+    <p class="auth-intro">Crée ton espace personnel de préparation de datasets.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ form.non_field_errors }}
+        {% for field in form %}
+            <div class="field">
+                <label for="{{ field.id_for_label }}">{{ field.label }}</label>
+                {{ field }}
+                {% if field.help_text %}<span class="helptext">{{ field.help_text }}</span>{% endif %}
+                {{ field.errors }}
+            </div>
+        {% endfor %}
+        <button class="btn btn-primary full-width" type="submit">Créer le compte</button>
+    </form>
+
+    <p class="auth-footer">Déjà inscrit ? <a href="{% url 'accounts:login' %}">Se connecter</a></p>
+{% endblock %}

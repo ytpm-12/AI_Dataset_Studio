@@ -3,12 +3,31 @@ from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect, render
 from django.utils.http import url_has_allowed_host_and_scheme
 
+from apps.datasets.models import UploadedFile
+from apps.processing.models import ProcessingJob
+from apps.projects.models import Project
+
 from .forms import LoginForm, RegisterForm
 
 
 @login_required
 def home(request):
-    return render(request, 'accounts/home.html')
+    uploads = UploadedFile.objects.filter(owner=request.user)
+    recent_jobs = ProcessingJob.objects.filter(owner=request.user).select_related(
+        'project',
+        'uploaded_file',
+    )[:5]
+    context = {
+        'project_count': Project.objects.filter(owner=request.user).count(),
+        'upload_count': uploads.count(),
+        'validated_count': uploads.filter(status=UploadedFile.Status.VALIDATED).count(),
+        'active_job_count': ProcessingJob.objects.filter(
+            owner=request.user,
+            status__in=(ProcessingJob.Status.PENDING, ProcessingJob.Status.PROCESSING),
+        ).count(),
+        'recent_jobs': recent_jobs,
+    }
+    return render(request, 'accounts/home.html', context)
 
 
 def register(request):

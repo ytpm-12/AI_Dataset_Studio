@@ -1,0 +1,62 @@
+{% load static %}
+<!doctype html>
+<html lang="fr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}AI Dataset Studio{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'studio/studio.css' %}">
+</head>
+<body>
+    <div class="app-shell">
+        <aside class="rail">
+            <a class="brand" href="{% url 'accounts:home' %}">
+                <span class="brand-mark" aria-hidden="true"></span>
+                <span>
+                    <strong>AI Dataset Studio</strong>
+                    <small>Canva des datasets</small>
+                </span>
+            </a>
+
+            <div class="rail-label">Workspace</div>
+            <a class="rail-link {% if request.resolver_match.namespace == 'accounts' %}is-active{% endif %}" href="{% url 'accounts:home' %}">Tableau de bord</a>
+            <a class="rail-link {% if request.resolver_match.namespace == 'projects' %}is-active{% endif %}" href="{% url 'projects:list' %}">Projets</a>
+
+            <div class="rail-label">Préparation</div>
+            <a class="rail-link {% if request.resolver_match.namespace == 'datasets' %}is-active{% endif %}" href="{% url 'datasets:upload' %}">Import</a>
+
+            <div class="rail-label">À venir</div>
+            <span class="rail-link">Analyse et profilage</span>
+            <span class="rail-link">Nettoyage</span>
+            <span class="rail-link">Rapport qualité</span>
+
+            <div class="rail-spacer"></div>
+            <div class="rail-user">
+                <strong>{{ request.user.username }}</strong>
+                <span>{{ request.user.email|default:'Utilisateur authentifié' }}</span>
+                <form method="post" action="{% url 'accounts:logout' %}">
+                    {% csrf_token %}
+                    <button class="logout-button" type="submit">Se déconnecter</button>
+                </form>
+            </div>
+        </aside>
+
+        <main class="main">
+            <header class="topbar">
+                <div class="crumbs">Studio / <strong>{% block breadcrumb %}Tableau de bord{% endblock %}</strong></div>
+                <div class="environment">Environnement local</div>
+            </header>
+            <section class="content">
+                {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                            <li class="message {{ message.tags }}">{{ message }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                {% block content %}{% endblock %}
+            </section>
+        </main>
+    </div>
+</body>
+</html>

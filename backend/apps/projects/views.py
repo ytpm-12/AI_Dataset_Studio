@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.db.models import Count
 from django.shortcuts import redirect, render
 
 from .forms import ProjectForm
@@ -8,7 +9,9 @@ from .models import Project
 
 @login_required
 def project_list(request):
-    projects = Project.objects.filter(owner=request.user).prefetch_related('uploaded_files')
+    projects = Project.objects.filter(owner=request.user).annotate(
+        uploaded_file_count=Count('uploaded_files')
+    )
     return render(request, 'projects/project_list.html', {'projects': projects})
 
 

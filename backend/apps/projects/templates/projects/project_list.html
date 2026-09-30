@@ -1,41 +1,48 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Mes projets - AI Dataset Studio</title>
-</head>
-<body>
-    <main>
-        <header>
-            <h1>Mes projets</h1>
-            <p>
-                <a href="{% url 'accounts:home' %}">Accueil</a>
-                <a href="{% url 'projects:create' %}">Nouveau projet</a>
-            </p>
-        </header>
+{% extends 'studio/base.html' %}
 
-        {% if messages %}
-            <ul>
-                {% for message in messages %}
-                    <li>{{ message }}</li>
-                {% endfor %}
-            </ul>
-        {% endif %}
+{% block title %}Projets - AI Dataset Studio{% endblock %}
+{% block breadcrumb %}Projets{% endblock %}
 
-        {% if projects %}
-            <ul>
-                {% for project in projects %}
-                    <li>
-                        <strong>{{ project.name }}</strong>
-                        <p>{{ project.description|default:'Aucune description.' }}</p>
-                        <small>{{ project.uploaded_files.count }} fichier(s)</small>
-                    </li>
-                {% endfor %}
-            </ul>
-        {% else %}
-            <p>Tu n'as encore aucun projet.</p>
-            <p><a href="{% url 'projects:create' %}">Créer mon premier projet</a></p>
-        {% endif %}
-    </main>
-</body>
-</html>
+{% block content %}
+    <header class="page-head">
+        <div>
+            <div class="eyebrow">Workspace</div>
+            <h1>Projets dataset</h1>
+            <p>Espaces de préparation contenant leurs sources et traitements.</p>
+        </div>
+        <div class="actions">
+            <a class="btn btn-primary" href="{% url 'projects:create' %}">Nouveau projet</a>
+        </div>
+    </header>
+
+    {% if projects %}
+        <section class="table-wrap">
+            <div class="table-toolbar">
+                <h2>Liste des projets</h2>
+                <span class="chip">{{ projects|length }} projet{{ projects|length|pluralize }}</span>
+            </div>
+            <table>
+                <thead>
+                    <tr><th>Nom</th><th>Description</th><th>Fichiers</th><th>Création</th><th></th></tr>
+                </thead>
+                <tbody>
+                    {% for project in projects %}
+                        <tr>
+                            <td><strong>{{ project.name }}</strong><br><span class="muted mono">PRJ-{{ project.id }}</span></td>
+                            <td>{{ project.description|default:'Aucune description.'|truncatechars:72 }}</td>
+                            <td><span class="chip">{{ project.uploaded_file_count }}</span></td>
+                            <td>{{ project.created_at|date:'d/m/Y' }}</td>
+                            <td><a class="btn" href="{% url 'datasets:upload' %}?project={{ project.id }}">Importer</a></td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </section>
+    {% else %}
+        <section class="panel empty-state">
+            <h2>Aucun projet pour le moment</h2>
+            <p>Crée un projet avant d’importer ton premier dataset.</p>
+            <a class="btn btn-primary" href="{% url 'projects:create' %}">Créer mon premier projet</a>
+        </section>
+    {% endif %}
+{% endblock %}

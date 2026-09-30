@@ -3,11 +3,13 @@ from rest_framework.routers import DefaultRouter
 
 from apps.accounts.api import CsrfTokenView, CurrentUserView, LoginView, LogoutView, RegisterView
 from apps.datasets.api import UploadedFileViewSet
+from apps.processing.api import ProcessingJobViewSet
 from apps.projects.api import ProjectViewSet
 
 router = DefaultRouter()
 router.register('projects', ProjectViewSet, basename='project')
 router.register('uploads', UploadedFileViewSet, basename='upload')
+router.register('jobs', ProcessingJobViewSet, basename='job')
 
 urlpatterns = [
     path('auth/csrf/', CsrfTokenView.as_view(), name='api-csrf'),

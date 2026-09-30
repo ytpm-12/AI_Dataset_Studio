@@ -1,7 +1,9 @@
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.conf import settings
-from django.shortcuts import redirect, render
+from django.shortcuts import get_object_or_404, redirect, render
+
+from apps.projects.models import Project
 
 from .forms import UploadedFileForm
 from .models import UploadedFile
@@ -33,7 +35,14 @@ def upload(request):
                 messages.info(request, 'Fichier importé. Son analyse sera traitée en arrière-plan.')
             return redirect('datasets:upload')
     else:
-        form = UploadedFileForm(user=request.user)
+        initial = {}
+        if request.GET.get('project'):
+            initial['project'] = get_object_or_404(
+                Project,
+                pk=request.GET['project'],
+                owner=request.user,
+            )
+        form = UploadedFileForm(user=request.user, initial=initial)
 
     uploads = UploadedFile.objects.filter(owner=request.user).select_related('project')[:10]
     return render(

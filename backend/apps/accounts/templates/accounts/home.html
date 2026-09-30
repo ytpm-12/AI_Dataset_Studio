@@ -1,26 +1,89 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Accueil - AI Dataset Studio</title>
-</head>
-<body>
-    <main>
-        <h1>AI Dataset Studio</h1>
-        <p>Bienvenue, {{ request.user.username }}.</p>
+{% extends 'studio/base.html' %}
 
-        <p>
-            <a href="{% url 'projects:list' %}">Mes projets</a>
-        </p>
+{% block title %}Tableau de bord - AI Dataset Studio{% endblock %}
+{% block breadcrumb %}Tableau de bord{% endblock %}
 
-        <p>
-            <a href="{% url 'datasets:upload' %}">Importer un dataset</a>
-        </p>
+{% block content %}
+    <header class="page-head">
+        <div>
+            <div class="eyebrow">Workspace actif</div>
+            <h1>Bonjour {{ request.user.username }}</h1>
+            <p>Vue opérationnelle de tes projets, sources et traitements de préparation.</p>
+        </div>
+        <div class="actions">
+            <a class="btn" href="{% url 'projects:create' %}">Nouveau projet</a>
+            <a class="btn btn-primary" href="{% url 'datasets:upload' %}">Importer un dataset</a>
+        </div>
+    </header>
 
-        <form method="post" action="{% url 'accounts:logout' %}">
-            {% csrf_token %}
-            <button type="submit">Se déconnecter</button>
-        </form>
-    </main>
-</body>
-</html>
+    <section class="grid grid-4" style="margin-bottom: 20px;">
+        <article class="metric">
+            <div class="metric-label">Projets</div>
+            <div class="metric-value">{{ project_count }}</div>
+            <div class="metric-note">espaces de préparation</div>
+        </article>
+        <article class="metric">
+            <div class="metric-label">Datasets</div>
+            <div class="metric-value">{{ upload_count }}</div>
+            <div class="metric-note">sources importées</div>
+        </article>
+        <article class="metric">
+            <div class="metric-label">Validés</div>
+            <div class="metric-value">{{ validated_count }}</div>
+            <div class="metric-note">profils disponibles</div>
+        </article>
+        <article class="metric">
+            <div class="metric-label">En traitement</div>
+            <div class="metric-value">{{ active_job_count }}</div>
+            <div class="metric-note">jobs pending ou processing</div>
+        </article>
+    </section>
+
+    <section class="grid grid-3">
+        <article class="panel span-2">
+            <div class="panel-head">
+                <div>
+                    <h2>Derniers traitements</h2>
+                    <p>État réel des jobs de profilage.</p>
+                </div>
+            </div>
+            {% if recent_jobs %}
+                <div class="grid">
+                    {% for job in recent_jobs %}
+                        <div>
+                            <div class="panel-head" style="margin-bottom: 8px;">
+                                <div>
+                                    <strong>{{ job.uploaded_file.name }}</strong><br>
+                                    <span class="muted">{{ job.get_kind_display }}</span>
+                                </div>
+                                <span class="status {% if job.status == 'completed' %}status-ok{% elif job.status == 'failed' %}status-error{% elif job.status == 'processing' %}status-run{% else %}status-warn{% endif %}">{{ job.get_status_display }}</span>
+                            </div>
+                            <div class="progress"><span style="width: {{ job.progress }}%;"></span></div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% else %}
+                <div class="empty-state">
+                    <h2>Aucun traitement</h2>
+                    <p>Le premier import créera automatiquement un job de profilage.</p>
+                </div>
+            {% endif %}
+        </article>
+
+        <aside class="panel">
+            <div class="panel-head">
+                <div>
+                    <h2>Parcours MVP</h2>
+                    <p>Fonctions actuellement intégrées.</p>
+                </div>
+            </div>
+            <div class="grid">
+                <div><span class="status status-ok">01</span> Authentification</div>
+                <div><span class="status status-ok">02</span> Projets</div>
+                <div><span class="status status-ok">03</span> Import CSV, JSON, XML</div>
+                <div><span class="status status-run">04</span> Profilage et jobs</div>
+                <div class="muted"><span class="status status-muted">05</span> Nettoyage à venir</div>
+            </div>
+        </aside>
+    </section>
+{% endblock %}

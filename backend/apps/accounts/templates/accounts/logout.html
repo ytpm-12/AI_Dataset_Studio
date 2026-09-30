@@ -1,18 +1,14 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Déconnexion - AI Dataset Studio</title>
-</head>
-<body>
-    <main>
-        <h1>Déconnexion</h1>
-        <p>Confirme la déconnexion de ta session.</p>
+{% extends 'studio/auth_base.html' %}
 
-        <form method="post">
-            {% csrf_token %}
-            <button type="submit">Se déconnecter</button>
-        </form>
-    </main>
-</body>
-</html>
+{% block title %}Déconnexion{% endblock %}
+
+{% block content %}
+    <div class="eyebrow">Session active</div>
+    <h1>Se déconnecter</h1>
+    <p class="auth-intro">Les traitements déjà envoyés au worker continueront en arrière-plan.</p>
+    <form method="post">
+        {% csrf_token %}
+        <button class="btn btn-primary full-width" type="submit">Confirmer la déconnexion</button>
+    </form>
+    <p class="auth-footer"><a href="{% url 'accounts:home' %}">Retour au studio</a></p>
+{% endblock %}

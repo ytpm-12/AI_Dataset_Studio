@@ -1,26 +1,29 @@
-<!doctype html>
-<html lang="fr">
-<head>
-    <meta charset="utf-8">
-    <title>Connexion - AI Dataset Studio</title>
-</head>
-<body>
-    <main>
-        <h1>Connexion</h1>
+{% extends 'studio/auth_base.html' %}
 
-        <form method="post">
-            {% csrf_token %}
-            {% if next %}
-                <input type="hidden" name="next" value="{{ next }}">
-            {% endif %}
-            {{ form.as_p }}
-            <button type="submit">Se connecter</button>
-        </form>
+{% block title %}Connexion{% endblock %}
 
-        <p>
-            Pas encore de compte ?
-            <a href="{% url 'accounts:register' %}">Créer un compte</a>
-        </p>
-    </main>
-</body>
-</html>
+{% block content %}
+    <div class="eyebrow">Accès workspace</div>
+    <h1>Connexion</h1>
+    <p class="auth-intro">Retrouve tes projets, imports et traitements en cours.</p>
+
+    <form method="post">
+        {% csrf_token %}
+        {% if next %}<input type="hidden" name="next" value="{{ next }}">{% endif %}
+        {{ form.non_field_errors }}
+
+        <div class="field">
+            <label for="{{ form.username.id_for_label }}">Nom d’utilisateur</label>
+            {{ form.username }}
+            {{ form.username.errors }}
+        </div>
+        <div class="field">
+            <label for="{{ form.password.id_for_label }}">Mot de passe</label>
+            {{ form.password }}
+            {{ form.password.errors }}
+        </div>
+        <button class="btn btn-primary full-width" type="submit">Se connecter</button>
+    </form>
+
+    <p class="auth-footer">Pas encore de compte ? <a href="{% url 'accounts:register' %}">Créer un compte</a></p>
+{% endblock %}
