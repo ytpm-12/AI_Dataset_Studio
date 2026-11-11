@@ -1,36 +1,104 @@
 # Cahier des charges technique
 
-## Architecture recommandée
+Derniere mise a jour : 04/11/2026
 
-- Application : Django full-stack.
-- Frontend : Django Templates, CSS, HTMX et Alpine.js en amélioration progressive.
-- Traitement data : pandas, puis Polars si les volumes l'exigent.
-- Stockage MVP : SQLite et fichiers locaux.
-- Tests : pytest, pytest-django et tests de services data.
+## Architecture officielle
 
-## Modules Django
+AI Dataset Studio adopte une architecture client-serveur :
 
-- `apps.projects` : gestion des projets dataset.
-- `apps.datasets` : import, fichiers et métadonnées.
-- `apps.cleaning` : profiling qualité et transformations pandas.
-- `apps.annotation` : annotation et validation.
-- `apps.exports` : exports standards.
+- frontend : React avec Vite, execute et gere avec Node.js ;
+- backend : Django et Django REST Framework ;
+- base relationnelle : PostgreSQL ;
+- fichiers MVP : stockage local via Django, remplacable par un stockage objet ;
+- traitement data : pandas, puis Polars seulement si les mesures le justifient ;
+- taches asynchrones : Celery ;
+- broker et resultats Celery : Redis ;
+- IA : regles deterministes et Qwen3 en complement ;
+- tests : tests Django, tests de services data et futurs tests frontend.
 
-## Routes indicatives
+Les templates Django actuels sont un prototype transitoire. Le frontend React les
+remplacera ecran par ecran sans modifier le contrat `/api/v1/`.
 
-| Route | Méthode | Usage |
+## Responsabilites
+
+### Frontend Node.js
+
+- afficher les ecrans conformes a la charte UI/UX ;
+- appeler l'API REST ;
+- gerer la session, le CSRF et les etats de chargement ;
+- afficher clairement les erreurs et la progression des traitements ;
+- ne contenir aucune regle metier critique.
+
+### Backend Django
+
+- authentifier et autoriser les utilisateurs ;
+- valider les entrees et isoler les ressources par proprietaire ;
+- orchestrer les projets, fichiers, traitements et transformations ;
+- exposer une API versionnee ;
+- journaliser les erreurs sans exposer de details sensibles.
+
+### Worker Celery
+
+- traiter les fichiers volumineux hors des requetes HTTP ;
+- rendre les taches idempotentes ;
+- mettre a jour le statut et la progression ;
+- conserver une erreur generique cote API et les details dans les journaux.
+
+## Modules backend
+
+| Module | Etat | Responsabilite |
 |---|---|---|
-| `/projects` | POST/GET | Créer et lister les projets |
-| `/projects/{id}/upload` | POST | Importer un dataset |
-| `/datasets/{id}/profile` | GET | Lire les métriques qualité |
-| `/datasets/{id}/clean` | POST | Appliquer une règle |
-| `/datasets/{id}/annotations` | GET/POST | Lire et enregistrer les annotations |
-| `/datasets/{id}/export` | POST | Exporter un dataset |
+| `accounts` | operationnel | inscription, connexion, session et CSRF |
+| `projects` | operationnel | projets appartenant aux utilisateurs |
+| `datasets` | operationnel partiel | upload, validation et profiling |
+| `processing` | operationnel partiel | suivi des traitements Celery |
+| `pipelines` | a construire | definition et execution des transformations |
+| `annotations` | a construire | annotation et validation humaine |
+| `reports` | a construire | rapports de qualite |
+| `exports` | a construire | production des fichiers de sortie |
+| `ai_engine` | laboratoire non integre | recommandations hybrides |
 
-## Rôle de pandas
+## Contraintes actuelles
 
-pandas reste le moteur de traitement des données derrière Django. Django orchestre les vues, les formulaires, les fichiers, la base de données et les droits. pandas lit les fichiers, calcule les métriques qualité, détecte les doublons, repère les valeurs manquantes et applique les transformations.
+- Formats acceptes : CSV, JSON et XML.
+- Taille maximale par defaut : 50 Mo.
+- Profilage synchrone par defaut jusqu'a 10 Mo.
+- Profilage limite par defaut a 10 000 lignes.
+- Pagination API : 20 ressources par page.
+- Authentification : session Django avec protection CSRF.
+- Origines frontend locales autorisees : `127.0.0.1:5173` et `localhost:5173`.
+- Toutes les ressources metier sont filtrees par utilisateur.
 
-## IA
+Les valeurs configurables sont documentees dans `.env.example`.
 
-L'IA n'est pas obligatoire pour le MVP. Elle pourra être ajoutée plus tard comme couche d'assistance pour proposer des règles de nettoyage, expliquer les anomalies ou générer un rapport qualité en langage naturel.
+## API
+
+- Prefixe stable actuel : `/api/v1/`.
+- Contrat : `docs/05_API/API_CONTRACT.md`.
+- Collection de verification : `docs/05_API/postman/AI_Dataset_Studio.postman_collection.json`.
+- Toute nouvelle route doit etre livree avec documentation, tests et exemple Postman.
+
+## Exigences de qualite
+
+- Aucun secret ou fichier utilisateur ne doit etre commite.
+- Une ressource d'un autre utilisateur doit etre invisible et retournee en `404`.
+- Une erreur de validation doit retourner `400` avec des details par champ.
+- Les traitements longs ne doivent pas bloquer une requete HTTP.
+- Les migrations doivent etre versionnees.
+- La suite de tests doit etre verte avant chaque push partage.
+
+## Strategie IA
+
+Le LLM ne prend pas seul les decisions de transformation. Le flux cible est :
+
+```text
+profil pandas
+-> regles deterministes
+-> Qwen3 pour les cas ambigus
+-> validation du schema JSON
+-> confirmation humaine
+-> transformation
+```
+
+Le checkpoint LoRA reste experimental jusqu'a une nouvelle evaluation sur des donnees
+reelles validees et separees des donnees d'entrainement.

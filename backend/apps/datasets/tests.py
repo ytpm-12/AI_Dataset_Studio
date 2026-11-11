@@ -97,6 +97,103 @@ class UploadedFileApiTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
         self.assertFalse(UploadedFile.objects.filter(owner=self.user).exists())
 
+    def create_validated_upload(self):
+        source = SimpleUploadedFile(
+            'preview.csv',
+            b'name,score\nAlice,10\nBob,20\n',
+            content_type='text/csv',
+        )
+        uploaded_file = UploadedFile.objects.create(
+            owner=self.user,
+            project=self.project,
+            name='Preview dataset',
+            file=source,
+            original_name=source.name,
+            file_type=UploadedFile.FileType.CSV,
+            content_type='text/csv',
+            size=source.size,
+            status=UploadedFile.Status.VALIDATED,
+        )
+        self.addCleanup(uploaded_file.file.delete, save=False)
+        return uploaded_file
+
+    def test_preview_returns_a_bounded_table(self):
+        uploaded_file = self.create_validated_upload()
+        self.client.force_authenticate(self.user)
+
+        response = self.client.get(
+            f'/api/v1/uploads/{uploaded_file.pk}/preview/?limit=1'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['columns'], ['name', 'score'])
+        self.assertEqual(response.data['rows'], [{'name': 'Alice', 'score': 10}])
+        self.assertEqual(response.data['returned_rows'], 1)
+        self.assertTrue(response.data['truncated'])
+
+    def test_preview_rejects_an_invalid_limit(self):
+        uploaded_file = self.create_validated_upload()
+        self.client.force_authenticate(self.user)
+
+        response = self.client.get(
+            f'/api/v1/uploads/{uploaded_file.pk}/preview/?limit=101'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('limit', response.data)
+
+    def test_user_cannot_preview_another_users_upload(self):
+        uploaded_file = self.create_validated_upload()
+        self.client.force_authenticate(self.other_user)
+
+        response = self.client.get(
+            f'/api/v1/uploads/{uploaded_file.pk}/preview/'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_404_NOT_FOUND)
+
+    def test_preview_supports_json_and_xml(self):
+        self.client.force_authenticate(self.user)
+        cases = (
+            (
+                'preview.json',
+                b'[{"name": "Alice", "active": true}]',
+                UploadedFile.FileType.JSON,
+                'application/json',
+                {'name': 'Alice', 'active': True},
+            ),
+            (
+                'preview.xml',
+                b'<clients><client><name>Alice</name><age>30</age></client></clients>',
+                UploadedFile.FileType.XML,
+                'application/xml',
+                {'name': 'Alice', 'age': '30'},
+            ),
+        )
+
+        for filename, content, file_type, content_type, expected_row in cases:
+            with self.subTest(file_type=file_type):
+                source = SimpleUploadedFile(filename, content, content_type=content_type)
+                uploaded_file = UploadedFile.objects.create(
+                    owner=self.user,
+                    project=self.project,
+                    name=filename,
+                    file=source,
+                    original_name=filename,
+                    file_type=file_type,
+                    content_type=content_type,
+                    size=source.size,
+                    status=UploadedFile.Status.VALIDATED,
+                )
+                self.addCleanup(uploaded_file.file.delete, save=False)
+
+                response = self.client.get(
+                    f'/api/v1/uploads/{uploaded_file.pk}/preview/'
+                )
+
+                self.assertEqual(response.status_code, status.HTTP_200_OK)
+                self.assertEqual(response.data['rows'], [expected_row])
+
 
 class DatasetUploadTestMixin:
     def setUp(self):

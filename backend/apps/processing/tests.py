@@ -1,3 +1,5 @@
+from unittest.mock import patch
+
 from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.core.files.uploadedfile import SimpleUploadedFile
@@ -145,5 +147,63 @@ class ProcessingJobApiTests(APITestCase):
         self.client.force_authenticate(self.other_user)
 
         response = self.client.get(f'/api/v1/jobs/{self.job.id}/')
+
+        self.assertEqual(response.status_code, 404)
+
+    def test_failed_job_can_be_retried(self):
+        self.job.status = ProcessingJob.Status.FAILED
+        self.job.progress = 25
+        self.job.error_message = 'Previous failure'
+        self.job.save(update_fields=('status', 'progress', 'error_message', 'updated_at'))
+        self.uploaded_file.status = UploadedFile.Status.FAILED
+        self.uploaded_file.save(update_fields=('status', 'updated_at'))
+        self.client.force_authenticate(self.user)
+
+        with patch('apps.processing.api.profile_uploaded_file.delay') as delay:
+            delay.return_value.id = 'retry-task-id'
+            response = self.client.post(f'/api/v1/jobs/{self.job.id}/retry/')
+
+        self.assertEqual(response.status_code, 202)
+        self.job.refresh_from_db()
+        self.uploaded_file.refresh_from_db()
+        self.assertEqual(self.job.status, ProcessingJob.Status.PENDING)
+        self.assertEqual(self.job.progress, 0)
+        self.assertEqual(self.job.celery_task_id, 'retry-task-id')
+        self.assertEqual(
+            self.uploaded_file.status,
+            UploadedFile.Status.VALIDATION_PENDING,
+        )
+        delay.assert_called_once_with(self.uploaded_file.pk, self.job.pk)
+
+    def test_active_job_cannot_be_retried(self):
+        self.client.force_authenticate(self.user)
+
+        response = self.client.post(f'/api/v1/jobs/{self.job.id}/retry/')
+
+        self.assertEqual(response.status_code, 400)
+        self.assertIn('status', response.data)
+
+    def test_retry_reports_broker_unavailability(self):
+        self.job.status = ProcessingJob.Status.FAILED
+        self.job.save(update_fields=('status', 'updated_at'))
+        self.client.force_authenticate(self.user)
+
+        with patch(
+            'apps.processing.api.profile_uploaded_file.delay',
+            side_effect=ConnectionError('Redis unavailable'),
+        ):
+            response = self.client.post(f'/api/v1/jobs/{self.job.id}/retry/')
+
+        self.assertEqual(response.status_code, 503)
+        self.job.refresh_from_db()
+        self.assertEqual(self.job.status, ProcessingJob.Status.PENDING)
+        self.assertIn('Redis est indisponible', self.job.error_message)
+
+    def test_other_user_cannot_retry_job(self):
+        self.job.status = ProcessingJob.Status.FAILED
+        self.job.save(update_fields=('status', 'updated_at'))
+        self.client.force_authenticate(self.other_user)
+
+        response = self.client.post(f'/api/v1/jobs/{self.job.id}/retry/')
 
         self.assertEqual(response.status_code, 404)

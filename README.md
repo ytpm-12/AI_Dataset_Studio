@@ -18,6 +18,35 @@ Le backend est disponible sur `http://127.0.0.1:8000/`.
 
 Le contrat des routes testables avec Postman se trouve dans
 [`docs/05_API/API_CONTRACT.md`](docs/05_API/API_CONTRACT.md).
+La collection importable se trouve dans
+[`docs/05_API/postman/AI_Dataset_Studio.postman_collection.json`](docs/05_API/postman/AI_Dataset_Studio.postman_collection.json).
+
+## Architecture frontend
+
+Le frontend cible est une application React + Vite, executee et geree avec Node.js.
+Les templates Django actuels restent un prototype fonctionnel pendant sa construction
+incrementale. Le frontend communiquera avec le backend via `/api/v1/`.
+
+### Demarrage du frontend
+
+Dans un deuxieme terminal, depuis la racine du projet :
+
+```powershell
+cd frontend
+npm install
+npm run dev
+```
+
+Le frontend est disponible sur `http://127.0.0.1:5173/`. Vite transmet les requetes
+`/api` et `/media` au backend Django local sur le port `8000`.
+
+Verification du frontend :
+
+```powershell
+cd frontend
+npm run lint
+npm run build
+```
 
 ## Worker Celery et Redis
 

@@ -1,0 +1,153 @@
+{
+  "info": {
+    "_postman_id": "94d6ae53-9302-4a72-9d89-571dc2e28526",
+    "name": "AI Dataset Studio API v1",
+    "description": "Parcours de verification de l'API locale. Les cookies de session sont geres par Postman.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    {"key": "baseUrl", "value": "http://127.0.0.1:8000/api/v1"},
+    {"key": "username", "value": "studio_postman_user"},
+    {"key": "email", "value": "studio.postman@example.com"},
+    {"key": "password", "value": "Studio-Test-2026!"},
+    {"key": "csrfToken", "value": ""},
+    {"key": "projectId", "value": ""},
+    {"key": "uploadId", "value": ""},
+    {"key": "jobId", "value": ""}
+  ],
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Obtenir le CSRF",
+          "request": {"method": "GET", "url": "{{baseUrl}}/auth/csrf/"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Statut 200', () => pm.response.to.have.status(200));", "const body = pm.response.json();", "pm.collectionVariables.set('csrfToken', body.csrfToken);"]}}]
+        },
+        {
+          "name": "Inscription",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrfToken}}"}],
+            "body": {"mode": "raw", "raw": "{\n  \"username\": \"{{username}}\",\n  \"email\": \"{{email}}\",\n  \"password\": \"{{password}}\",\n  \"password_confirm\": \"{{password}}\"\n}"},
+            "url": "{{baseUrl}}/auth/register/"
+          },
+          "event": [
+            {"listen": "prerequest", "script": {"exec": ["const suffix = Date.now();", "pm.collectionVariables.set('username', `studio_${suffix}`);", "pm.collectionVariables.set('email', `studio_${suffix}@example.com`);"]}},
+            {"listen": "test", "script": {"exec": ["pm.test('Compte cree', () => pm.response.to.have.status(201));"]}}
+          ]
+        },
+        {
+          "name": "Connexion",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrfToken}}"}],
+            "body": {"mode": "raw", "raw": "{\n  \"username\": \"{{username}}\",\n  \"password\": \"{{password}}\"\n}"},
+            "url": "{{baseUrl}}/auth/login/"
+          },
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Connexion reussie', () => pm.response.to.have.status(200));"]}}]
+        },
+        {
+          "name": "Utilisateur courant",
+          "request": {"method": "GET", "url": "{{baseUrl}}/auth/me/"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Session active', () => pm.response.to.have.status(200));"]}}]
+        }
+      ]
+    },
+    {
+      "name": "Projects",
+      "item": [
+        {
+          "name": "Lister les projets",
+          "request": {"method": "GET", "url": "{{baseUrl}}/projects/"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Liste paginee', () => pm.response.to.have.status(200));"]}}]
+        },
+        {
+          "name": "Creer un projet",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrfToken}}"}],
+            "body": {"mode": "raw", "raw": "{\n  \"name\": \"Projet Postman\",\n  \"description\": \"Projet cree par la collection de verification\"\n}"},
+            "url": "{{baseUrl}}/projects/"
+          },
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Projet cree', () => pm.response.to.have.status(201));", "pm.collectionVariables.set('projectId', pm.response.json().id);"]}}]
+        },
+        {
+          "name": "Lire un projet",
+          "request": {"method": "GET", "url": "{{baseUrl}}/projects/{{projectId}}/"}
+        },
+        {
+          "name": "Modifier un projet",
+          "request": {
+            "method": "PATCH",
+            "header": [{"key": "Content-Type", "value": "application/json"}, {"key": "X-CSRFToken", "value": "{{csrfToken}}"}],
+            "body": {"mode": "raw", "raw": "{\n  \"description\": \"Description mise a jour avec Postman\"\n}"},
+            "url": "{{baseUrl}}/projects/{{projectId}}/"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Uploads",
+      "item": [
+        {
+          "name": "Lister les fichiers",
+          "request": {"method": "GET", "url": "{{baseUrl}}/uploads/"}
+        },
+        {
+          "name": "Importer un fichier",
+          "request": {
+            "method": "POST",
+            "header": [{"key": "X-CSRFToken", "value": "{{csrfToken}}"}],
+            "body": {"mode": "formdata", "formdata": [{"key": "project", "value": "{{projectId}}", "type": "text"}, {"key": "name", "value": "Dataset Postman", "type": "text"}, {"key": "file", "type": "file", "src": ""}]},
+            "url": "{{baseUrl}}/uploads/",
+            "description": "Selectionner manuellement un fichier CSV, JSON ou XML dans le champ file."
+          },
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Fichier accepte', () => pm.response.to.have.status(201));", "pm.collectionVariables.set('uploadId', pm.response.json().id);"]}}]
+        },
+        {
+          "name": "Lire un fichier",
+          "request": {"method": "GET", "url": "{{baseUrl}}/uploads/{{uploadId}}/"}
+        },
+        {
+          "name": "Apercu des premieres lignes",
+          "request": {"method": "GET", "url": "{{baseUrl}}/uploads/{{uploadId}}/preview/?limit=20"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Apercu borne accessible', () => pm.response.to.have.status(200));", "pm.test('Maximum 20 lignes', () => pm.expect(pm.response.json().rows.length).to.be.at.most(20));"]}}]
+        }
+      ]
+    },
+    {
+      "name": "Jobs",
+      "item": [
+        {
+          "name": "Lister les traitements",
+          "request": {"method": "GET", "url": "{{baseUrl}}/jobs/?upload={{uploadId}}"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Traitements accessibles', () => pm.response.to.have.status(200));", "const results = pm.response.json().results;", "if (results.length) pm.collectionVariables.set('jobId', results[0].id);"]}}]
+        },
+        {
+          "name": "Lire un traitement",
+          "request": {"method": "GET", "url": "{{baseUrl}}/jobs/{{jobId}}/"}
+        },
+        {
+          "name": "Relancer un traitement echoue (manuel)",
+          "request": {"method": "POST", "header": [{"key": "X-CSRFToken", "value": "{{csrfToken}}"}], "url": "{{baseUrl}}/jobs/{{jobId}}/retry/"},
+          "description": "A executer uniquement lorsque le job cible possede le statut failed. Reponses possibles: 202, 400 ou 503."
+        },
+        {
+          "name": "Filtrer les traitements actifs",
+          "request": {"method": "GET", "url": "{{baseUrl}}/jobs/?status=processing&project={{projectId}}"}
+        }
+      ]
+    },
+    {
+      "name": "Fin de parcours",
+      "item": [
+        {
+          "name": "Deconnexion",
+          "request": {"method": "POST", "header": [{"key": "X-CSRFToken", "value": "{{csrfToken}}"}], "url": "{{baseUrl}}/auth/logout/"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Session fermee', () => pm.response.to.have.status(204));"]}}]
+        }
+      ]
+    }
+  ]
+}
