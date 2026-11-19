@@ -52,8 +52,12 @@ READERS = {
 }
 
 
+def read_dataset_frame(uploaded_file, row_count):
+    return READERS[uploaded_file.file_type](uploaded_file, row_count)
+
+
 def build_dataset_preview(uploaded_file, limit):
-    frame = READERS[uploaded_file.file_type](uploaded_file, limit + 1)
+    frame = read_dataset_frame(uploaded_file, limit + 1)
     truncated = len(frame) > limit
     frame = frame.head(limit)
 

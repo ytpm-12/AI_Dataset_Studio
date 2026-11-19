@@ -64,6 +64,7 @@ remplacera ecran par ecran sans modifier le contrat `/api/v1/`.
 - Taille maximale par defaut : 50 Mo.
 - Profilage synchrone par defaut jusqu'a 10 Mo.
 - Profilage limite par defaut a 10 000 lignes.
+- Analyse de nettoyage limitee par defaut a 10 000 lignes.
 - Pagination API : 20 ressources par page.
 - Authentification : session Django avec protection CSRF.
 - Origines frontend locales autorisees : `127.0.0.1:5173` et `localhost:5173`.

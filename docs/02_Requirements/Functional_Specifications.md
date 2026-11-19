@@ -30,14 +30,14 @@ visible, explicable et testable.
 | F-004 | Profiler un dataset | Must | backend realise, interface a completer |
 | F-005 | Suivre les traitements volumineux | Must | backend realise, interface a completer |
 | F-006 | Previsualiser les lignes du dataset | Must | realise |
-| F-007 | Nettoyer les doublons | Must | a faire |
+| F-007 | Nettoyer les doublons | Must | realise avec conservation de la source |
 | F-008 | Traiter les valeurs manquantes | Must | a faire |
 | F-009 | Convertir les types et formats | Must | a faire |
-| F-010 | Previsualiser et confirmer une transformation | Must | a faire |
+| F-010 | Previsualiser et confirmer une transformation | Must | realise pour les doublons exacts |
 | F-011 | Annoter et valider des enregistrements | Should | a faire |
 | F-012 | Evaluer la qualite et l'equilibre | Should | a faire |
 | F-013 | Exporter CSV et JSON | Must | a faire |
-| F-014 | Consulter l'historique | Should | a faire |
+| F-014 | Consulter l'historique | Should | premier historique realise pour les doublons |
 | F-015 | Recevoir une recommandation IA explicable | Should | laboratoire realise, integration a faire |
 
 ## Regles fonctionnelles

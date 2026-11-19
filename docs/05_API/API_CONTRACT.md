@@ -1,7 +1,7 @@
 # Contrat d'API - AI Dataset Studio
 
 Version : `v1`  
-Derniere mise a jour : `04/11/2026`
+Derniere mise a jour : `12/11/2026`
 URL locale : `http://127.0.0.1:8000/api/v1`
 
 Ce document recense uniquement les routes actuellement implementees. Toute nouvelle
@@ -133,6 +133,9 @@ Le parametre `?page=2` permet de changer de page.
 | POST | `/uploads/` | Oui | Importer un fichier CSV, JSON ou XML |
 | GET | `/uploads/{id}/` | Oui | Lire un fichier et son profil |
 | GET | `/uploads/{id}/preview/` | Oui | Lire un apercu borne des lignes |
+| GET | `/uploads/{id}/duplicates/preview/` | Oui | Previsualiser les doublons exacts |
+| POST | `/uploads/{id}/duplicates/apply/` | Oui | Creer une version sans doublons apres confirmation |
+| GET | `/uploads/{id}/transformations/` | Oui | Consulter l'historique des transformations |
 | GET | `/jobs/` | Oui | Lister ses traitements asynchrones |
 | GET | `/jobs/{id}/` | Oui | Lire l'etat d'un traitement |
 | POST | `/jobs/{id}/retry/` | Oui | Relancer un traitement en echec |
@@ -244,6 +247,49 @@ limite.
 
 Une limite invalide retourne `400`. Un fichier pas encore valide retourne `409`.
 Une ressource appartenant a un autre utilisateur retourne `404`.
+
+### `GET /uploads/{id}/duplicates/preview/`
+
+Analyse en lecture seule les lignes strictement identiques sur toutes les colonnes.
+Le perimetre est borne par `CLEANING_ANALYSIS_MAX_ROWS`, fixe a 10 000 par defaut.
+
+```json
+{
+  "analyzed_rows": 100,
+  "duplicate_rows": 4,
+  "affected_rows": 8,
+  "rows_after_cleanup": 96,
+  "duplicate_percentage": 4.0,
+  "sample_rows": [{"_row_number": 2, "name": "Alice"}],
+  "truncated": false
+}
+```
+
+`duplicate_rows` represente les occurrences supprimables en conservant la premiere.
+`affected_rows` inclut aussi les premieres occurrences des groupes concernes. Cet
+endpoint ne modifie jamais le fichier. Un fichier non valide retourne `409`.
+
+### `POST /uploads/{id}/duplicates/apply/`
+
+Applique la suppression des doublons exacts en conservant la premiere occurrence.
+La confirmation explicite est obligatoire :
+
+```json
+{"confirm": true}
+```
+
+Reponse `201` : une transformation terminee contenant `source_file`, `output_file`,
+`parameters` et le resume `input_rows`, `removed_rows`, `output_rows`. Le fichier
+source n'est jamais ecrase : `output_file` designe un nouveau dataset valide dans le
+meme projet. Si l'analyse serait tronquee par `CLEANING_ANALYSIS_MAX_ROWS`, le serveur
+retourne `409` et ne produit aucun fichier partiel. Une confirmation absente retourne
+`400`.
+
+### `GET /uploads/{id}/transformations/`
+
+Retourne, de la plus recente a la plus ancienne, les transformations lancees depuis
+ce dataset. L'historique inclut les operations terminees et echouees, leur resume, le
+message d'erreur eventuel et l'identifiant du dataset produit.
 
 ## Traitements
 

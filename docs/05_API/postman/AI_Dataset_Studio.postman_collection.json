@@ -113,6 +113,21 @@
           "name": "Apercu des premieres lignes",
           "request": {"method": "GET", "url": "{{baseUrl}}/uploads/{{uploadId}}/preview/?limit=20"},
           "event": [{"listen": "test", "script": {"exec": ["pm.test('Apercu borne accessible', () => pm.response.to.have.status(200));", "pm.test('Maximum 20 lignes', () => pm.expect(pm.response.json().rows.length).to.be.at.most(20));"]}}]
+        },
+        {
+          "name": "Previsualiser les doublons exacts",
+          "request": {"method": "GET", "url": "{{baseUrl}}/uploads/{{uploadId}}/duplicates/preview/"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Analyse accessible', () => pm.response.to.have.status(200));", "pm.test('Resultat sans modification', () => pm.expect(pm.response.json()).to.have.property('duplicate_rows'));"]}}]
+        },
+        {
+          "name": "Appliquer la suppression des doublons",
+          "request": {"method": "POST", "header": [{"key": "X-CSRFToken", "value": "{{csrfToken}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"confirm\": true}"}, "url": "{{baseUrl}}/uploads/{{uploadId}}/duplicates/apply/"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Version nettoyee creee', () => pm.response.to.have.status(201));", "if (pm.response.code === 201) pm.collectionVariables.set('cleanedUploadId', pm.response.json().output_file);"]}}]
+        },
+        {
+          "name": "Consulter l historique des transformations",
+          "request": {"method": "GET", "url": "{{baseUrl}}/uploads/{{uploadId}}/transformations/"},
+          "event": [{"listen": "test", "script": {"exec": ["pm.test('Historique accessible', () => pm.response.to.have.status(200));"]}}]
         }
       ]
     },

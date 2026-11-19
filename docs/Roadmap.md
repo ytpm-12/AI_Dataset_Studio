@@ -1,6 +1,6 @@
 # AI Dataset Studio - Feuille de route incrementale
 
-Derniere mise a jour : 04/11/2026
+Derniere mise a jour : 12/11/2026
 
 ## Principes de livraison
 
@@ -61,11 +61,14 @@ sans utiliser l'administration Django.
 
 ## Phase 3 - Nettoyage et historique
 
-- [ ] Detecter et traiter les doublons.
+Etat : en cours
+
+- [x] Detecter et previsualiser les doublons exacts sans modifier le fichier.
+- [x] Appliquer la suppression des doublons apres confirmation sans ecraser la source.
 - [ ] Traiter les valeurs manquantes.
 - [ ] Convertir les types et normaliser les formats.
-- [ ] Previsualiser chaque transformation avant application.
-- [ ] Conserver l'historique et permettre l'annulation logique.
+- [x] Poser le premier flux de previsualisation avant application.
+- [x] Conserver le premier historique et permettre le retour logique au fichier source.
 - [ ] Ajouter API, interface et tests a chaque regle.
 
 Critere de sortie : un dataset peut etre nettoye de maniere explicable et reversible.

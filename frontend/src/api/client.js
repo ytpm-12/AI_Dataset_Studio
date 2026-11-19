@@ -69,6 +69,9 @@ export const api = {
   upload: (formData) => apiRequest('/uploads/', { method: 'POST', body: formData }),
   uploadDetail: (id) => apiRequest(`/uploads/${id}/`),
   uploadPreview: (id, limit = 20) => apiRequest(`/uploads/${id}/preview/?limit=${limit}`),
+  duplicatePreview: (id) => apiRequest(`/uploads/${id}/duplicates/preview/`),
+  applyDuplicateRemoval: (id) => apiRequest(`/uploads/${id}/duplicates/apply/`, { method: 'POST', body: JSON.stringify({ confirm: true }) }),
+  transformations: (id) => apiRequest(`/uploads/${id}/transformations/`),
   jobs: (query = '') => apiRequest(`/jobs/${query}`),
   retryJob: (id) => apiRequest(`/jobs/${id}/retry/`, { method: 'POST' }),
 }
