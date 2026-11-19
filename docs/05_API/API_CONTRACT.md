@@ -136,6 +136,12 @@ Le parametre `?page=2` permet de changer de page.
 | GET | `/uploads/{id}/duplicates/preview/` | Oui | Previsualiser les doublons exacts |
 | POST | `/uploads/{id}/duplicates/apply/` | Oui | Creer une version sans doublons apres confirmation |
 | GET | `/uploads/{id}/transformations/` | Oui | Consulter l'historique des transformations |
+| GET | `/uploads/{id}/missing-values/preview/` | Oui | Analyser les valeurs manquantes |
+| POST | `/uploads/{id}/missing-values/apply/` | Oui | Appliquer une strategie confirmee |
+| GET | `/uploads/{id}/type-conversion/preview/` | Oui | Lister les conversions disponibles |
+| POST | `/uploads/{id}/type-conversion/apply/` | Oui | Convertir une colonne apres confirmation |
+| GET | `/uploads/{id}/quality-report/` | Oui | Calculer le rapport qualite minimal |
+| GET | `/uploads/{id}/export/?type=csv` | Oui | Telecharger un export CSV ou JSON |
 | GET | `/jobs/` | Oui | Lister ses traitements asynchrones |
 | GET | `/jobs/{id}/` | Oui | Lire l'etat d'un traitement |
 | POST | `/jobs/{id}/retry/` | Oui | Relancer un traitement en echec |
@@ -290,6 +296,28 @@ retourne `409` et ne produit aucun fichier partiel. Une confirmation absente ret
 Retourne, de la plus recente a la plus ancienne, les transformations lancees depuis
 ce dataset. L'historique inclut les operations terminees et echouees, leur resume, le
 message d'erreur eventuel et l'identifiant du dataset produit.
+
+### Valeurs manquantes
+
+`GET /uploads/{id}/missing-values/preview/` retourne le nombre et le pourcentage de
+valeurs absentes par colonne, ainsi que les strategies disponibles. `POST
+/uploads/{id}/missing-values/apply/` exige `confirm: true`, `column` et `strategy`.
+Strategies : `drop_rows`, `constant`, `mean`, `median`, `mode`. `constant` exige
+egalement `value`. Moyenne et mediane sont reservees aux colonnes numeriques.
+
+### Conversion de type
+
+`GET /uploads/{id}/type-conversion/preview/` retourne les colonnes et leurs types.
+`POST /uploads/{id}/type-conversion/apply/` exige `confirm: true`, `column` et
+`target_type`. Types cibles : `integer`, `float`, `string`, `boolean`, `datetime`.
+La conversion est stricte : une valeur incompatible retourne `400`.
+
+### Rapport qualite et exports
+
+`GET /uploads/{id}/quality-report/` retourne les scores de completude, d'unicite et
+un score global pondere a 60/40. Le champ `truncated` indique une analyse partielle.
+`GET /uploads/{id}/export/?type=csv` telecharge le dataset en CSV ; `type=json`
+produit du JSON. Un export depassant la limite synchrone retourne `409`.
 
 ## Traitements
 

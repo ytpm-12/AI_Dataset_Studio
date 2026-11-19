@@ -5,6 +5,8 @@ from django.db import models
 class Transformation(models.Model):
     class Operation(models.TextChoices):
         REMOVE_EXACT_DUPLICATES = 'remove_exact_duplicates', 'Remove exact duplicates'
+        HANDLE_MISSING_VALUES = 'handle_missing_values', 'Handle missing values'
+        CONVERT_COLUMN_TYPE = 'convert_column_type', 'Convert column type'
 
     class Status(models.TextChoices):
         PENDING = 'pending', 'Pending'

@@ -1,6 +1,6 @@
 # Cahier des charges fonctionnel
 
-Derniere mise a jour : 04/11/2026
+Derniere mise a jour : 19/11/2026
 
 ## Vision
 
@@ -27,16 +27,16 @@ visible, explicable et testable.
 | F-001 | S'inscrire, se connecter et se deconnecter | Must | realise |
 | F-002 | Creer et consulter ses projets | Must | realise |
 | F-003 | Importer CSV, JSON et XML | Must | realise |
-| F-004 | Profiler un dataset | Must | backend realise, interface a completer |
-| F-005 | Suivre les traitements volumineux | Must | backend realise, interface a completer |
+| F-004 | Profiler un dataset | Must | realise avec interface React |
+| F-005 | Suivre les traitements volumineux | Must | realise et verifie avec Redis/Celery |
 | F-006 | Previsualiser les lignes du dataset | Must | realise |
 | F-007 | Nettoyer les doublons | Must | realise avec conservation de la source |
-| F-008 | Traiter les valeurs manquantes | Must | a faire |
-| F-009 | Convertir les types et formats | Must | a faire |
+| F-008 | Traiter les valeurs manquantes | Must | realise avec cinq strategies |
+| F-009 | Convertir les types et formats | Must | realise pour cinq types cibles |
 | F-010 | Previsualiser et confirmer une transformation | Must | realise pour les doublons exacts |
 | F-011 | Annoter et valider des enregistrements | Should | a faire |
 | F-012 | Evaluer la qualite et l'equilibre | Should | a faire |
-| F-013 | Exporter CSV et JSON | Must | a faire |
+| F-013 | Exporter CSV et JSON | Must | realise |
 | F-014 | Consulter l'historique | Should | premier historique realise pour les doublons |
 | F-015 | Recevoir une recommandation IA explicable | Should | laboratoire realise, integration a faire |
 

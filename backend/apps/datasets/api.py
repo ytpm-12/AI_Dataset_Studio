@@ -1,4 +1,5 @@
 from django.conf import settings
+from django.http import HttpResponse
 from rest_framework import mixins, parsers, status, viewsets
 from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
@@ -9,7 +10,13 @@ from apps.pipelines.serializers import TransformationSerializer
 from apps.pipelines.services import (
     DatasetTooLargeForSynchronousCleaning,
     apply_exact_duplicate_removal,
+    apply_missing_value_treatment,
+    apply_type_conversion,
     preview_exact_duplicates,
+    preview_missing_values,
+    TARGET_TYPES,
+    build_export,
+    build_quality_report,
 )
 
 from .models import UploadedFile
@@ -126,3 +133,156 @@ class UploadedFileViewSet(
             source_file=uploaded_file,
         ).select_related('source_file', 'output_file')
         return Response(TransformationSerializer(history, many=True).data)
+
+    @action(detail=True, methods=('get',), parser_classes=(), url_path='missing-values/preview')
+    def missing_values_preview(self, request, pk=None):
+        uploaded_file = self.get_object()
+        if uploaded_file.status != UploadedFile.Status.VALIDATED:
+            return Response(
+                {'detail': "L'analyse est disponible uniquement après validation."},
+                status=status.HTTP_409_CONFLICT,
+            )
+        try:
+            result = preview_missing_values(
+                uploaded_file,
+                max_rows=settings.CLEANING_ANALYSIS_MAX_ROWS,
+            )
+        except (KeyError, ValueError, TypeError) as exc:
+            raise ValidationError({'detail': "Impossible d'analyser les valeurs manquantes."}) from exc
+        return Response(result)
+
+    @action(
+        detail=True,
+        methods=('post',),
+        parser_classes=(parsers.JSONParser,),
+        url_path='missing-values/apply',
+    )
+    def missing_values_apply(self, request, pk=None):
+        uploaded_file = self.get_object()
+        if request.data.get('confirm') is not True:
+            raise ValidationError(
+                {'confirm': 'Une confirmation explicite avec la valeur true est obligatoire.'}
+            )
+        if uploaded_file.status != UploadedFile.Status.VALIDATED:
+            return Response(
+                {'detail': "Le nettoyage est disponible uniquement après validation."},
+                status=status.HTTP_409_CONFLICT,
+            )
+        if uploaded_file.project_id is None:
+            return Response(
+                {'detail': 'Le dataset doit appartenir à un projet avant son nettoyage.'},
+                status=status.HTTP_409_CONFLICT,
+            )
+        try:
+            transformation = apply_missing_value_treatment(
+                uploaded_file,
+                max_rows=settings.CLEANING_ANALYSIS_MAX_ROWS,
+                column=request.data.get('column'),
+                strategy=request.data.get('strategy'),
+                value=request.data.get('value'),
+            )
+        except DatasetTooLargeForSynchronousCleaning as exc:
+            return Response({'detail': str(exc)}, status=status.HTTP_409_CONFLICT)
+        except (KeyError, ValueError, TypeError) as exc:
+            raise ValidationError({'detail': str(exc)}) from exc
+        return Response(
+            TransformationSerializer(transformation).data,
+            status=status.HTTP_201_CREATED,
+        )
+
+    @action(detail=True, methods=('get',), parser_classes=(), url_path='type-conversion/preview')
+    def type_conversion_preview(self, request, pk=None):
+        uploaded_file = self.get_object()
+        if uploaded_file.status != UploadedFile.Status.VALIDATED:
+            return Response(
+                {'detail': "L'analyse est disponible uniquement après validation."},
+                status=status.HTTP_409_CONFLICT,
+            )
+        return Response(
+            {
+                'columns': [
+                    {'name': item['name'], 'current_type': item['dtype']}
+                    for item in uploaded_file.profile.get('columns', [])
+                ],
+                'target_types': sorted(TARGET_TYPES),
+            }
+        )
+
+    @action(
+        detail=True,
+        methods=('post',),
+        parser_classes=(parsers.JSONParser,),
+        url_path='type-conversion/apply',
+    )
+    def type_conversion_apply(self, request, pk=None):
+        uploaded_file = self.get_object()
+        if request.data.get('confirm') is not True:
+            raise ValidationError(
+                {'confirm': 'Une confirmation explicite avec la valeur true est obligatoire.'}
+            )
+        if uploaded_file.status != UploadedFile.Status.VALIDATED:
+            return Response(
+                {'detail': "La conversion est disponible uniquement après validation."},
+                status=status.HTTP_409_CONFLICT,
+            )
+        if uploaded_file.project_id is None:
+            return Response(
+                {'detail': 'Le dataset doit appartenir à un projet avant sa conversion.'},
+                status=status.HTTP_409_CONFLICT,
+            )
+        try:
+            transformation = apply_type_conversion(
+                uploaded_file,
+                max_rows=settings.CLEANING_ANALYSIS_MAX_ROWS,
+                column=request.data.get('column'),
+                target_type=request.data.get('target_type'),
+            )
+        except DatasetTooLargeForSynchronousCleaning as exc:
+            return Response({'detail': str(exc)}, status=status.HTTP_409_CONFLICT)
+        except (KeyError, ValueError, TypeError) as exc:
+            raise ValidationError({'detail': str(exc)}) from exc
+        return Response(
+            TransformationSerializer(transformation).data,
+            status=status.HTTP_201_CREATED,
+        )
+
+    @action(detail=True, methods=('get',), parser_classes=(), url_path='export')
+    def export(self, request, pk=None):
+        uploaded_file = self.get_object()
+        if uploaded_file.status != UploadedFile.Status.VALIDATED:
+            return Response(
+                {'detail': "L'export est disponible uniquement après validation."},
+                status=status.HTTP_409_CONFLICT,
+            )
+        target_format = request.query_params.get('type', 'csv').lower()
+        try:
+            content, content_type = build_export(
+                uploaded_file,
+                target_format,
+                settings.CLEANING_ANALYSIS_MAX_ROWS,
+            )
+        except DatasetTooLargeForSynchronousCleaning as exc:
+            return Response({'detail': str(exc)}, status=status.HTTP_409_CONFLICT)
+        except (KeyError, ValueError, TypeError) as exc:
+            raise ValidationError({'detail': str(exc)}) from exc
+        filename = f'{uploaded_file.name}.{target_format}'
+        response = HttpResponse(content, content_type=content_type)
+        response['Content-Disposition'] = f'attachment; filename="{filename}"'
+        return response
+
+    @action(detail=True, methods=('get',), parser_classes=(), url_path='quality-report')
+    def quality_report(self, request, pk=None):
+        uploaded_file = self.get_object()
+        if uploaded_file.status != UploadedFile.Status.VALIDATED:
+            return Response(
+                {'detail': 'Le rapport est disponible uniquement après validation.'},
+                status=status.HTTP_409_CONFLICT,
+            )
+        try:
+            report = build_quality_report(
+                uploaded_file,
+                settings.CLEANING_ANALYSIS_MAX_ROWS,
+            )
+        except (KeyError, ValueError, TypeError) as exc:
+            raise ValidationError({'detail': 'Impossible de générer le rapport qualité.'}) from exc
+        return Response(report)

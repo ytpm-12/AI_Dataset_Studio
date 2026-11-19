@@ -1,3 +1,5 @@
+import json
+
 from django.contrib.auth import get_user_model
 from django.core.files.uploadedfile import SimpleUploadedFile
 from django.test import TestCase, override_settings
@@ -204,3 +206,176 @@ class DuplicatePreviewApiTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertEqual(len(response.data), 1)
         self.assertEqual(response.data[0]['source_file'], uploaded_file.pk)
+
+    def test_missing_values_preview_reports_each_column(self):
+        uploaded_file = self.create_upload(b'id,name,score\n1,A,10\n2,,\n3,C,30\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.get(
+            f'/api/v1/uploads/{uploaded_file.pk}/missing-values/preview/'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['total_missing_values'], 2)
+        name_column = next(item for item in response.data['columns'] if item['name'] == 'name')
+        self.assertEqual(name_column['missing_count'], 1)
+
+    def test_missing_values_can_be_filled_with_constant(self):
+        uploaded_file = self.create_upload(b'id,name\n1,A\n2,\n3,C\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.post(
+            f'/api/v1/uploads/{uploaded_file.pk}/missing-values/apply/',
+            {'confirm': True, 'column': 'name', 'strategy': 'constant', 'value': 'Inconnu'},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['summary']['missing_before'], 1)
+        self.assertEqual(response.data['summary']['missing_after'], 0)
+        output = UploadedFile.objects.get(pk=response.data['output_file'])
+        self.addCleanup(output.file.delete, save=False)
+        output.file.open('rb')
+        try:
+            self.assertIn('2,Inconnu', output.file.read().decode('utf-8-sig'))
+        finally:
+            output.file.close()
+
+    def test_missing_values_can_be_filled_with_numeric_mean(self):
+        uploaded_file = self.create_upload(b'id,score\n1,10\n2,\n3,30\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.post(
+            f'/api/v1/uploads/{uploaded_file.pk}/missing-values/apply/',
+            {'confirm': True, 'column': 'score', 'strategy': 'mean'},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        output = UploadedFile.objects.get(pk=response.data['output_file'])
+        self.addCleanup(output.file.delete, save=False)
+        self.assertEqual(response.data['summary']['missing_after'], 0)
+
+    def test_missing_values_drop_rows_reports_removed_rows(self):
+        uploaded_file = self.create_upload(b'id,name\n1,A\n2,\n3,C\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.post(
+            f'/api/v1/uploads/{uploaded_file.pk}/missing-values/apply/',
+            {'confirm': True, 'column': 'name', 'strategy': 'drop_rows'},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['summary']['removed_rows'], 1)
+        output = UploadedFile.objects.get(pk=response.data['output_file'])
+        self.addCleanup(output.file.delete, save=False)
+
+    def test_mean_is_rejected_for_text_column(self):
+        uploaded_file = self.create_upload(b'id,name\n1,A\n2,\n3,C\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.post(
+            f'/api/v1/uploads/{uploaded_file.pk}/missing-values/apply/',
+            {'confirm': True, 'column': 'name', 'strategy': 'mean'},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        transformation = Transformation.objects.get(source_file=uploaded_file)
+        self.assertEqual(transformation.status, Transformation.Status.FAILED)
+
+    def test_type_conversion_preview_lists_columns_and_targets(self):
+        uploaded_file = self.create_upload(b'id,active\n1,yes\n2,no\n')
+        uploaded_file.profile = {
+            'columns': [
+                {'name': 'id', 'dtype': 'int64'},
+                {'name': 'active', 'dtype': 'object'},
+            ]
+        }
+        uploaded_file.save(update_fields=('profile', 'updated_at'))
+        self.client.force_authenticate(self.user)
+
+        response = self.client.get(
+            f'/api/v1/uploads/{uploaded_file.pk}/type-conversion/preview/'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIn('boolean', response.data['target_types'])
+        self.assertEqual(response.data['columns'][1]['name'], 'active')
+
+    def test_text_values_can_be_converted_to_boolean(self):
+        uploaded_file = self.create_upload(b'id,active\n1,yes\n2,no\n3,oui\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.post(
+            f'/api/v1/uploads/{uploaded_file.pk}/type-conversion/apply/',
+            {'confirm': True, 'column': 'active', 'target_type': 'boolean'},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(response.data['summary']['target_type'], 'boolean')
+        output = UploadedFile.objects.get(pk=response.data['output_file'])
+        self.addCleanup(output.file.delete, save=False)
+
+    def test_decimal_values_cannot_be_silently_converted_to_integer(self):
+        uploaded_file = self.create_upload(b'id,score\n1,10.5\n2,20\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.post(
+            f'/api/v1/uploads/{uploaded_file.pk}/type-conversion/apply/',
+            {'confirm': True, 'column': 'score', 'target_type': 'integer'},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+        self.assertIn('décimales', response.data['detail'])
+
+    def test_invalid_boolean_value_is_rejected(self):
+        uploaded_file = self.create_upload(b'id,active\n1,maybe\n2,yes\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.post(
+            f'/api/v1/uploads/{uploaded_file.pk}/type-conversion/apply/',
+            {'confirm': True, 'column': 'active', 'target_type': 'boolean'},
+            format='json',
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_dataset_can_be_exported_as_json(self):
+        uploaded_file = self.create_upload(b'id,name\n1,A\n2,B\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.get(
+            f'/api/v1/uploads/{uploaded_file.pk}/export/?type=json'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response['Content-Type'], 'application/json')
+        self.assertIn('attachment;', response['Content-Disposition'])
+        self.assertEqual(json.loads(response.content)[0]['name'], 'A')
+
+    def test_invalid_export_format_is_rejected(self):
+        uploaded_file = self.create_upload(b'id\n1\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.get(
+            f'/api/v1/uploads/{uploaded_file.pk}/export/?type=xlsx'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_400_BAD_REQUEST)
+
+    def test_quality_report_scores_missing_and_duplicate_rows(self):
+        uploaded_file = self.create_upload(b'id,name\n1,A\n1,A\n2,\n')
+        self.client.force_authenticate(self.user)
+
+        response = self.client.get(
+            f'/api/v1/uploads/{uploaded_file.pk}/quality-report/'
+        )
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(response.data['missing_values'], 1)
+        self.assertEqual(response.data['duplicate_rows'], 1)
+        self.assertLess(response.data['overall_score'], 100)

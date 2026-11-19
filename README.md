@@ -79,6 +79,21 @@ Pour arrêter Redis sans supprimer ses données :
 docker compose down
 ```
 
+## Parcours de demonstration MVP
+
+1. Creer un compte puis un projet dans le frontend.
+2. Importer un fichier CSV, JSON ou XML.
+3. Attendre la validation et consulter l'apercu et le profil.
+4. Analyser puis supprimer les doublons dans une nouvelle version.
+5. Traiter les valeurs manquantes par colonne.
+6. Convertir un type de colonne si necessaire.
+7. Calculer le rapport qualite.
+8. Exporter le resultat en CSV ou JSON.
+9. Verifier l'historique et revenir au fichier source a tout moment.
+
+Chaque transformation exige une confirmation et cree un nouveau dataset : le fichier
+source n'est jamais ecrase.
+
 ## Tests
 
 ```powershell

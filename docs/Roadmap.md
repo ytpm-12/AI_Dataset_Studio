@@ -1,6 +1,6 @@
 # AI Dataset Studio - Feuille de route incrementale
 
-Derniere mise a jour : 12/11/2026
+Derniere mise a jour : 19/11/2026
 
 ## Principes de livraison
 
@@ -24,7 +24,7 @@ servent de reference pendant la construction progressive du frontend Node.js.
 
 ## Phase 1 - Stabiliser l'existant
 
-Etat : en cours
+Etat : termine
 
 - [x] Mettre en place Django, PostgreSQL, Redis et Celery.
 - [x] Implementer l'authentification par session et CSRF.
@@ -36,8 +36,8 @@ Etat : en cours
 - [x] Officialiser le frontend React + Vite sous Node.js.
 - [x] Fournir une collection Postman reproductible.
 - [x] Confirmer la connexion Django a PostgreSQL.
-- [ ] Retablir Docker Desktop et confirmer Redis (`PONG`).
-- [ ] Demarrer et confirmer le worker Celery apres Redis.
+- [x] Retablir Docker Desktop et confirmer Redis (`PONG`).
+- [x] Demarrer et confirmer le worker Celery apres Redis.
 - [x] Executer et valider les 29 tests automatises avec PostgreSQL.
 
 Critere de sortie : infrastructure verte, 29 tests reussis et parcours Postman
@@ -45,7 +45,7 @@ authentification -> projet -> upload -> traitement reproductible.
 
 ## Phase 2 - Terminer le parcours d'import
 
-Etat : en cours
+Etat : termine en environnement local
 
 - [x] Creer le frontend Node.js et son socle de navigation.
 - [x] Configurer le proxy Vite, les cookies de session et les origines CSRF locales.
@@ -65,11 +65,11 @@ Etat : en cours
 
 - [x] Detecter et previsualiser les doublons exacts sans modifier le fichier.
 - [x] Appliquer la suppression des doublons apres confirmation sans ecraser la source.
-- [ ] Traiter les valeurs manquantes.
-- [ ] Convertir les types et normaliser les formats.
+- [x] Traiter les valeurs manquantes avec cinq strategies controlees.
+- [x] Convertir les types entier, decimal, texte, booleen et date.
 - [x] Poser le premier flux de previsualisation avant application.
 - [x] Conserver le premier historique et permettre le retour logique au fichier source.
-- [ ] Ajouter API, interface et tests a chaque regle.
+- [x] Ajouter API, interface et tests a chaque regle livree.
 
 Critere de sortie : un dataset peut etre nettoye de maniere explicable et reversible.
 
@@ -83,8 +83,8 @@ Critere de sortie : un dataset peut etre nettoye de maniere explicable et revers
 
 ## Phase 5 - Export et rapports
 
-- [ ] Exporter en CSV et JSON.
-- [ ] Generer un rapport qualite.
+- [x] Exporter en CSV et JSON.
+- [x] Generer un rapport qualite minimal (completude et unicite).
 - [ ] Consulter et telecharger l'historique des resultats.
 - [ ] Tester les exports sur des volumes representatifs.
 

@@ -1,4 +1,4 @@
-import { AlertTriangle, ArrowLeft, CheckCircle2, Clock3, Columns3, Copy, Database, ExternalLink, History, RefreshCw, RotateCcw, Rows3, Search, ShieldCheck, Trash2 } from 'lucide-react'
+import { AlertTriangle, ArrowLeft, CheckCircle2, Clock3, Columns3, Copy, Database, Download, Droplets, ExternalLink, Gauge, History, RefreshCw, RotateCcw, Rows3, Search, ShieldCheck, Shuffle, Trash2 } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
@@ -117,10 +117,95 @@ export default function DatasetDetailPage() {
         <div className="panel-heading"><div><p className="eyebrow">Nettoyage · Prévisualisation</p><h2>Doublons exacts</h2></div><button className="button secondary" onClick={handleDuplicateAnalysis} disabled={analyzingDuplicates || dataset.status !== 'validated'}><Search /> {analyzingDuplicates ? 'Analyse…' : duplicateAnalysis ? 'Analyser à nouveau' : 'Analyser'}</button></div>
         {!duplicateAnalysis ? <div className="cleaning-intro"><span className="cleaning-icon"><Copy /></span><div><h3>Comparer toutes les colonnes</h3><p>L’analyse recherche les lignes strictement identiques et estime le résultat d’une suppression qui conserve la première occurrence.</p></div><span className="read-only-badge"><ShieldCheck /> Lecture seule</span></div> : <><div className="cleaning-summary"><article><span>Lignes analysées</span><strong>{duplicateAnalysis.analyzed_rows}</strong></article><article><span>Lignes supprimables</span><strong>{duplicateAnalysis.duplicate_rows}</strong><small>{duplicateAnalysis.duplicate_percentage}% du périmètre</small></article><article><span>Après nettoyage</span><strong>{duplicateAnalysis.rows_after_cleanup}</strong></article></div>{duplicateAnalysis.truncated && <div className="alert warning">L’analyse est limitée aux premières lignes configurées. Le nettoyage complet est bloqué pour éviter un résultat partiel.</div>}{duplicateAnalysis.duplicate_rows === 0 ? <div className="clean-result success"><CheckCircle2 /><div><strong>Aucun doublon exact détecté</strong><p>Les lignes analysées sont uniques sur l’ensemble des colonnes.</p></div></div> : <><div className="table-wrap"><table className="preview-table"><thead><tr>{Object.keys(duplicateAnalysis.sample_rows[0] || {}).map((column) => <th key={column}>{column === '_row_number' ? 'Ligne' : column}</th>)}</tr></thead><tbody>{duplicateAnalysis.sample_rows.map((row) => <tr key={row._row_number}>{Object.entries(row).map(([column, value]) => <td key={column} title={formatCell(value)}>{formatCell(value)}</td>)}</tr>)}</tbody></table></div><div className="cleaning-actions"><p><ShieldCheck /> La source sera conservée. Un nouveau dataset sera créé.</p><button className="button primary" onClick={handleDuplicateApply} disabled={duplicateAnalysis.truncated || applyingDuplicates}><Trash2 /> {applyingDuplicates ? 'Création…' : 'Créer la version nettoyée'}</button></div></>}</>}
       </section>
+      <MissingValuesPanel datasetId={datasetId} datasetStatus={dataset.status} onApplied={load} setActionError={setActionError} />
+      <TypeConversionPanel datasetId={datasetId} datasetStatus={dataset.status} onApplied={load} setActionError={setActionError} />
+      <QualityAndExportPanel datasetId={datasetId} datasetStatus={dataset.status} setActionError={setActionError} />
       {transformations.length > 0 && <section className="panel"><div className="panel-heading"><div><p className="eyebrow">Traçabilité</p><h2>Historique des transformations</h2></div><History /></div><div className="transformation-list">{transformations.map((item) => <article key={item.id}><div><strong>{item.operation_label}</strong><span>{formatDate(item.created_at)} · {item.status}</span></div><div><span>{item.summary.removed_rows ?? 0} ligne(s) supprimée(s)</span>{item.output_file && <Link className="text-link" to={`/datasets/${item.output_file}`}>Ouvrir le résultat <ExternalLink /></Link>}</div></article>)}</div></section>}
       <section className="panel"><div className="panel-heading"><div><p className="eyebrow">Profil statistique</p><h2>Colonnes</h2></div></div>{columns.length ? <div className="table-wrap"><table><thead><tr><th>Colonne</th><th>Type détecté</th><th>Valeurs manquantes</th><th>Valeurs uniques</th><th>Exemples</th></tr></thead><tbody>{columns.map((column) => <tr key={column.name}><td className="row-title">{column.name}</td><td><span className="code-pill">{column.dtype}</span></td><td><strong>{column.missing_count}</strong><small>{column.missing_percentage}%</small></td><td>{column.unique_count ?? 'Non calculé'}</td><td><div className="sample-values">{column.sample_values.map((value) => <span key={value}>{value}</span>)}</div></td></tr>)}</tbody></table></div> : <div className="empty-state"><Database /><h3>Profil indisponible</h3><p>Le profil apparaîtra lorsque la validation sera terminée.</p></div>}</section>
     </>
   )
+}
+
+function MissingValuesPanel({ datasetId, datasetStatus, onApplied, setActionError }) {
+  const [analysis, setAnalysis] = useState(null)
+  const [column, setColumn] = useState('')
+  const [strategy, setStrategy] = useState('drop_rows')
+  const [constantValue, setConstantValue] = useState('')
+  const [busy, setBusy] = useState(false)
+
+  async function analyze() {
+    setBusy(true)
+    setActionError('')
+    try {
+      const result = await api.missingValuesPreview(datasetId)
+      setAnalysis(result)
+      const firstMissing = result.columns.find((item) => item.missing_count > 0)
+      setColumn(firstMissing?.name || '')
+    } catch (error) { setActionError(error.message) }
+    finally { setBusy(false) }
+  }
+
+  async function applyTreatment() {
+    if (!window.confirm(`Créer une nouvelle version en traitant la colonne « ${column} » ? Le fichier original restera intact.`)) return
+    setBusy(true)
+    setActionError('')
+    try {
+      await api.applyMissingValues(datasetId, { column, strategy, value: constantValue })
+      await onApplied()
+      await analyze()
+    } catch (error) { setActionError(error.message) }
+    finally { setBusy(false) }
+  }
+
+  const selectedColumn = analysis?.columns.find((item) => item.name === column)
+  const canApply = selectedColumn?.missing_count > 0 && !analysis?.truncated && !busy
+  return <section className="panel missing-panel"><div className="panel-heading"><div><p className="eyebrow">Nettoyage · Valeurs manquantes</p><h2>Compléter ou retirer les données absentes</h2></div><button className="button secondary" onClick={analyze} disabled={busy || datasetStatus !== 'validated'}><Droplets /> {busy ? 'Traitement…' : analysis ? 'Analyser à nouveau' : 'Analyser'}</button></div>{!analysis ? <div className="cleaning-intro"><span className="cleaning-icon"><Droplets /></span><div><h3>Choisir une stratégie par colonne</h3><p>Suppression de lignes, constante, moyenne, médiane ou valeur la plus fréquente.</p></div><span className="read-only-badge"><ShieldCheck /> Prévisualisation</span></div> : <><div className="cleaning-summary"><article><span>Lignes analysées</span><strong>{analysis.analyzed_rows}</strong></article><article><span>Valeurs absentes</span><strong>{analysis.total_missing_values}</strong></article><article><span>Colonnes concernées</span><strong>{analysis.columns.filter((item) => item.missing_count > 0).length}</strong></article></div>{analysis.truncated && <div className="alert warning">Le fichier dépasse la limite synchrone : l’application est bloquée pour éviter un résultat partiel.</div>}{analysis.total_missing_values === 0 ? <div className="clean-result success"><CheckCircle2 /><div><strong>Aucune valeur manquante détectée</strong><p>Le périmètre analysé est complet.</p></div></div> : <div className="strategy-form"><label>Colonne<select value={column} onChange={(event) => setColumn(event.target.value)}>{analysis.columns.filter((item) => item.missing_count > 0).map((item) => <option key={item.name} value={item.name}>{item.name} · {item.missing_count} absente(s)</option>)}</select></label><label>Stratégie<select value={strategy} onChange={(event) => setStrategy(event.target.value)}><option value="drop_rows">Supprimer les lignes</option><option value="constant">Remplacer par une constante</option><option value="mode">Valeur la plus fréquente</option><option value="mean" disabled={!selectedColumn?.numeric}>Moyenne</option><option value="median" disabled={!selectedColumn?.numeric}>Médiane</option></select></label>{strategy === 'constant' && <label>Valeur de remplacement<input value={constantValue} onChange={(event) => setConstantValue(event.target.value)} placeholder="Ex. Inconnu" /></label>}<button className="button primary" onClick={applyTreatment} disabled={!canApply || (strategy === 'constant' && !constantValue)}><ShieldCheck /> Créer la version nettoyée</button></div>}</>}</section>
+}
+
+function TypeConversionPanel({ datasetId, datasetStatus, onApplied, setActionError }) {
+  const [analysis, setAnalysis] = useState(null)
+  const [column, setColumn] = useState('')
+  const [targetType, setTargetType] = useState('string')
+  const [busy, setBusy] = useState(false)
+
+  async function analyze() {
+    setBusy(true)
+    setActionError('')
+    try {
+      const result = await api.typeConversionPreview(datasetId)
+      setAnalysis(result)
+      setColumn(result.columns[0]?.name || '')
+    } catch (error) { setActionError(error.message) }
+    finally { setBusy(false) }
+  }
+
+  async function applyConversion() {
+    if (!window.confirm(`Créer une nouvelle version avec « ${column} » convertie en ${targetType} ?`)) return
+    setBusy(true)
+    setActionError('')
+    try {
+      await api.applyTypeConversion(datasetId, { column, target_type: targetType })
+      await onApplied()
+    } catch (error) { setActionError(error.message) }
+    finally { setBusy(false) }
+  }
+
+  return <section className="panel"><div className="panel-heading"><div><p className="eyebrow">Nettoyage · Types</p><h2>Convertir une colonne</h2></div><button className="button secondary" onClick={analyze} disabled={busy || datasetStatus !== 'validated'}><Shuffle /> {busy ? 'Traitement…' : analysis ? 'Actualiser' : 'Préparer'}</button></div>{!analysis ? <div className="cleaning-intro"><span className="cleaning-icon"><Shuffle /></span><div><h3>Conversion stricte et contrôlée</h3><p>Les valeurs incompatibles sont signalées ; elles ne sont jamais remplacées silencieusement.</p></div><span className="read-only-badge"><ShieldCheck /> Confirmation requise</span></div> : <div className="strategy-form"><label>Colonne<select value={column} onChange={(event) => setColumn(event.target.value)}>{analysis.columns.map((item) => <option key={item.name} value={item.name}>{item.name} · {item.current_type}</option>)}</select></label><label>Type cible<select value={targetType} onChange={(event) => setTargetType(event.target.value)}><option value="integer">Entier</option><option value="float">Décimal</option><option value="string">Texte</option><option value="boolean">Booléen</option><option value="datetime">Date et heure</option></select></label><button className="button primary" onClick={applyConversion} disabled={!column || busy}><Shuffle /> Créer la version convertie</button></div>}</section>
+}
+
+function QualityAndExportPanel({ datasetId, datasetStatus, setActionError }) {
+  const [report, setReport] = useState(null)
+  const [loadingReport, setLoadingReport] = useState(false)
+
+  async function loadReport() {
+    setLoadingReport(true)
+    setActionError('')
+    try { setReport(await api.qualityReport(datasetId)) }
+    catch (error) { setActionError(error.message) }
+    finally { setLoadingReport(false) }
+  }
+
+  return <section className="panel"><div className="panel-heading"><div><p className="eyebrow">Qualité et livraison</p><h2>Rapport et exports</h2></div><div className="header-actions"><button className="button secondary" onClick={loadReport} disabled={loadingReport || datasetStatus !== 'validated'}><Gauge /> {loadingReport ? 'Calcul…' : 'Calculer la qualité'}</button><a className="button secondary" href={api.exportUrl(datasetId, 'csv')}><Download /> CSV</a><a className="button primary" href={api.exportUrl(datasetId, 'json')}><Download /> JSON</a></div></div>{report ? <><div className="quality-score"><div className="score-ring"><strong>{Math.round(report.overall_score)}</strong><span>/100</span></div><div><h3>Score qualité global</h3><p>60 % complétude et 40 % unicité. Ce score est déterministe et explicable.</p>{report.truncated && <span className="status status-pending">Analyse partielle</span>}</div></div><div className="cleaning-summary"><article><span>Complétude</span><strong>{report.completeness_score}%</strong><small>{report.missing_values} valeur(s) absente(s)</small></article><article><span>Unicité</span><strong>{report.uniqueness_score}%</strong><small>{report.duplicate_rows} doublon(s)</small></article><article><span>Périmètre</span><strong>{report.analyzed_rows}</strong><small>{report.column_count} colonne(s)</small></article></div></> : <div className="cleaning-intro"><span className="cleaning-icon"><Gauge /></span><div><h3>Mesurer avant d’exporter</h3><p>Le rapport synthétise la complétude et l’unicité du dataset courant.</p></div></div>}</section>
 }
 
 function formatDate(value) { return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeStyle: 'short' }).format(new Date(value)) }

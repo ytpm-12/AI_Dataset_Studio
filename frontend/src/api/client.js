@@ -72,6 +72,12 @@ export const api = {
   duplicatePreview: (id) => apiRequest(`/uploads/${id}/duplicates/preview/`),
   applyDuplicateRemoval: (id) => apiRequest(`/uploads/${id}/duplicates/apply/`, { method: 'POST', body: JSON.stringify({ confirm: true }) }),
   transformations: (id) => apiRequest(`/uploads/${id}/transformations/`),
+  missingValuesPreview: (id) => apiRequest(`/uploads/${id}/missing-values/preview/`),
+  applyMissingValues: (id, values) => apiRequest(`/uploads/${id}/missing-values/apply/`, { method: 'POST', body: JSON.stringify({ ...values, confirm: true }) }),
+  typeConversionPreview: (id) => apiRequest(`/uploads/${id}/type-conversion/preview/`),
+  applyTypeConversion: (id, values) => apiRequest(`/uploads/${id}/type-conversion/apply/`, { method: 'POST', body: JSON.stringify({ ...values, confirm: true }) }),
+  qualityReport: (id) => apiRequest(`/uploads/${id}/quality-report/`),
+  exportUrl: (id, type) => `${API_ROOT}/uploads/${id}/export/?type=${type}`,
   jobs: (query = '') => apiRequest(`/jobs/${query}`),
   retryJob: (id) => apiRequest(`/jobs/${id}/retry/`, { method: 'POST' }),
 }
