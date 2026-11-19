@@ -142,6 +142,8 @@ Le parametre `?page=2` permet de changer de page.
 | POST | `/uploads/{id}/type-conversion/apply/` | Oui | Convertir une colonne apres confirmation |
 | GET | `/uploads/{id}/quality-report/` | Oui | Calculer le rapport qualite minimal |
 | GET | `/uploads/{id}/export/?type=csv` | Oui | Telecharger un export CSV ou JSON |
+| POST | `/uploads/{id}/ai-recommendations/` | Oui | Generer une recommandation hybride ou Qwen |
+| GET | `/uploads/{id}/ai-recommendations/history/` | Oui | Consulter le journal des recommandations |
 | GET | `/jobs/` | Oui | Lister ses traitements asynchrones |
 | GET | `/jobs/{id}/` | Oui | Lire l'etat d'un traitement |
 | POST | `/jobs/{id}/retry/` | Oui | Relancer un traitement en echec |
@@ -318,6 +320,24 @@ La conversion est stricte : une valeur incompatible retourne `400`.
 un score global pondere a 60/40. Le champ `truncated` indique une analyse partielle.
 `GET /uploads/{id}/export/?type=csv` telecharge le dataset en CSV ; `type=json`
 produit du JSON. Un export depassant la limite synchrone retourne `409`.
+
+### Recommandations IA
+
+`POST /uploads/{id}/ai-recommendations/` accepte :
+
+```json
+{"force_ai": false}
+```
+
+Avec `false`, les regles deterministes couvrent les cas simples et critiques, puis
+Qwen est appele seulement si aucune regle sure ne s'applique. Avec `true`, Qwen est
+interroge explicitement. La reponse contient `engine`, `model_name` et un objet
+`recommendation` valide : action, cible, parametres, confiance, explication et
+obligation de validation. Une indisponibilite du modele retourne `503`, un contrat
+JSON invalide retourne `502`. Aucune recommandation n'est appliquee automatiquement.
+
+`GET /uploads/{id}/ai-recommendations/history/` retourne le journal du dataset,
+isole par utilisateur.
 
 ## Traitements
 

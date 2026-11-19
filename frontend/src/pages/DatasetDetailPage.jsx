@@ -1,4 +1,4 @@
-import { AlertTriangle, ArrowLeft, CheckCircle2, Clock3, Columns3, Copy, Database, Download, Droplets, ExternalLink, Gauge, History, RefreshCw, RotateCcw, Rows3, Search, ShieldCheck, Shuffle, Trash2 } from 'lucide-react'
+import { AlertTriangle, ArrowLeft, Bot, CheckCircle2, Clock3, Columns3, Copy, Database, Download, Droplets, ExternalLink, Gauge, History, RefreshCw, RotateCcw, Rows3, Search, ShieldCheck, Shuffle, Sparkles, Trash2 } from 'lucide-react'
 import { useCallback, useEffect, useState } from 'react'
 import { Link, useParams } from 'react-router-dom'
 
@@ -119,6 +119,7 @@ export default function DatasetDetailPage() {
       </section>
       <MissingValuesPanel datasetId={datasetId} datasetStatus={dataset.status} onApplied={load} setActionError={setActionError} />
       <TypeConversionPanel datasetId={datasetId} datasetStatus={dataset.status} onApplied={load} setActionError={setActionError} />
+      <AIRecommendationPanel datasetId={datasetId} datasetStatus={dataset.status} setActionError={setActionError} />
       <QualityAndExportPanel datasetId={datasetId} datasetStatus={dataset.status} setActionError={setActionError} />
       {transformations.length > 0 && <section className="panel"><div className="panel-heading"><div><p className="eyebrow">Traçabilité</p><h2>Historique des transformations</h2></div><History /></div><div className="transformation-list">{transformations.map((item) => <article key={item.id}><div><strong>{item.operation_label}</strong><span>{formatDate(item.created_at)} · {item.status}</span></div><div><span>{item.summary.removed_rows ?? 0} ligne(s) supprimée(s)</span>{item.output_file && <Link className="text-link" to={`/datasets/${item.output_file}`}>Ouvrir le résultat <ExternalLink /></Link>}</div></article>)}</div></section>}
       <section className="panel"><div className="panel-heading"><div><p className="eyebrow">Profil statistique</p><h2>Colonnes</h2></div></div>{columns.length ? <div className="table-wrap"><table><thead><tr><th>Colonne</th><th>Type détecté</th><th>Valeurs manquantes</th><th>Valeurs uniques</th><th>Exemples</th></tr></thead><tbody>{columns.map((column) => <tr key={column.name}><td className="row-title">{column.name}</td><td><span className="code-pill">{column.dtype}</span></td><td><strong>{column.missing_count}</strong><small>{column.missing_percentage}%</small></td><td>{column.unique_count ?? 'Non calculé'}</td><td><div className="sample-values">{column.sample_values.map((value) => <span key={value}>{value}</span>)}</div></td></tr>)}</tbody></table></div> : <div className="empty-state"><Database /><h3>Profil indisponible</h3><p>Le profil apparaîtra lorsque la validation sera terminée.</p></div>}</section>
@@ -206,6 +207,31 @@ function QualityAndExportPanel({ datasetId, datasetStatus, setActionError }) {
   }
 
   return <section className="panel"><div className="panel-heading"><div><p className="eyebrow">Qualité et livraison</p><h2>Rapport et exports</h2></div><div className="header-actions"><button className="button secondary" onClick={loadReport} disabled={loadingReport || datasetStatus !== 'validated'}><Gauge /> {loadingReport ? 'Calcul…' : 'Calculer la qualité'}</button><a className="button secondary" href={api.exportUrl(datasetId, 'csv')}><Download /> CSV</a><a className="button primary" href={api.exportUrl(datasetId, 'json')}><Download /> JSON</a></div></div>{report ? <><div className="quality-score"><div className="score-ring"><strong>{Math.round(report.overall_score)}</strong><span>/100</span></div><div><h3>Score qualité global</h3><p>60 % complétude et 40 % unicité. Ce score est déterministe et explicable.</p>{report.truncated && <span className="status status-pending">Analyse partielle</span>}</div></div><div className="cleaning-summary"><article><span>Complétude</span><strong>{report.completeness_score}%</strong><small>{report.missing_values} valeur(s) absente(s)</small></article><article><span>Unicité</span><strong>{report.uniqueness_score}%</strong><small>{report.duplicate_rows} doublon(s)</small></article><article><span>Périmètre</span><strong>{report.analyzed_rows}</strong><small>{report.column_count} colonne(s)</small></article></div></> : <div className="cleaning-intro"><span className="cleaning-icon"><Gauge /></span><div><h3>Mesurer avant d’exporter</h3><p>Le rapport synthétise la complétude et l’unicité du dataset courant.</p></div></div>}</section>
+}
+
+function AIRecommendationPanel({ datasetId, datasetStatus, setActionError }) {
+  const [history, setHistory] = useState([])
+  const [busy, setBusy] = useState(false)
+
+  useEffect(() => {
+    api.aiRecommendationHistory(datasetId)
+      .then(setHistory)
+      .catch((error) => setActionError(error.message))
+  }, [datasetId, setActionError])
+
+  async function requestRecommendation(forceAi) {
+    setBusy(true)
+    setActionError('')
+    try {
+      const result = await api.aiRecommendation(datasetId, forceAi)
+      setHistory((items) => [result, ...items])
+    } catch (error) { setActionError(error.message) }
+    finally { setBusy(false) }
+  }
+
+  const latest = history[0]
+  const recommendation = latest?.recommendation
+  return <section className="panel ai-panel"><div className="panel-heading"><div><p className="eyebrow">Assistant qualité</p><h2>Recommandation hybride</h2></div><div className="header-actions"><button className="button secondary" onClick={() => requestRecommendation(false)} disabled={busy || datasetStatus !== 'validated'}><ShieldCheck /> Moteur hybride</button><button className="button primary" onClick={() => requestRecommendation(true)} disabled={busy || datasetStatus !== 'validated'}><Sparkles /> {busy ? 'Analyse…' : 'Interroger Qwen'}</button></div></div>{recommendation ? <div className="ai-recommendation"><span className="ai-mark"><Bot /></span><div className="ai-copy"><div className="ai-meta"><span className="status status-validated">{latest.engine_label}</span>{latest.model_name && <span>{latest.model_name}</span>}<span>Confiance {Math.round(recommendation.confidence * 100)} %</span></div><h3>{recommendation.action} · {recommendation.target}</h3><p>{recommendation.explanation}</p><div className="ai-guard"><ShieldCheck /> Recommandation seulement — confirmation humaine obligatoire avant transformation.</div></div></div> : <div className="cleaning-intro"><span className="cleaning-icon"><Bot /></span><div><h3>Règles sûres, puis Qwen pour les cas ambigus</h3><p>L’assistant analyse le profil mais ne modifie jamais les données automatiquement.</p></div><span className="read-only-badge"><ShieldCheck /> Sans application automatique</span></div>}{history.length > 1 && <div className="ai-history"><History /> {history.length} recommandations journalisées pour ce dataset</div>}</section>
 }
 
 function formatDate(value) { return new Intl.DateTimeFormat('fr-FR', { dateStyle: 'long', timeStyle: 'short' }).format(new Date(value)) }

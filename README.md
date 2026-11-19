@@ -94,6 +94,33 @@ docker compose down
 Chaque transformation exige une confirmation et cree un nouveau dataset : le fichier
 source n'est jamais ecrase.
 
+## Assistant IA hybride
+
+Par defaut, le backend utilise Ollama et le modele local `qwen3:4b-instruct` :
+
+```env
+AI_PROVIDER=ollama
+AI_BASE_URL=http://127.0.0.1:11434
+AI_MODEL_NAME=qwen3:4b-instruct
+AI_REQUEST_TIMEOUT_SECONDS=120
+```
+
+Le moteur applique d'abord les regles deterministes. Qwen intervient pour les cas
+non couverts ou sur demande explicite. Les reponses sont validees par un contrat JSON,
+journalisees et ne declenchent jamais une transformation automatique.
+
+L'adapter LoRA `ai_lab/qwen3_ai_dataset_studio_lora_checkpoint_48.zip` doit etre servi
+par ms-swift/vLLM avec un endpoint compatible OpenAI. Pour basculer vers ce service :
+
+```env
+AI_PROVIDER=openai_compatible
+AI_BASE_URL=http://127.0.0.1:8000
+AI_MODEL_NAME=qwen3-ai-dataset-studio
+AI_API_KEY=
+```
+
+Le code applicatif et l'interface restent identiques : seules ces variables changent.
+
 ## Tests
 
 ```powershell

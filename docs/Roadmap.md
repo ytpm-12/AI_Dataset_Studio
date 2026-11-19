@@ -90,11 +90,11 @@ Critere de sortie : un dataset peut etre nettoye de maniere explicable et revers
 
 ## Phase 6 - Integration IA
 
-- [ ] Integrer les regles deterministes de `ai_lab` dans `apps.ai_engine`.
-- [ ] Appeler Qwen3 uniquement pour les cas ambigus ou non couverts.
-- [ ] Valider les sorties avec le schema JSON du projet.
-- [ ] Afficher les recommandations et leur justification.
-- [ ] Exiger une confirmation humaine avant transformation.
+- [x] Integrer les regles deterministes prioritaires dans `apps.ai_engine`.
+- [x] Appeler Qwen3 uniquement pour les cas ambigus ou sur demande explicite.
+- [x] Valider les sorties avec le schema JSON du projet.
+- [x] Afficher et journaliser les recommandations et leur justification.
+- [x] Exiger une confirmation humaine avant transformation.
 - [ ] Reevaluer le LoRA sur des cas reels valides.
 
 ## Phase 7 - Livraison MVP

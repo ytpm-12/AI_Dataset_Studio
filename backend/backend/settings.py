@@ -179,6 +179,11 @@ SYNC_PROFILE_MAX_MB = int(os.getenv('SYNC_PROFILE_MAX_MB', '10'))
 PROFILE_MAX_ROWS = int(os.getenv('PROFILE_MAX_ROWS', '10000'))
 PROFILE_SAMPLE_VALUES = int(os.getenv('PROFILE_SAMPLE_VALUES', '5'))
 CLEANING_ANALYSIS_MAX_ROWS = int(os.getenv('CLEANING_ANALYSIS_MAX_ROWS', '10000'))
+AI_PROVIDER = os.getenv('AI_PROVIDER', 'ollama').strip().lower()
+AI_BASE_URL = os.getenv('AI_BASE_URL', 'http://127.0.0.1:11434')
+AI_MODEL_NAME = os.getenv('AI_MODEL_NAME', 'qwen3:4b-instruct')
+AI_API_KEY = os.getenv('AI_API_KEY', '')
+AI_REQUEST_TIMEOUT_SECONDS = int(os.getenv('AI_REQUEST_TIMEOUT_SECONDS', '120'))
 
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://127.0.0.1:6379/0')
 CELERY_RESULT_BACKEND = os.getenv(

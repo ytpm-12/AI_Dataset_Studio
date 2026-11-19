@@ -5,6 +5,13 @@ from rest_framework.decorators import action
 from rest_framework.exceptions import ValidationError
 from rest_framework.response import Response
 
+from apps.ai_engine.models import AIRecommendation
+from apps.ai_engine.serializers import AIRecommendationSerializer
+from apps.ai_engine.services import (
+    AIServiceUnavailable,
+    InvalidAIResponse,
+    generate_recommendation,
+)
 from apps.pipelines.models import Transformation
 from apps.pipelines.serializers import TransformationSerializer
 from apps.pipelines.services import (
@@ -286,3 +293,46 @@ class UploadedFileViewSet(
         except (KeyError, ValueError, TypeError) as exc:
             raise ValidationError({'detail': 'Impossible de générer le rapport qualité.'}) from exc
         return Response(report)
+
+    @action(
+        detail=True,
+        methods=('post',),
+        parser_classes=(parsers.JSONParser,),
+        url_path='ai-recommendations',
+    )
+    def create_ai_recommendation(self, request, pk=None):
+        uploaded_file = self.get_object()
+        if uploaded_file.status != UploadedFile.Status.VALIDATED:
+            return Response(
+                {'detail': "La recommandation est disponible uniquement après validation."},
+                status=status.HTTP_409_CONFLICT,
+            )
+        force_ai = request.data.get('force_ai', False)
+        if not isinstance(force_ai, bool):
+            raise ValidationError({'force_ai': 'Ce champ doit être booléen.'})
+        try:
+            recommendation = generate_recommendation(uploaded_file, force_ai=force_ai)
+        except AIServiceUnavailable as exc:
+            return Response({'detail': str(exc)}, status=status.HTTP_503_SERVICE_UNAVAILABLE)
+        except InvalidAIResponse as exc:
+            return Response({'detail': str(exc)}, status=status.HTTP_502_BAD_GATEWAY)
+        except (KeyError, ValueError, TypeError) as exc:
+            raise ValidationError({'detail': str(exc)}) from exc
+        return Response(
+            AIRecommendationSerializer(recommendation).data,
+            status=status.HTTP_201_CREATED,
+        )
+
+    @action(
+        detail=True,
+        methods=('get',),
+        parser_classes=(),
+        url_path='ai-recommendations/history',
+    )
+    def ai_recommendation_history(self, request, pk=None):
+        uploaded_file = self.get_object()
+        history = AIRecommendation.objects.filter(
+            owner=request.user,
+            uploaded_file=uploaded_file,
+        )
+        return Response(AIRecommendationSerializer(history, many=True).data)

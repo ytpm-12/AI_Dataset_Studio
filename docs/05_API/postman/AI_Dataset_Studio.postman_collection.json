@@ -152,6 +152,14 @@
         {
           "name": "Exporter en JSON",
           "request": {"method": "GET", "url": "{{baseUrl}}/uploads/{{uploadId}}/export/?type=json"}
+        },
+        {
+          "name": "Generer une recommandation hybride",
+          "request": {"method": "POST", "header": [{"key": "X-CSRFToken", "value": "{{csrfToken}}"}, {"key": "Content-Type", "value": "application/json"}], "body": {"mode": "raw", "raw": "{\"force_ai\": false}"}, "url": "{{baseUrl}}/uploads/{{uploadId}}/ai-recommendations/"}
+        },
+        {
+          "name": "Consulter l historique IA",
+          "request": {"method": "GET", "url": "{{baseUrl}}/uploads/{{uploadId}}/ai-recommendations/history/"}
         }
       ]
     },

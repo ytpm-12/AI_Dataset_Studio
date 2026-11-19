@@ -78,6 +78,8 @@ export const api = {
   applyTypeConversion: (id, values) => apiRequest(`/uploads/${id}/type-conversion/apply/`, { method: 'POST', body: JSON.stringify({ ...values, confirm: true }) }),
   qualityReport: (id) => apiRequest(`/uploads/${id}/quality-report/`),
   exportUrl: (id, type) => `${API_ROOT}/uploads/${id}/export/?type=${type}`,
+  aiRecommendation: (id, forceAi = false) => apiRequest(`/uploads/${id}/ai-recommendations/`, { method: 'POST', body: JSON.stringify({ force_ai: forceAi }) }),
+  aiRecommendationHistory: (id) => apiRequest(`/uploads/${id}/ai-recommendations/history/`),
   jobs: (query = '') => apiRequest(`/jobs/${query}`),
   retryJob: (id) => apiRequest(`/jobs/${id}/retry/`, { method: 'POST' }),
 }
