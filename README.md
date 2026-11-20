@@ -2,7 +2,20 @@
 
 Plateforme de préparation de jeux de données de qualité.
 
-## Démarrage du backend sous Windows
+## Démarrage complet sous Windows
+
+Docker Desktop doit etre ouvert. Depuis la racine du projet, une seule commande lance
+Redis, Django, Celery et le frontend React :
+
+```powershell
+.\start-dev.ps1
+```
+
+L'application utilisateur est disponible sur `http://127.0.0.1:5173/`.
+`http://127.0.0.1:8000/` est le backend et redirige vers React ; l'API reste sur
+`http://127.0.0.1:8000/api/v1/` et l'administration sur `/admin/`.
+
+### Démarrage manuel du backend
 
 Depuis la racine du projet :
 
@@ -14,7 +27,8 @@ python manage.py migrate
 python manage.py runserver
 ```
 
-Le backend est disponible sur `http://127.0.0.1:8000/`.
+Le backend est disponible sur `http://127.0.0.1:8000/`, mais l'interface React doit
+etre lancee dans un second terminal.
 
 Le contrat des routes testables avec Postman se trouve dans
 [`docs/05_API/API_CONTRACT.md`](docs/05_API/API_CONTRACT.md).
@@ -23,9 +37,9 @@ La collection importable se trouve dans
 
 ## Architecture frontend
 
-Le frontend cible est une application React + Vite, executee et geree avec Node.js.
-Les templates Django actuels restent un prototype fonctionnel pendant sa construction
-incrementale. Le frontend communiquera avec le backend via `/api/v1/`.
+Le frontend officiel est une application React + Vite, executee et geree avec Node.js.
+Les anciens templates Django ont ete retires. React communique avec le backend via
+`/api/v1/`.
 
 ### Demarrage du frontend
 

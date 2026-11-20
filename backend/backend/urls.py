@@ -18,13 +18,12 @@ from django.contrib import admin
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import include, path
+from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/v1/', include('backend.api_urls')),
-    path('', include('apps.accounts.urls')),
-    path('projects/', include('apps.projects.urls')),
-    path('datasets/', include('apps.datasets.urls')),
+    path('', RedirectView.as_view(url=settings.FRONTEND_URL, permanent=False), name='frontend'),
 ]
 
 if settings.DEBUG:

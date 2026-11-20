@@ -52,6 +52,7 @@ CSRF_TRUSTED_ORIGINS = [
     ).split(',')
     if origin.strip()
 ]
+FRONTEND_URL = os.getenv('FRONTEND_URL', 'http://127.0.0.1:5173')
 
 
 # Application definition
@@ -195,10 +196,6 @@ CELERY_RESULT_SERIALIZER = 'json'
 CELERY_ACCEPT_CONTENT = ['json']
 CELERY_TASK_TRACK_STARTED = True
 CELERY_BROKER_CONNECTION_RETRY_ON_STARTUP = True
-
-LOGIN_URL = 'accounts:login'
-LOGIN_REDIRECT_URL = 'accounts:home'
-LOGOUT_REDIRECT_URL = 'accounts:login'
 
 SESSION_COOKIE_SECURE = not DEBUG
 CSRF_COOKIE_SECURE = not DEBUG

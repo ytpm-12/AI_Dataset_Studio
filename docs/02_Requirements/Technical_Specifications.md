@@ -16,8 +16,8 @@ AI Dataset Studio adopte une architecture client-serveur :
 - IA : regles deterministes et Qwen3 en complement ;
 - tests : tests Django, tests de services data et futurs tests frontend.
 
-Les templates Django actuels sont un prototype transitoire. Le frontend React les
-remplacera ecran par ecran sans modifier le contrat `/api/v1/`.
+Le frontend React est l'unique interface utilisateur. Les anciens templates Django
+ont ete retires sans modifier le contrat `/api/v1/`.
 
 ## Responsabilites
 

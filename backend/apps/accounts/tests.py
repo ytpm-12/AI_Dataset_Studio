@@ -18,6 +18,12 @@ class SessionAuthApiTests(TestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         return response.data['csrfToken']
 
+    def test_backend_root_redirects_to_react_frontend(self):
+        response = self.client.get('/')
+
+        self.assertEqual(response.status_code, status.HTTP_302_FOUND)
+        self.assertEqual(response.url, 'http://127.0.0.1:5173')
+
     def test_login_requires_csrf_token(self):
         response = self.client.post(
             '/api/v1/auth/login/',

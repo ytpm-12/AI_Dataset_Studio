@@ -57,7 +57,7 @@ Chaque fonction livree doit posseder au moins l'un des moyens de verification su
 - un ecran React conforme a la charte UI/UX ;
 - un endpoint documente et testable dans Postman.
 
-Pendant la migration, les ecrans Django existants restent disponibles comme prototype.
+Le frontend React constitue l'unique interface utilisateur du MVP.
 
 ## Criteres d'acceptation transversaux
 

@@ -19,8 +19,8 @@ Derniere mise a jour : 19/11/2026
 - Traitement tabulaire : pandas.
 - IA : moteur hybride, regles deterministes puis Qwen3 pour les cas ambigus.
 
-Les templates Django existants constituent un prototype fonctionnel temporaire. Ils
-servent de reference pendant la construction progressive du frontend Node.js.
+Le frontend React est l'interface officielle. Le prototype en templates Django a ete
+retire apres migration des parcours utilisateur.
 
 ## Phase 1 - Stabiliser l'existant
 
